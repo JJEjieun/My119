@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AssignEmployeeActivity"
+    tools:context=".AssignEmployerActivity"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="일반회원가입"
+        android:text="기업(사업주)회원가입"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
                 android:hint="비밀번호를 입력하세요" />
         </LinearLayout>
 
-        //생년월일
+        //사업자등록번호
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,18 +93,27 @@
                 android:id="@+id/textList3"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="생년월일"
+                android:text="사업자\n등록번호"
                 android:textSize="20dp"
                 android:gravity="center" />
 
             <EditText
+                android:id="@+id/enterEmployerNumber"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/enterBornDate"
-                android:hint="ex) 980101" />
+                android:hint="ID를 입력하세요"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkNumber"
+                android:text="확인"
+                android:gravity="center"
+                android:layout_weight="1"/>
         </LinearLayout>
 
-        //성별
+        //기업명
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,24 +124,18 @@
                 android:id="@+id/textList4"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="성별"
+                android:text="기업명"
                 android:textSize="20dp"
                 android:gravity="center" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/enterGender1"
-                android:text="여" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/enterGender2"
-                android:text="남" />
+                android:id="@+id/enterCompanyName"
+                android:hint="기업명을 입력하세요" />
         </LinearLayout>
 
-        //전화번호등록
+        //사업주명
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,15 +146,15 @@
                 android:id="@+id/textList5"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="전화번호"
+                android:text="사업주명"
                 android:textSize="20dp"
                 android:gravity="center" />
 
             <EditText
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/enterPhoneNumber"
-                android:hint="ex) 01012345678" />
+                android:id="@+id/enterEmployerName"
+                android:hint="사업주명을 입력하세요" />
         </LinearLayout>
 
         //주소
@@ -202,6 +205,69 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/enterAddress3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/endterAddress4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="상세주소를 입력하세요" />
+
+        </LinearLayout>
+
+        //전화번호등록
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textList7"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="전화번호"
+                android:textSize="20dp"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/enterPhoneNumber"
+                android:hint="ex) 01012345678" />
+        </LinearLayout>
+
+        //이메일등록
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textList8"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="이메일"
+                android:textSize="20dp"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/enterEmail"
+                android:hint="ex) sungshin17@naver.com" />
         </LinearLayout>
 
         //사진등록
