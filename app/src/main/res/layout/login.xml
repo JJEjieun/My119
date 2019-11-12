@@ -13,9 +13,9 @@
         android:id="@+id/textView2"
         android:layout_width="406dp"
         android:layout_height="58dp"
-        android:text="일일 대타 구함"
+        android:text="일일 대타 구함!"
         android:textAlignment="center"
-        android:textSize="100px"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,113 +23,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.202" />
 
-    <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linear2"
+
+    <Button
+        android:id="@+id/button_person"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:text="개인회원\n로그인"
+        app:layout_constraintBottom_toTopOf="@+id/button_employee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.691" />
 
-        <Button
-            android:id="@+id/button_person"
-            android:layout_width="127dp"
-            android:layout_height="75dp"
-            android:layout_marginRight="10dp"
-            android:text="개인회원\n로그인" />
-
-        <Button
-            android:id="@+id/button_employee"
-            android:layout_width="127dp"
-            android:layout_height="75dp"
-            android:text="기업회원\n로그인" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:gravity="center"
+    <Button
+        android:id="@+id/button_employee"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="228dp"
+        android:text="기업회원\n로그인"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.117"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TextView
-            android:layout_width="28dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="ID"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="아이디" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TextView
-            android:layout_width="41dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="P/W"
-            android:textSize="18dp" />
-
-        <EditText
-            android:id="@+id/pw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="비밀번호" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear4"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear3"
-        app:layout_constraintVertical_bias="0.076"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TextView
-            android:layout_width="157dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="아직 회원이 아니신가요?" />
-
-        <TextView
-            android:id="@+id/goto_assign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="회원가입" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="26dp"
+        android:layout_marginBottom="28dp"
         android:text="\@project team3"
         android:textAlignment="center"
         android:textSize="40px"
@@ -137,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear4"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintTop_toBottomOf="@+id/button_employee"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
