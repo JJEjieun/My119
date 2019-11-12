@@ -97,6 +97,18 @@
             android:text="비밀번호" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_employee"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="로그인"
+        app:layout_constraintBottom_toTopOf="@+id/linear4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear3"
+        app:layout_constraintVertical_bias="0.25" />
+
     <LinearLayout
         android:id="@+id/linear4"
         android:layout_width="match_parent"
@@ -105,8 +117,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear3"
-        app:layout_constraintVertical_bias="0.113"
-        tools:layout_editor_absoluteX="39dp">
+        app:layout_constraintVertical_bias="0.273"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:layout_width="157dp"
@@ -118,7 +130,7 @@
             android:id="@+id/goto_assign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입" />
+            android:text="기업회원가입" />
     </LinearLayout>
 
     <TextView
