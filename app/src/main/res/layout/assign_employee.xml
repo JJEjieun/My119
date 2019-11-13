@@ -165,7 +165,7 @@
                 android:id="@+id/textList6"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="ID"
+                android:text="전화번호"
                 android:textSize="20dp"
                 android:gravity="center" />
 
