@@ -39,7 +39,6 @@
             android:orientation="vertical">
 
             //아이디
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +70,6 @@
             </LinearLayout>
 
             //비밀번호
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +92,6 @@
             </LinearLayout>
 
             //사업자등록번호
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +123,6 @@
             </LinearLayout>
 
             //기업명
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +145,6 @@
             </LinearLayout>
 
             //사업주명
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +167,6 @@
             </LinearLayout>
 
             //주소
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -243,11 +237,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="상세주소를 입력하세요" />
-
             </LinearLayout>
 
             //전화번호등록
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -270,7 +262,6 @@
             </LinearLayout>
 
             //이메일등록
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -293,7 +284,6 @@
             </LinearLayout>
 
             //사진등록
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -302,7 +292,6 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 //이미지 입력하는 창으로 바꿔야함.
-
                 <TextView
                     android:id="@+id/Image"
                     android:layout_width="200dp"
@@ -315,7 +304,7 @@
 
     </ScrollView>
 
-    //등록버튼
+    //가입버튼
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
