@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LoginEmployee"
     android:orientation="vertical">
 
 
@@ -38,7 +38,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:text="< 개인 회원 >"
+            android:text="개인 회원"
             android:textAlignment="center"
             android:textSize="30dp" />
     </LinearLayout>
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="아이디" />
+            android:hint="아이디" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="비밀번호" />
+            android:hint="비밀번호" />
     </LinearLayout>
 
     <Button
