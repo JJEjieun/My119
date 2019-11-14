@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,10 +47,16 @@ public class AssignEmployee extends AppCompatActivity {
         enterAutNumber = findViewById(R.id.enterAutNumber);
         checkPhoneNumber = findViewById(R.id.checkPhoneNumber);
 
+        final TextView textAut = (TextView)findViewById(R.id.textAut);
+        final EditText EnterAutNum = (EditText)findViewById(R.id.enterAutNumber);
+        final Button butAutNum = (Button)findViewById(R.id.checkAutNumber);
+
         checkPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //소연 여기
+                textAut.setVisibility(View.VISIBLE);
+                EnterAutNum.setVisibility(View.VISIBLE);
+                butAutNum.setVisibility(View.VISIBLE);
                 sendVerificationCode(phoneNumber);
 
             }
