@@ -24,6 +24,8 @@ public class AssignEmployee extends AppCompatActivity {
     private String verificationId;
     private FirebaseAuth mAuth;
     EditText enterAutNumber;
+    Button checkPhoneNumber;
+    String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,20 @@ public class AssignEmployee extends AppCompatActivity {
 //        5) 인증번호 맞아야 등록처리되게
 
         EditText enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
-        String phoneNumber = "+82" + enterPhoneNumber.getText().toString();
+        phoneNumber = "+82" + enterPhoneNumber.getText().toString();
         enterAutNumber = findViewById(R.id.enterAutNumber);
+        checkPhoneNumber = findViewById(R.id.checkPhoneNumber);
 
-        sendVerificationCode(phoneNumber);
+        checkPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //소연 여기
+                sendVerificationCode(phoneNumber);
+
+            }
+        });
+
+
         findViewById(R.id.checkAutNumber).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +70,9 @@ public class AssignEmployee extends AppCompatActivity {
                 verifyCode(code);
             }
         });
+
+
+
 
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
