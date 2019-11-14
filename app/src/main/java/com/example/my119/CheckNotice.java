@@ -8,7 +8,7 @@ public class CheckNotice extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.check_notice);
+        setContentView(R.layout.login);
     }
 
 }
