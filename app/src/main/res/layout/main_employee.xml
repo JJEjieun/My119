@@ -137,4 +137,19 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginBottom="16dp"
+        android:text="\@project team3"
+        android:textAlignment="center"
+        android:textSize="40px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear4"
+        app:layout_constraintVertical_bias="0.76" />
+
 </android.support.constraint.ConstraintLayout>
