@@ -9,8 +9,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +49,8 @@ public class AssignEmployee extends AppCompatActivity {
     private String codeSent;
     private EditText enterPhoneNumber;
     private String phoneVerificationId;
+
+    static String add1,add2,add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private static String IP_ADDRESS = "10.50.97.219";
@@ -56,6 +62,12 @@ public class AssignEmployee extends AppCompatActivity {
     private EditText mEditTextAddress;//주소
     private EditText mEditTextPhone;//전화번호
     private EditText mEditTextName;//이름
+    private RadioButton femaleButton;
+    private RadioButton maleButton;
+    private RadioGroup radioGroup;
+    private Spinner address1;
+    private Spinner address2;
+    private Spinner address3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +88,14 @@ public class AssignEmployee extends AppCompatActivity {
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
         mEditTextName = (EditText) findViewById(R.id.enterEmployerName);
         mEditTextBirth = (EditText)findViewById(R.id.enterBornDate);
-        mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
+        //mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
         mEditTextPhone = (EditText) findViewById(R.id.enterPhoneNumber);
+        femaleButton = (RadioButton)findViewById(R.id.enterGender1);
+        maleButton = (RadioButton)findViewById(R.id.enterGender2);
+        radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
+        address1 = (Spinner)findViewById(R.id.enterAddress1);
+        address2 = (Spinner)findViewById(R.id.enterAddress2);
+        address3 = (Spinner)findViewById(R.id.enterAddress3);
 
         enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
 //        phoneNumber = enterPhoneNumber.getText().toString();
@@ -113,13 +131,55 @@ public class AssignEmployee extends AppCompatActivity {
                     String id = mEditTextID.getText().toString();
                     String pw = mEditTextPW.getText().toString();
                     String name = mEditTextName.getText().toString();
-                    String address = mEditTextAddress.getText().toString();
+                    String address = "";
                     String phoneNum = mEditTextPhone.getText().toString();
                     String birth = mEditTextBirth.getText().toString();
+                    String gender="";
+                    switch (radioGroup.getCheckedRadioButtonId()){
+                        case R.id.enterGender1:
+                            gender = "여자";
+                        case R.id.enterGender2:
+                            gender = "남자";
+                    }
+
+                    address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                             add1=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            add2=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            add3=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address = add1+add2+add3;
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
                     task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
-                            id, pw, name, birth, phoneNum,address);
+                            id, pw, name, birth, gender,phoneNum,address);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
@@ -130,9 +190,9 @@ public class AssignEmployee extends AppCompatActivity {
                     if (mEditTextName.length() > 0) {
                         mEditTextName.getText().clear();
                     }
-                    if (mEditTextAddress.length() > 0) {
-                        mEditTextAddress.getText().clear();
-                    }
+//                    if (mEditTextAddress.length() > 0) {
+//                        mEditTextAddress.getText().clear();
+//                    }
                     if (mEditTextPhone.length() > 0) {
                         mEditTextPhone.getText().clear();
                     }
@@ -173,12 +233,13 @@ public class AssignEmployee extends AppCompatActivity {
             String pw = (String) params[2];
             String name = (String) params[3];
             String birth = (String) params[4];
-            String phoneNum = (String) params[5];
-            String address = (String) params[6];
+            String gender = (String) params[5];
+            String phoneNum = (String) params[6];
+            String address = (String) params[7];
 
 
             String serverURL = (String) params[0];
-            String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&birth=" + birth
+            String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&gender="+gender+"&birth=" + birth
                     + "&phoneNum=" + phoneNum + "&address=" + address;
 
 

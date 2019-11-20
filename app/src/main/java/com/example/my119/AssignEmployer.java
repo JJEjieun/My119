@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ public class AssignEmployer extends AppCompatActivity {
     private static String IP_ADDRESS = "10.50.97.219";
     private static String TAG = "phptest";
 
+    static String add1,add2,add3;
+
     private EditText mEditTextNum;//등록번호
     private EditText mEditTextID;//아이디
     private EditText mEditTextPW;//비밀번호
@@ -32,6 +36,9 @@ public class AssignEmployer extends AppCompatActivity {
     private EditText mEditTextAddress;//주소
     private EditText mEditTextPhone;//전화번호
     private EditText mEditTextEmail;//이메일
+    private Spinner address1;
+    private Spinner address2;
+    private Spinner address3;
     private TextView mTextViewResult;
 
     @Override
@@ -56,6 +63,9 @@ public class AssignEmployer extends AppCompatActivity {
         mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
         mEditTextPhone = (EditText) findViewById(R.id.enterPhoneNumber);
         mEditTextEmail = (EditText) findViewById(R.id.enterEmail);
+        address1 = (Spinner)findViewById(R.id.enterAddress1);
+        address2 = (Spinner)findViewById(R.id.enterAddress2);
+        address3 = (Spinner)findViewById(R.id.enterAddress3);
 
         if (true) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
@@ -67,9 +77,46 @@ public class AssignEmployer extends AppCompatActivity {
                     String employerNumber = mEditTextNum.getText().toString();
                     String companyName = mEditTextStore.getText().toString();
                     String name = mEditTextName.getText().toString();
-                    String address = mEditTextAddress.getText().toString();
+                    String address="";
                     String phoneNum = mEditTextPhone.getText().toString();
                     String email = mEditTextEmail.getText().toString();
+
+                    address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            add1=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            add2=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            add3=parent.getItemAtPosition(position).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    address = add1+add2+add3+ mEditTextAddress.getText().toString();
+
+
 
                     InsertData task = new InsertData();
                     task.execute("http://" + IP_ADDRESS + "/assignEmployer.php",
