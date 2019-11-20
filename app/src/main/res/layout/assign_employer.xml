@@ -111,7 +111,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="ID를 입력하세요" />
+                    android:hint="사업자등록번호를 입력하세요" />
 
                 <Button
                     android:id="@+id/checkNumber"
