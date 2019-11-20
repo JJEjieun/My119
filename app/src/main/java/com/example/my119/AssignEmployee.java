@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -121,6 +122,20 @@ public class AssignEmployee extends AppCompatActivity {
                 verifySignInCode();
             }
         });
+
+        //스피너에 주소 입력. 현재는 아무거나 선택해도 (전체, 서울에 있는 구, 성북구에 있는 동으로 들어감)
+        ArrayAdapter Adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.spinner1, android.R.layout.simple_spinner_item);
+        address1.setAdapter(Adapter1);
+
+        ArrayAdapter Adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.spinner2, android.R.layout.simple_spinner_item);
+        address2.setAdapter(Adapter2);
+
+        ArrayAdapter Adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.spinner3, android.R.layout.simple_spinner_item);
+        address3.setAdapter(Adapter3);
+
 
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
