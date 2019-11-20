@@ -53,7 +53,7 @@ public class AssignEmployee extends AppCompatActivity {
     static String add1,add2,add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
-    private static String IP_ADDRESS = "10.50.97.219";
+    private static String IP_ADDRESS = "10.0.2.2";
     //private static String TAG = "phptest";
 
     private EditText mEditTextBirth;//생년월일
@@ -86,7 +86,7 @@ public class AssignEmployee extends AppCompatActivity {
 
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
-        mEditTextName = (EditText) findViewById(R.id.enterEmployerName);
+        mEditTextName = (EditText) findViewById(R.id.enterName);
         mEditTextBirth = (EditText)findViewById(R.id.enterBornDate);
         //mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
         mEditTextPhone = (EditText) findViewById(R.id.enterPhoneNumber);

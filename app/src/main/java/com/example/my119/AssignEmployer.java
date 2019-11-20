@@ -23,7 +23,7 @@ import java.net.URL;
 
 public class AssignEmployer extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "10.50.97.219";
+    private static String IP_ADDRESS = "10.0.2.2";
     private static String TAG = "phptest";
 
     static String add1,add2,add3;
@@ -170,7 +170,7 @@ public class AssignEmployer extends AppCompatActivity {
                 super.onPostExecute(result);
 
                 progressDialog.dismiss();
-                mTextViewResult.setText(result);
+//                mTextViewResult.setText(result);
                 Log.d(TAG, "POST response1 - " + result);
             }
 
