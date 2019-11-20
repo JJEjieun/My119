@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,6 +21,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 public class AssignEmployer extends AppCompatActivity {
 
@@ -41,6 +43,8 @@ public class AssignEmployer extends AppCompatActivity {
     private Spinner address3;
     private TextView mTextViewResult;
 
+    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +56,48 @@ public class AssignEmployer extends AppCompatActivity {
 //        4) 사업자등록번호 맞는지 확인
 //        5) 인증번호 맞아야 등록처리되게
 
+        //스피너에 주소 입력.
+        final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
+        final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
+        final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
+        adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner1, android.R.layout.simple_spinner_dropdown_item);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin1.setAdapter(adspin1);
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Objects.equals(adspin1.getItem(i), "서울")) {
+                    adspin2 = ArrayAdapter.createFromResource(AssignEmployer.this,
+                            R.array.spinner2, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
+                            if (Objects.equals(adspin2.getItem(j),"성북구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployer.this,
+                                        R.array.spinner3, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else{
+                                spin3.setAdapter(null);
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) { }
+                    });
+                }else{
+                    spin2.setAdapter(null);
+                    spin3.setAdapter(null);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        });
+
+
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
-
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
         mEditTextNum = (EditText) findViewById(R.id.enterEmployerNumber);

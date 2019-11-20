@@ -186,11 +186,16 @@
                         android:textSize="20dp"
                         android:gravity="center" />
 
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="시/도"
+                        android:gravity="center"/>
+
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/enterAddress1"
-                        android:entries="@array/spinner1" />
+                        android:id="@+id/enterAddress1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -203,11 +208,16 @@
                         android:layout_height="wrap_content"
                         android:visibility="invisible" />
 
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="시/군/구"
+                        android:gravity="center"/>
+
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/enterAddress2"
-                        android:entries="@array/spinner2"/>
+                        android:id="@+id/enterAddress2"/>
 
                 </LinearLayout>
 
@@ -221,11 +231,16 @@
                         android:layout_height="wrap_content"
                         android:visibility="invisible" />
 
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="동/읍/면"
+                        android:gravity="center"/>
+
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/enterAddress3"
-                        android:entries="@array/spinner3"/>
+                        android:id="@+id/enterAddress3"/>
                 </LinearLayout>
 
                 <LinearLayout

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="spinner3">
+        <item>선택</item>
         <item>길음동</item>
         <item>돈암동</item>
         <item>동선동</item>

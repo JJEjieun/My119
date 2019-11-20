@@ -36,6 +36,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class AssignEmployee extends AppCompatActivity {
@@ -69,6 +70,8 @@ public class AssignEmployee extends AppCompatActivity {
     private Spinner address1;
     private Spinner address2;
     private Spinner address3;
+
+    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,19 +126,45 @@ public class AssignEmployee extends AppCompatActivity {
             }
         });
 
-        //스피너에 주소 입력. 현재는 아무거나 선택해도 (전체, 서울에 있는 구, 성북구에 있는 동으로 들어감)
-        ArrayAdapter Adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.spinner1, android.R.layout.simple_spinner_item);
-        address1.setAdapter(Adapter1);
-
-        ArrayAdapter Adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.spinner2, android.R.layout.simple_spinner_item);
-        address2.setAdapter(Adapter2);
-
-        ArrayAdapter Adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.spinner3, android.R.layout.simple_spinner_item);
-        address3.setAdapter(Adapter3);
-
+        //스피너에 주소 입력.
+        final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
+        final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
+        final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
+        adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner1,
+                android.R.layout.simple_spinner_dropdown_item);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin1.setAdapter(adspin1);
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Objects.equals(adspin1.getItem(i), "서울")) {
+                    adspin2 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                            R.array.spinner2, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
+                            if (Objects.equals(adspin2.getItem(j),"성북구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else{
+                                spin3.setAdapter(null);
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) { }
+                    });
+                }else{
+                    spin2.setAdapter(null);
+                    spin3.setAdapter(null);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        });
 
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
@@ -320,6 +349,7 @@ public class AssignEmployee extends AppCompatActivity {
         }
     }
 
+    //전화번호 인증
     public void sendVerificationCode() {
         String phoneNumber = enterPhoneNumber.getText().toString();
 
