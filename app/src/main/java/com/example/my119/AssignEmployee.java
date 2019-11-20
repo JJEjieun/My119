@@ -135,11 +135,17 @@ public class AssignEmployee extends AppCompatActivity {
                     String phoneNum = mEditTextPhone.getText().toString();
                     String birth = mEditTextBirth.getText().toString();
                     String gender="";
-                    switch (radioGroup.getCheckedRadioButtonId()){
-                        case R.id.enterGender1:
-                            gender = "여자";
-                        case R.id.enterGender2:
-                            gender = "남자";
+//                    switch (radioGroup.getCheckedRadioButtonId()){
+//                        case R.id.enterGender1:
+//                            gender = "여자";
+//                        case R.id.enterGender2:
+//                            gender = "남자";
+//                    }
+
+                    if(femaleButton.isChecked()){
+                        gender="여자";
+                    }else if(maleButton.isChecked()){
+                        gender="남자";
                     }
 
                     address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
