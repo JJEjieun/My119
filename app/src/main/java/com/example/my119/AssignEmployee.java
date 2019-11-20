@@ -1,5 +1,8 @@
 package com.example.my119;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
@@ -22,6 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class AssignEmployee extends AppCompatActivity {
@@ -38,6 +47,16 @@ public class AssignEmployee extends AppCompatActivity {
     private String phoneVerificationId;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
+    private static String IP_ADDRESS = "10.50.97.219";
+    //private static String TAG = "phptest";
+
+    private EditText mEditTextBirth;//생년월일
+    private EditText mEditTextID;//아이디
+    private EditText mEditTextPW;//비밀번호
+    private EditText mEditTextAddress;//주소
+    private EditText mEditTextPhone;//전화번호
+    private EditText mEditTextName;//이름
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +70,14 @@ public class AssignEmployee extends AppCompatActivity {
 //        3) 전화번호 형식에 맞게 입력했는지
 //        4) 생년월일 맞게 입력했는지
 //        5) 인증번호 맞아야 등록처리되게
+
+
+        mEditTextID = (EditText) findViewById(R.id.enterID);
+        mEditTextPW = (EditText) findViewById(R.id.enterPW);
+        mEditTextName = (EditText) findViewById(R.id.enterEmployerName);
+        mEditTextBirth = (EditText)findViewById(R.id.enterBornDate);
+        mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
+        mEditTextPhone = (EditText) findViewById(R.id.enterPhoneNumber);
 
         enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
 //        phoneNumber = enterPhoneNumber.getText().toString();
@@ -81,12 +108,133 @@ public class AssignEmployee extends AppCompatActivity {
         // '등록' 버튼 누르면 로그인창으로 돌아감
         if(true) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
-                    assignButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            Toast.makeText(getApplicationContext(), "가입 되었습니다.", Toast.LENGTH_SHORT).show();
-                            finish();
+            assignButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    String id = mEditTextID.getText().toString();
+                    String pw = mEditTextPW.getText().toString();
+                    String name = mEditTextName.getText().toString();
+                    String address = mEditTextAddress.getText().toString();
+                    String phoneNum = mEditTextPhone.getText().toString();
+                    String birth = mEditTextBirth.getText().toString();
+
+                    AssignEmployee.InsertData task = new AssignEmployee.InsertData();
+                    task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
+                            id, pw, name, birth, phoneNum,address);
+
+                    if (mEditTextID.length() > 0) {
+                        mEditTextID.getText().clear();
+                    }
+                    if (mEditTextPW.length() > 0) {
+                        mEditTextPW.getText().clear();
+                    }
+                    if (mEditTextName.length() > 0) {
+                        mEditTextName.getText().clear();
+                    }
+                    if (mEditTextAddress.length() > 0) {
+                        mEditTextAddress.getText().clear();
+                    }
+                    if (mEditTextPhone.length() > 0) {
+                        mEditTextPhone.getText().clear();
+                    }
+                    if (mEditTextBirth.length() > 0) {
+                        mEditTextBirth.getText().clear();
+                    }
+
+                    Toast.makeText(getApplicationContext(), "가입 되었습니다.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             });
+        }
+    }
+
+    class InsertData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(AssignEmployee.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response1 - " + result);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String id = (String) params[1];
+            String pw = (String) params[2];
+            String name = (String) params[3];
+            String birth = (String) params[4];
+            String phoneNum = (String) params[5];
+            String address = (String) params[6];
+
+
+            String serverURL = (String) params[0];
+            String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&birth=" + birth
+                    + "&phoneNum=" + phoneNum + "&address=" + address;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code2 - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                    Log.d(TAG, "OK");
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
+            }
         }
     }
 

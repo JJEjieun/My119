@@ -233,7 +233,7 @@
                     android:visibility="invisible" />
 
                 <EditText
-                    android:id="@+id/endterAddress4"
+                    android:id="@+id/enterAddress4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="상세주소를 입력하세요" />
