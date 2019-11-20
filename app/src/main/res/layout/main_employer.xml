@@ -49,60 +49,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear1"
-        app:layout_constraintVertical_bias="0.423"
-        tools:layout_editor_absoluteX="-3dp">
+        app:layout_constraintBottom_toTopOf="@+id/checkText"
+        app:layout_constraintTop_toBottomOf="@+id/linear1">
 
         <TextView
-            android:id="@+id/text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="알람확인"
-            android:textSize="30dp" />
+            android:text="알림확인"
+            android:textSize="25dp"
+            android:gravity="center"/>
 
         <LinearLayout
-            android:id="@+id/AlarmList"
+            android:id="@+id/TextList1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/checkText"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.416"
-            tools:layout_editor_absoluteX="-65dp">
+            android:orientation="vertical">
 
-            // 아래 있는 텍스트뷰의 알람리스트들은 recyclerView로 바꿔서 생성할 예정
-            <TextView
-                android:id="@+id/alarmList1"
+            <ListView
+                android:id="@+id/listView1"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="알람리스트1"
-                android:textSize="15dp" />
+                android:layout_gravity="center"
+                android:text="알림 더 확인하기"
+                android:textSize="18dp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="알람 더 확인하기"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginBottom="16dp"
-        android:text="\@project team3"
-        android:textAlignment="center"
-        android:textSize="40px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear4"
-        app:layout_constraintVertical_bias="0.76" />
 
 </android.support.constraint.ConstraintLayout>

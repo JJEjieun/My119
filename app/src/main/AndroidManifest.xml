@@ -19,6 +19,7 @@
         <activity android:name=".MainEmployee"/>
         <activity android:name=".MainEmployer"/>
         <activity android:name=".CheckNotice"/>
+        <activity android:name=".CheckAlarm"/>
         <activity android:name=".MyPage"/>
         <activity android:name=".Resume"/>
         <activity android:name=".Login" >

@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CheckNotice">
+    tools:context=".CheckAlarm">
 
     <TextView
         android:id="@+id/notice_list"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/myRed"
-        android:text="공고 목록"
+        android:text="알림 목록"
         android:textColor="#ffffff"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@id/L1"
@@ -30,11 +30,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notice_list"
         android:paddingTop="13dp">
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </ListView>
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
     </LinearLayout>
 
     <TextView
