@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="keySpin1">
+        <item>패밀리레스토랑</item>
+        <item>패스트푸드점</item>
+        <item>치킨전문점</item>
+        <item>피자전문점</item>
+        <item>커피전문점</item>
+        <item>아이스크림/디저트</item>
+        <item>베이커리/떡/도넛</item>
+        <item>백화점</item>
+        <item>쇼핑몰</item>
+        <item>편의점</item>
+        <item>의류/잡화</item>
+        <item>서점/문구/팬시</item>
+        <item>놀이공원</item>
+        <item>영화/공연</item>
+        <item>호텔</item>
+        <item>전시/컨벤션</item>
+    </string-array>
+
+</resources>

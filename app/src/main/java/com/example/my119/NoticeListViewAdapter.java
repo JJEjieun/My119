@@ -45,7 +45,9 @@ public class NoticeListViewAdapter extends BaseAdapter {
         //리스트뷰 클릭 이벤트
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){}
+            public void onClick(View view){
+
+            }
         });
 
         return convertView;
