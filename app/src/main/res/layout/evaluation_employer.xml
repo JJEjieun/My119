@@ -9,7 +9,6 @@
     android:orientation="vertical">
 
     // 내 사진 가져온다. 그래서 imageView 써야한다.
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="match_parent"

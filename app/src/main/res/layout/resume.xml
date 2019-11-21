@@ -9,8 +9,6 @@
     android:orientation="vertical">
 
     // 내 사진 가져온다. 그래서 imageView 써야한다.
-
-
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -282,6 +280,7 @@
         app:layout_constraintVertical_bias="0.694" />
 
     <EditText
+        android:id="@+id/editText"
         android:layout_width="371dp"
         android:layout_height="41dp"
         android:hint="  경력사항을 입력하시오."
@@ -307,5 +306,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear4"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등록"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
