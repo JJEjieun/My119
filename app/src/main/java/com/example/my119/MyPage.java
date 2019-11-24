@@ -22,6 +22,18 @@ public class MyPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        Button button_supply = (Button)findViewById(R.id.supply);
+        button_supply.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "근로 계약서", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getApplicationContext(), Contract_employee.class);
+                startActivity(intent2);
+            }
+        });
+
+
     }
 
 }
