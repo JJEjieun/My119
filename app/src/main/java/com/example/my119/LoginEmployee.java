@@ -1,9 +1,11 @@
 package com.example.my119;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,8 @@ public class LoginEmployee extends AppCompatActivity {
 
     private EditText enterPw;
     private EditText enterId;
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class LoginEmployee extends AppCompatActivity {
         // true부분을 (ID PW 검사해서 맞으면)으로 바꿔야함.
         // '로그인'버튼 누르면 개인회원 메인페이지로 넘어감.
 
+        context = this;
         enterId = (EditText)findViewById(R.id.id);
         enterPw = (EditText)findViewById(R.id.pw);
 
@@ -43,6 +48,11 @@ public class LoginEmployee extends AppCompatActivity {
             Button button_employee = (Button)findViewById(R.id.button_employee);
             button_employee.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String sid = enterId.getText().toString();
+                    PreferenceUtil.setPreferences(context, "id", sid);
+                    Log.d("PreferencesUtil", "id: " + sid);
+
+
                     Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
                     startActivity(intent);

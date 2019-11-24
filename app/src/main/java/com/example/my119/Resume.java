@@ -1,5 +1,6 @@
 package com.example.my119;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import java.util.Objects;
 public class Resume extends AppCompatActivity {
     private final int GET_GALLERY_IMAGE = 200;
     private ImageView imageview;
+    public String sid;
+    Context context;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3, adspin4, adspin5, adspin6;
 
@@ -22,6 +25,9 @@ public class Resume extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resume);
+
+        context = this;
+        sid = PreferenceUtil.getPreferences(context, "id");
 
         //내 핸드폰에서 이미지 가져오기
         imageview = (ImageView)findViewById(R.id.myFace);
