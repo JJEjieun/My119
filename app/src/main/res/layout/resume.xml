@@ -17,6 +17,7 @@
         android:textColor="#ffffff"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@id/L1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,10 +118,10 @@
     <ScrollView
         android:id="@+id/L3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="320dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/L2">
 
         <LinearLayout
@@ -290,63 +291,87 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/food1"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="패밀리레스토랑" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/food2"
+                        <CheckBox
+                            android:id="@+id/food1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="패밀리레스토랑" />
+
+                        <CheckBox
+                            android:id="@+id/food2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="패스트푸드점" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="패스트푸드점" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/food3"
+                        <CheckBox
+                            android:id="@+id/food3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="치킨전문점" />
+
+                        <CheckBox
+                            android:id="@+id/food4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="피자전문점" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="치킨전문점" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/food4"
+                        <CheckBox
+                            android:id="@+id/food5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="커피전문점" />
+
+                        <CheckBox
+                            android:id="@+id/food6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="아이스크림/디저트" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="피자전문점" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/food5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="커피전문점" />
-
-                    <CheckBox
-                        android:id="@+id/food6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="아이스크림/디저트" />
-
-                    <CheckBox
-                        android:id="@+id/food7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="베이커리/떡/도넛" />
+                        <CheckBox
+                            android:id="@+id/food7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="베이커리/떡/도넛" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -354,79 +379,101 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/service1"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="백화점" />
+                        android:orientation="horizontal">
+                        <CheckBox
+                            android:id="@+id/service1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="백화점" />
 
-                    <CheckBox
-                        android:id="@+id/service2"
+                        <CheckBox
+                            android:id="@+id/service2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="쇼핑몰" />
+
+                        <CheckBox
+                            android:id="@+id/service3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="편의점" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="쇼핑몰" />
+                        android:orientation="horizontal">
+                        <CheckBox
+                            android:id="@+id/service4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="의류/잡화" />
 
-                    <CheckBox
-                        android:id="@+id/service3"
+                        <CheckBox
+                            android:id="@+id/service5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="서점/문구/팬시" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="편의점" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/service4"
+                        <CheckBox
+                            android:id="@+id/service6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="놀이공원" />
+
+                        <CheckBox
+                            android:id="@+id/service7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="영화/공연" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="의류/잡화" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/service5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="서점/문구/팬시" />
+                        <CheckBox
+                            android:id="@+id/service8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="호텔" />
 
-                    <CheckBox
-                        android:id="@+id/service6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="놀이공원" />
-
-                    <CheckBox
-                        android:id="@+id/service7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="영화/공연" />
-
-                    <CheckBox
-                        android:id="@+id/service8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="호텔" />
-
-                    <CheckBox
-                        android:id="@+id/service9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="전시/컨벤션" />
+                        <CheckBox
+                            android:id="@+id/service9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="전시/컨벤션" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <Button
@@ -464,7 +511,7 @@
                 android:id="@+id/btn_r_resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:text="등록" />
         </LinearLayout>
     </ScrollView>
