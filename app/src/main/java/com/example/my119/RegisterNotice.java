@@ -87,4 +87,5 @@ public class RegisterNotice extends AppCompatActivity {
         });
 
     }
+
 }
