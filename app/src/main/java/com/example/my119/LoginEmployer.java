@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class LoginEmployer extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class LoginEmployer extends AppCompatActivity {
 
     private EditText enterPw;
     private EditText enterId;
+    final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,15 @@ public class LoginEmployer extends AppCompatActivity {
             Button button_employer = (Button)findViewById(R.id.button_employer);
             button_employer.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "기업회원 메인창", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
-                    startActivity(intent);
-                    finish();
-
+                    for(int i=0; i<employerinfos.size();i++){
+                        if(employerinfos.get(i).getID().equals("employerID")){
+                            Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                            startActivity(intent);
+                            finish();
+                        }else
+                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -92,24 +98,18 @@ public class LoginEmployer extends AppCompatActivity {
             return jsonHtml.toString();
         }
 
-        protected void onPostExecute(String str){
-            try{
+        protected void onPostExecute(String str) {
+            try {
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray results = jsonObject.getJSONArray("webnautes");
 
-                String zz="";
-                for(int i =0; i<results.length();i++){
+                String zz = "";
+                for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                   if(enterId.getText().equals(temp.get("id"))&&enterPw.getText().equals(temp.get("pw"))) {
-                       Toast.makeText(getApplicationContext(), "기업회원 메인창", Toast.LENGTH_SHORT).show();
-                       Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
-                       startActivity(intent);
-                       finish();
-                   }
-
-//                    zz += "id= "+temp.get("id");
-//                    zz +="\tpw= "+temp.get("pw");
+                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw")));
                 }
+
+
             }catch (JSONException e){
                 e.printStackTrace();
             }

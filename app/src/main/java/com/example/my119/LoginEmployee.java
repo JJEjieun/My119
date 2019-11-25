@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class LoginEmployee extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class LoginEmployee extends AppCompatActivity {
     private EditText enterPw;
     private EditText enterId;
     Context context;
+    final ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +54,16 @@ public class LoginEmployee extends AppCompatActivity {
                     PreferenceUtil.setPreferences(context, "id", sid);
                     Log.d("PreferencesUtil", "id: " + sid);
 
+                    for(int i=0; i<employeeinfos.size();i++){
+                        if(employeeinfos.get(i).getID().equals(sid)){
+                            Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                            startActivity(intent);
+                            finish();
+                        }else
+                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
 
-                    Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
-                    startActivity(intent);
-                    finish();
                 }
             });
 
@@ -105,15 +112,11 @@ public class LoginEmployee extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray results = jsonObject.getJSONArray("webnautes");
 
-                String zz="";
                 for(int i =0; i<results.length();i++){
                     JSONObject temp = results.getJSONObject(i);
-                    if(enterId.getText().equals(temp.get("id"))&&enterPw.getText().equals(temp.get("pw"))) {
-                        Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
-                        startActivity(intent);
-                        finish();
-                    }
+
+                    employeeinfos.add(i, new Employeeinfo((String)temp.get("id"),(String)temp.get("pw")));
+
                 }
             }catch (JSONException e){
                 e.printStackTrace();
