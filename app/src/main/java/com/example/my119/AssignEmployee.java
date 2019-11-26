@@ -175,7 +175,7 @@ public class AssignEmployee extends AppCompatActivity {
                     String id = mEditTextID.getText().toString();
                     String pw = mEditTextPW.getText().toString();
                     String name = mEditTextName.getText().toString();
-                    String address = "";
+                    String addr = "";
                     String phoneNum = mEditTextPhone.getText().toString();
                     String birth = mEditTextBirth.getText().toString();
                     String gender="";
@@ -192,10 +192,11 @@ public class AssignEmployee extends AppCompatActivity {
                         gender="남자";
                     }
 
-                    address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                             add1=parent.getItemAtPosition(position).toString();
+//                             add1=parent.getItemAtPosition(position).toString();
+                            add1=(String)parent.getItemAtPosition(position);
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
@@ -203,10 +204,11 @@ public class AssignEmployee extends AppCompatActivity {
                         }
                     });
 
-                    address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add2=parent.getItemAtPosition(position).toString();
+                            add2=(String)parent.getItemAtPosition(position);
+//                            add2 = address2.getSelectedItem().toString();
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
@@ -214,7 +216,7 @@ public class AssignEmployee extends AppCompatActivity {
                         }
                     });
 
-                    address3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    spin3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             add3=parent.getItemAtPosition(position).toString();
@@ -225,11 +227,11 @@ public class AssignEmployee extends AppCompatActivity {
                         }
                     });
 
-                    address = add1+add2+add3;
+                    addr = add1+add2+add3;
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
                     task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
-                            id, pw, name, birth, gender,phoneNum,address);
+                            id, pw, name, birth, gender,phoneNum,addr);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
