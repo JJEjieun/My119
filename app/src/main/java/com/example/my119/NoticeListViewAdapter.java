@@ -29,17 +29,21 @@ public class NoticeListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.notice_list, parent, false);
         }
 
-        TextView noticeName = (TextView) convertView.findViewById(R.id.tv_name);
-        TextView endTime = (TextView) convertView.findViewById(R.id.db_endTime);
+        TextView workDate = (TextView) convertView.findViewById(R.id.db_workDate);
+        TextView workTime = (TextView) convertView.findViewById(R.id.db_workTime);
         TextView storeName = (TextView) convertView.findViewById(R.id.db_storeName);
+        TextView noticeNum = (TextView) convertView.findViewById(R.id.db_noticeNum);
+        TextView endTime = (TextView) convertView.findViewById(R.id.db_endTime);
         TextView money = (TextView) convertView.findViewById(R.id.db_money);
 
         Notice listViewItem = noticeArrayList.get(position);
 
         //아이템 내 각 위젯에 데이터 반영
-        noticeName.setText(listViewItem.getNoticeName());
-        endTime.setText(listViewItem.getEndTime());
+        workDate.setText(listViewItem.getWorkDate());
+        workTime.setText(listViewItem.getWorkTime());
         storeName.setText(listViewItem.getStore());
+        noticeNum.setText(listViewItem.getNoticeNum());
+        endTime.setText(listViewItem.getEndTime());
         money.setText(listViewItem.getMoney());
 
         //리스트뷰 클릭 이벤트
@@ -64,12 +68,14 @@ public class NoticeListViewAdapter extends BaseAdapter {
     }
 
     //데이터 값 넣어줌
-    public void addNotice(String noticeN, String endT, String storeN, String money){
+    public void addNotice(String workD, String workT, String storeN, String noticeNum, String endT, String money){
         Notice item = new Notice();
 
-        item.setNoticeName(noticeN);
-        item.setEndTime(endT);
+        item.setWorkDate(workD);
+        item.setWorkTime(workT);
         item.setStore(storeN);
+        item.setNoticeNum(noticeNum);
+        item.setEndTime(endT);
         item.setMoney(money);
 
         noticeArrayList.add(item);

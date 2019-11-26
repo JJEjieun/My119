@@ -35,9 +35,12 @@ public class CheckNotice extends AppCompatActivity {
 
         // 아이템 추가.
 /**/        //이부분을 php에서 값 받아오는 걸로 수정
-        adapter.addNotice("알바구함", "191212","할리스커피", "8500");
-        adapter.addNotice("대타구해요", "200130","이디야", "8700");
-        adapter.addNotice("대타급함", "191124","애정마라", "8400");
+        adapter.addNotice("191212","13~15시","할리스커피",
+                "3", "191210","28500");
+        adapter.addNotice("200130","15-20시", "이디야",
+                "2", "200120","58700");
+        adapter.addNotice( "191124","12-19","애정마라",
+                "1", "191120","68400");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

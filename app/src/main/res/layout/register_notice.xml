@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@color/myRed"
         android:text="공고 등록"
         android:textColor="#ffffff"
@@ -201,7 +201,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="100dp"
+                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible" />
 

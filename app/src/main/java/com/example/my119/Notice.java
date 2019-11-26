@@ -1,27 +1,30 @@
 package com.example.my119;
 
 public class Notice {
-    private String noticeName;
-    private String endTime;
+
+    private String workDate;
+    private String workTime;
     private String Store;
+    private String noticeNum;
+    private String endTime;
     private String money;
 
     public Notice() { }
 
-    public String getNoticeName() {
-        return noticeName;
+    public String getWorkDate(){
+        return workDate;
     }
 
-    public void setNoticeName(String noticeName) {
-        this.noticeName = noticeName;
+    public void setWorkDate(String workDate){
+        this.workDate = workDate;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getWorkTime() {
+        return workTime;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setWorkTime(String workTime){
+        this.workTime = workTime;
     }
 
     public String getStore() {
@@ -30,6 +33,23 @@ public class Notice {
 
     public void setStore(String store) {
         Store = store;
+    }
+
+
+    public String getNoticeNum() {
+        return noticeNum;
+    }
+
+    public void setNoticeNum(String noticeNum) {
+        this.noticeNum = noticeNum;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public String getMoney() {
