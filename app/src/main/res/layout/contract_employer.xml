@@ -33,21 +33,21 @@
             android:orientation="vertical">
 
             <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="근로자 명"
-                android:textSize="20dp"
-                android:layout_marginLeft="20dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="근로자 명"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="정희주"
-                android:layout_marginLeft="40dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정희주"
+                    android:layout_marginLeft="40dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -282,12 +282,12 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/contract_empolyee"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="계약서 작성완료"
-                android:layout_marginTop="50dp" />
+                <Button
+                    android:id="@+id/contract_empolyee"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="계약서 작성완료"
+                    android:layout_marginTop="50dp" />
             </LinearLayout>
 
         </LinearLayout>
