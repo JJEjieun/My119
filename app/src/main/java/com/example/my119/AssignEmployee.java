@@ -192,42 +192,12 @@ public class AssignEmployee extends AppCompatActivity {
                         gender="남자";
                     }
 
-                    spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                             add1=parent.getItemAtPosition(position).toString();
-                            add1=(String)parent.getItemAtPosition(position);
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
 
-                        }
-                    });
+                    add1 = spin1.getSelectedItem().toString();
+                    add2 = spin2.getSelectedItem().toString();
+                    add3 = spin3.getSelectedItem().toString();
 
-                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add2=(String)parent.getItemAtPosition(position);
-//                            add2 = address2.getSelectedItem().toString();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    spin3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add3=parent.getItemAtPosition(position).toString();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    addr = add1+add2+add3;
+                    addr = add1+" "+add2+" "+add3;
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
                     task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
@@ -242,9 +212,6 @@ public class AssignEmployee extends AppCompatActivity {
                     if (mEditTextName.length() > 0) {
                         mEditTextName.getText().clear();
                     }
-//                    if (mEditTextAddress.length() > 0) {
-//                        mEditTextAddress.getText().clear();
-//                    }
                     if (mEditTextPhone.length() > 0) {
                         mEditTextPhone.getText().clear();
                     }

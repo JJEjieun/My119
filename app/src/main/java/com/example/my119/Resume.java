@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -19,12 +20,24 @@ public class Resume extends AppCompatActivity {
     public String sid;
     Context context;
 
+
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3, adspin4, adspin5, adspin6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resume);
+
+        TextView name = (TextView)findViewById(R.id.textView3);
+        TextView genderNage = (TextView)findViewById(R.id.textView10);
+        TextView phone = (TextView)findViewById(R.id.textView15);
+        TextView add = (TextView)findViewById(R.id.textView16);
+
+        name.setText(LoginEmployee.eID);
+        genderNage.setText(LoginEmployee.eGender+"/"+LoginEmployee.eBirth);
+        phone.setText(LoginEmployee.ePhoneNum);
+        add.setText(LoginEmployee.eAddress);
+
 
         context = this;
         sid = PreferenceUtil.getPreferences(context, "id");

@@ -89,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="010-1234-5678"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:id="@+id/textView15"/>
         </LinearLayout>
 
         <LinearLayout
@@ -111,7 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="서울특별시 성북구 돈암동"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:id="@+id/textView16"/>
         </LinearLayout>
     </LinearLayout>
 

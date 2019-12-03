@@ -124,40 +124,11 @@ public class AssignEmployer extends AppCompatActivity {
                     String phoneNum = mEditTextPhone.getText().toString();
                     String email = mEditTextEmail.getText().toString();
 
-                    address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add1=parent.getItemAtPosition(position).toString();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
+                    add1 = spin1.getSelectedItem().toString();
+                    add2 = spin2.getSelectedItem().toString();
+                    add3 = spin3.getSelectedItem().toString();
 
-                        }
-                    });
-
-                    address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add2=parent.getItemAtPosition(position).toString();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    address3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            add3=parent.getItemAtPosition(position).toString();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    address = add1+add2+add3+ mEditTextAddress.getText().toString();
+                    address = add1+" "+add2+" "+add3+" "+ mEditTextAddress.getText().toString();
 
 
 

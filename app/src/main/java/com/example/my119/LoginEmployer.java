@@ -28,7 +28,7 @@ public class LoginEmployer extends AppCompatActivity {
     private EditText enterPw;
     private EditText enterId;
     final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
-    static String employerName = "";
+    static String rID, rPW,rEmployerNumber,rCompanyName, rName, rAddress, rPhoneNum, rEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +108,16 @@ public class LoginEmployer extends AppCompatActivity {
                 String zz = "";
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw")));
-                    employerName = (String)temp.get("id");
+                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email")));
+                    rID = (String)temp.get("id");
+                    rPW= (String)temp.get("pw");
+                    rEmployerNumber = (String)temp.get("employerNumber");
+                    rCompanyName = (String)temp.get("companyName");
+                    rName = (String)temp.get("name");
+                    rAddress = (String)temp.get("address");
+                    rPhoneNum = (String)temp.get("phoneNum");
+                    rEmail = (String)temp.get("email");
+
                 }
 
 

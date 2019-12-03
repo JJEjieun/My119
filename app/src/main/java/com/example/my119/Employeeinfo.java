@@ -3,11 +3,22 @@ package com.example.my119;
 public class Employeeinfo {
     String ID;
     String PW;
+    String name;
+    String gender;
+    String birth;
+    String phoneNum;
+    String address;
 
-    public Employeeinfo(String id, String pw){
+    public Employeeinfo(String id, String pw, String name, String gender, String birth, String phoneNum, String address) {
         this.ID = id;
         this.PW = pw;
+        this.name = name;
+        this.gender = gender;
+        this.birth = birth;
+        this.phoneNum = phoneNum;
+        this.address = address;
     }
+
 
     public String getID() {
         return ID;
@@ -17,6 +28,46 @@ public class Employeeinfo {
         return PW;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -24,4 +75,7 @@ public class Employeeinfo {
     public void setPW(String PW) {
         this.PW = PW;
     }
+
 }
+
+

@@ -57,7 +57,7 @@ public class RegisterNotice extends AppCompatActivity {
         face = (RadioButton)findViewById(R.id.fCall);
 
         //공고 등록 버튼 누르면 공고 등록 됨
-/**/    //데베 작업 필요
+        /**/    //데베 작업 필요
         Button btnNewNotice = (Button)findViewById(R.id.btn_register);
         btnNewNotice.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -83,50 +83,12 @@ public class RegisterNotice extends AppCompatActivity {
                     interview="면대면";
                 }
 
-                key1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        k1=parent.getItemAtPosition(position).toString();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
+               k1 = key1.getSelectedItem().toString();
+                k2 = key2.getSelectedItem().toString();
+                k3_1 = key3_1.getSelectedItem().toString();
+                k3_2 = key3_2.getSelectedItem().toString();
 
-                    }
-                });
-
-                key2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        k1=parent.getItemAtPosition(position).toString();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                key3_1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        k3_1=parent.getItemAtPosition(position).toString();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-                key3_2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        k3_2=parent.getItemAtPosition(position).toString();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                time = k3_1+k3_2;
+                time = k3_1+" "+k3_2;
 
                 InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/notice.php",
@@ -160,53 +122,24 @@ public class RegisterNotice extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin1.setAdapter(adspin1);
-        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            //아이템클릭했을때 이벤트 처리(디비에 저장)
-            /**/            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
+
 
         adspin2 = ArrayAdapter.createFromResource(this, R.array.keySpin2,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin2.setAdapter(adspin2);
-        spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            //아이템클릭했을때 이벤트 처리(디비에 저장)
-            /**/            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
+
 
         adspin3of1 = ArrayAdapter.createFromResource(this, R.array.keySpin3,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin3of1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3of1.setAdapter(adspin3of1);
-        spin3of1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            //아이템클릭했을때 이벤트 처리(디비에 저장)
-            /**/            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
 
         adspin3of2 = ArrayAdapter.createFromResource(this, R.array.keySpin3,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin3of2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3of2.setAdapter(adspin3of2);
-        spin3of2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            //아이템클릭했을때 이벤트 처리(디비에 저장)
-            /**/            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
+
 
     }
 
@@ -239,8 +172,8 @@ public class RegisterNotice extends AppCompatActivity {
             String key1 = (String) params[5];
             String key2 = (String) params[6];
             String key3 = (String) params[7];
-            String howTo = (String) params[7];
-            String interview = (String) params[7];
+            String howTo = (String) params[8];
+            String interview = (String) params[9];
 
 
             String serverURL = (String) params[0];
