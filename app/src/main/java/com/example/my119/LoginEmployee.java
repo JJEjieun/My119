@@ -31,6 +31,7 @@ public class LoginEmployee extends AppCompatActivity {
     private EditText enterId;
     Context context;
     final ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
+    static String employeeName = "";
 
 
     @Override
@@ -116,7 +117,7 @@ public class LoginEmployee extends AppCompatActivity {
                 for(int i =0; i<results.length();i++){
                     JSONObject temp = results.getJSONObject(i);
                     employeeinfos.add(i, new Employeeinfo((String)temp.get("id"),(String)temp.get("pw")));
-
+                    employeeName = (String)temp.get("id");
                 }
             }catch (JSONException e){
                 e.printStackTrace();
