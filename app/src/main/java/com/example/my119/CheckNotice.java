@@ -34,7 +34,7 @@ public class CheckNotice extends AppCompatActivity {
             });
 
         // Adapter 생성
-        NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
+        final NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
 
         // 리스트뷰 참조 및 Adapter달기
         ListView listview = (ListView) findViewById(R.id.listView1);
@@ -51,6 +51,11 @@ public class CheckNotice extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "클릭", Toast.LENGTH_SHORT).show();
+
+                String noticeNum = ((Notice)adapter.getItem(position)).getNoticeNum();
+                Intent intent = new Intent(CheckNotice.this, ShowNotice.class);
+                intent.putExtra("noticeNum", noticeNum);
+                startActivity(intent);
             }
         });
 

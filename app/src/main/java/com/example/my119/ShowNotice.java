@@ -35,7 +35,9 @@ public class ShowNotice extends AppCompatActivity {
 
         //아래 사항들 디비에서 가져오기
         Intent intent = getIntent(); //얘가 공고번호목록 arrayList(CheckNotice의 noticeNumList)를 읽어옴
-        //intent.getExtras();  //얘가 직접적인 숫자를 받아옴
+        //noticeNum이 공고를 구분할 수 있는 주키로 쓰면 될 듯!
+        String noticeNum = intent.getStringExtra("noticeNum");
+
 
         //가게이름
         TextView s_storeName = (TextView)findViewById(R.id.s_storeName);
