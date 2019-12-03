@@ -30,7 +30,7 @@ public class RegisterNotice extends AppCompatActivity {
     private EditText pay;
     private EditText date;
     private EditText endtime;
-    private Spinner key1, key2,key3_1, key3_2;
+    private Spinner key1, key2, key3_1, key3_2;
     private RadioButton cash, account;
     private RadioButton ftof, voice, face;
 

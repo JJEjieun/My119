@@ -21,7 +21,7 @@ public class Resume extends AppCompatActivity {
     Context context;
 
 
-    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3, adspin4, adspin5, adspin6;
+    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3, adspin4, adspin5, adspin6, adspin3of1, adspin3of2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,19 @@ public class Resume extends AppCompatActivity {
             }
         });
 
+        final Spinner spin3of1 = (Spinner)findViewById(R.id.enterKey3of1);
+        final Spinner spin3of2 = (Spinner)findViewById(R.id.enterKey3of2);
+
+        adspin3of1 = ArrayAdapter.createFromResource(this, R.array.keySpin3,
+                android.R.layout.simple_spinner_dropdown_item);
+        adspin3of1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin3of1.setAdapter(adspin3of1);
+
+        adspin3of2 = ArrayAdapter.createFromResource(this, R.array.keySpin3,
+                android.R.layout.simple_spinner_dropdown_item);
+        adspin3of2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin3of2.setAdapter(adspin3of2);
+
         //희망근무지 스피너
         //스피너에 주소 입력.
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
@@ -60,6 +73,8 @@ public class Resume extends AppCompatActivity {
         final Spinner spin4 = (Spinner)findViewById(R.id.enterAddress4);
         final Spinner spin5 = (Spinner)findViewById(R.id.enterAddress5);
         final Spinner spin6 = (Spinner)findViewById(R.id.enterAddress6);
+
+
         adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner1,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -130,6 +145,8 @@ public class Resume extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
+
+
 
 
 
