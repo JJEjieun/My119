@@ -37,6 +37,8 @@ public class RegisterNotice extends AppCompatActivity {
     static String k1,k2,k3_1,k3_2;
     private static String IP_ADDRESS = "10.0.2.2";
 
+    String[] Address3List = getResources().getStringArray(R.array.spinner3);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class RegisterNotice extends AppCompatActivity {
                 String time ="";
                 String howto="";
                 String interview="";
+                final String address="";
 
                 if(cash.isChecked()){
                     howto="현금지급";
@@ -97,7 +100,8 @@ public class RegisterNotice extends AppCompatActivity {
                 key2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        k1=parent.getItemAtPosition(position).toString();
+//                        k1=parent.getItemAtPosition(position).toString();
+                        k1 += getString(position, Address3List);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {

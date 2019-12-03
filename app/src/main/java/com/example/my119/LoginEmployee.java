@@ -24,13 +24,14 @@ import java.util.ArrayList;
 
 public class LoginEmployee extends AppCompatActivity {
 
-    String url ="http://10.0.2.2/app.php";
+    String url ="http://10.0.2.2/login_employee.php";
     public GettingPHP gphp;
 
     private EditText enterPw;
     private EditText enterId;
     Context context;
     final ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,6 @@ public class LoginEmployee extends AppCompatActivity {
 
                 for(int i =0; i<results.length();i++){
                     JSONObject temp = results.getJSONObject(i);
-
                     employeeinfos.add(i, new Employeeinfo((String)temp.get("id"),(String)temp.get("pw")));
 
                 }

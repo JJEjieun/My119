@@ -22,12 +22,13 @@ import java.util.ArrayList;
 
 public class LoginEmployer extends AppCompatActivity {
 
-    String url ="http://10.0.2.2/app.php";
+    String url ="http://10.0.2.2/login_employer.php";
     public GettingPHP gphp;
 
     private EditText enterPw;
     private EditText enterId;
     final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
+    static String employerName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,9 @@ public class LoginEmployer extends AppCompatActivity {
             Button button_employer = (Button)findViewById(R.id.button_employer);
             button_employer.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String eId = enterId.getText().toString();
                     for(int i=0; i<employerinfos.size();i++){
-                        if(employerinfos.get(i).getID().equals("employerID")){
+                        if(employerinfos.get(i).getID().equals(eId)){
                             Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
                             startActivity(intent);
@@ -107,6 +109,7 @@ public class LoginEmployer extends AppCompatActivity {
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
                     employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw")));
+                    employerName = (String)temp.get("id");
                 }
 
 

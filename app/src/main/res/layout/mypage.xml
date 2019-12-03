@@ -40,7 +40,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:text="이름 님"
-                android:textSize="40dp" />
+                android:textSize="40dp"
+                android:id="@+id/mypageName"/>
 
             <Button
                 android:layout_width="34dp"

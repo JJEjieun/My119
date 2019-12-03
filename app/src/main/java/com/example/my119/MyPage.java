@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MyPage extends AppCompatActivity {
 
@@ -13,6 +16,11 @@ public class MyPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
+
+        TextView name = (TextView)findViewById(R.id.mypageName);
+
+//        name.setText(LoginEmployee.employeeinfos.get());
+        name.setText(LoginEmployer.employerName+"님");
 
         Button button_resume = (Button)findViewById(R.id.manageS);
         button_resume.setOnClickListener(new View.OnClickListener() {

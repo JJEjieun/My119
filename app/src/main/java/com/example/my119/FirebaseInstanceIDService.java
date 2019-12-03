@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -22,6 +23,13 @@ public class FirebaseInstanceIDService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage){
         if(remoteMessage != null && remoteMessage.getData().size()>0){
+            Log.d("Firebase","Message data payload: "+remoteMessage.getData());
+
+            PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+//            PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"mywakelocktag");
+
+
+
             sendNotification(remoteMessage);
         }
     }
