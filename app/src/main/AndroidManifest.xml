@@ -26,7 +26,8 @@
         <activity android:name=".RegisterNotice"/>
         <activity android:name=".MyPage"/>
         <activity android:name=".Resume"/>
-        <activity android:name= ".Contract_employee" />
+        <activity android:name=".Contract_employee" />
+        <activity android:name=".ShowNotice"/>
         <activity android:name=".Login">
 
 

@@ -266,7 +266,7 @@
                             </RadioGroup>
                         </LinearLayout>
 
-                        //지급방법
+                        //면접방법
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

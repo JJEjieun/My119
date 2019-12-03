@@ -106,10 +106,11 @@
                 android:textSize="17dp"
                 android:layout_marginLeft="20dp" />
 
+            //지원현황이라고 되어있었음
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="지원 현황"
+                android:text="계약서"
                 android:textSize="17dp"
                 android:layout_marginLeft="20dp" />
 

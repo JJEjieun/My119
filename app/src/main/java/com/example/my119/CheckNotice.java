@@ -9,20 +9,26 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class CheckNotice extends AppCompatActivity {
+    ArrayList<Integer> noticeNumList = new ArrayList<Integer>();
+    ArrayList<Notice> noticeList = new ArrayList<Notice>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_notice);
 
-            //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감
+            //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
             Button btnNewNotice = (Button)findViewById(R.id.newNotice);
             btnNewNotice.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "새 공고 등록", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), RegisterNotice.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -35,6 +41,7 @@ public class CheckNotice extends AppCompatActivity {
 
         // 아이템 추가.
 /**/        //이부분을 php에서 값 받아오는 걸로 수정
+            //noticeList.add(new Notice(workD, WorkT, StoreN, noticeNum, endT, money));
         adapter.addNotice("191212","13~15시","할리스커피",
                 "3", "191210","28500");
         adapter.addNotice("200130","15-20시", "이디야",
@@ -42,10 +49,17 @@ public class CheckNotice extends AppCompatActivity {
         adapter.addNotice( "191124","12-19","애정마라",
                 "1", "191120","68400");
 
+        //디비에서 정보가져와서 리스트 추가 한 후 al.add(공고목록번호); 꼭 추가해주기
+        //아래 listsview.setOnItemClickListener에서 공고목록번호로 데이터 정보를 일부 넘길 예정이기때문
+        //혹은  그냥 noticeList 내용을 다 가져올까? intetn.putExtra("workD", noticeList.get(position).workD)이런식으로?
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                ListView listview = (ListView) parent;
+                Intent intent = new Intent(getApplicationContext(), ShowNotice.class);
+                //intent.putExtra("number", noticeList.get(position).getNoticeNum());
+                startActivity(intent);
             }
         });
 
