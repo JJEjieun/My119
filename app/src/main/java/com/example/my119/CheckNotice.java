@@ -43,10 +43,6 @@ public class CheckNotice extends AppCompatActivity {
         setData(adapter);
         listview.setAdapter(adapter);
 
-        //디비에서 정보가져와서 리스트 추가 한 후 al.add(공고목록번호); 꼭 추가해주기
-        //아래 listsview.setOnItemClickListener에서 공고목록번호로 데이터 정보를 일부 넘길 예정이기때문
-        //혹은 그냥 noticeList 내용을 다 가져올까? intetn.putExtra("workD", noticeList.get(position).workD)이런식으로?
-
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
