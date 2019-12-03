@@ -5,14 +5,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Contract_employee extends AppCompatActivity {
     private PaintView paintView;
+
+    TextView eName, eAdd, ePhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contract_employee);
+
+        eName= (TextView)findViewById(R.id.eName);
+        eAdd = (TextView)findViewById(R.id.eAdd);
+        ePhone = (TextView)findViewById(R.id.ePhone);
+
+        eName.setText(LoginEmployee.eName);
+        eAdd.setText(LoginEmployee.eAddress);
+        ePhone.setText(LoginEmployee.ePhoneNum);
 
         paintView = (PaintView) findViewById(R.id.paintView);
         DisplayMetrics metrics = new DisplayMetrics();
