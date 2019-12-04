@@ -39,6 +39,8 @@ public class RegisterNotice extends AppCompatActivity {
     private RadioButton cash, account;
     private RadioButton ftof, voice, face;
 
+
+//    static String storeName, money,work, end,keyone, keytwo, keythree, howtopay, howtointerview;
     static String k1,k2,k3_1,k3_2;
     private static String IP_ADDRESS = "10.0.2.2";
 
@@ -98,6 +100,9 @@ public class RegisterNotice extends AppCompatActivity {
                 InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/notice.php",
                         name, payment, workdate, end, k1,k2,time,howto,interview);
+
+
+
 
                 if (storename.length() > 0) {
                     storename.getText().clear();

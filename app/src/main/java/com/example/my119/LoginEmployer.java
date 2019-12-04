@@ -50,13 +50,22 @@ public class LoginEmployer extends AppCompatActivity {
                     String eId = enterId.getText().toString();
                     for(int i=0; i<employerinfos.size();i++){
                         if(employerinfos.get(i).getID().equals(eId)){
+                            rID = employerinfos.get(i).getID();
+                            rPW= employerinfos.get(i).getPW();
+                            rEmployerNumber = employerinfos.get(i).getEmployerNumber();
+                            rCompanyName = employerinfos.get(i).getCompayName();
+                            rName = employerinfos.get(i).getName();
+                            rAddress = employerinfos.get(i).getAddress();
+                            rPhoneNum = employerinfos.get(i).getPhoneNum();
+                            rEmail = employerinfos.get(i).getEmail();
                             Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                            Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
                             startActivity(intent);
                             finish();
-                        }else
-                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                    if(!rID.equals(eId))
+                        Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -109,14 +118,7 @@ public class LoginEmployer extends AppCompatActivity {
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
                     employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email")));
-                    rID = (String)temp.get("id");
-                    rPW= (String)temp.get("pw");
-                    rEmployerNumber = (String)temp.get("employerNumber");
-                    rCompanyName = (String)temp.get("companyName");
-                    rName = (String)temp.get("name");
-                    rAddress = (String)temp.get("address");
-                    rPhoneNum = (String)temp.get("phoneNum");
-                    rEmail = (String)temp.get("email");
+
 
                 }
 

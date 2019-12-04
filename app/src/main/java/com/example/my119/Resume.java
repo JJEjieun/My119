@@ -63,6 +63,7 @@ public class Resume extends AppCompatActivity {
         phone.setText(LoginEmployee.ePhoneNum);
         add.setText(LoginEmployee.eAddress);
 
+
         context = this;
         sid = PreferenceUtil.getPreferences(context, "id");
         s_time = findViewById(R.id.enterKey3of1);

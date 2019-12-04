@@ -30,7 +30,7 @@ public class LoginEmployee extends AppCompatActivity {
     private EditText enterPw;
     private EditText enterId;
     Context context;
-    final ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
+    public ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
 
     static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum;
 
@@ -59,13 +59,24 @@ public class LoginEmployee extends AppCompatActivity {
 
                     for(int i=0; i<employeeinfos.size();i++){
                         if(employeeinfos.get(i).getID().equals(sid)){
+                            eID = employeeinfos.get(i).getID();
+                            ePW = employeeinfos.get(i).getPW();
+                            eName=employeeinfos.get(i).getName();
+                            eGender = employeeinfos.get(i).getGender();
+                            eBirth=employeeinfos.get(i).getBirth();
+                            ePhoneNum =employeeinfos.get(i).getPhoneNum();
+                            eAddress=employeeinfos.get(i).getAddress();
                             Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
                             startActivity(intent);
                             finish();
-                        }else
-                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                        }
+//                        else if(!employeeinfos.get(i).getID().equals(sid)) {
+//                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+//                        }
                     }
+                    if(!eID.equals(sid))
+                    Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -118,13 +129,7 @@ public class LoginEmployee extends AppCompatActivity {
                 for(int i =0; i<results.length();i++){
                     JSONObject temp = results.getJSONObject(i);
                     employeeinfos.add(i, new Employeeinfo((String)temp.get("id"),(String)temp.get("pw"),(String)temp.get("name"),(String)temp.get("gender"),(String)temp.get("birth"),(String)temp.get("phoneNum"),(String)temp.get("address")));
-                    eID = (String)temp.get("id");
-                    ePW = (String)temp.get("pw");
-                    eName=(String)temp.get("name");
-                    eGender = (String)temp.get("gender");
-                    eBirth=(String)temp.get("birth");
-                    ePhoneNum =(String)temp.get("phoneNum");
-                    eAddress=(String)temp.get("address");
+
                 }
             }catch (JSONException e){
                 e.printStackTrace();
