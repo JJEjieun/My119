@@ -20,7 +20,7 @@ public class MyPage extends AppCompatActivity {
         TextView name = (TextView)findViewById(R.id.mypageName);
 
 //        name.setText(LoginEmployee.employeeinfos.get());
-        name.setText(LoginEmployer.rName+"님");
+        name.setText(LoginEmployee.eName+"님");
 
         Button button_resume = (Button)findViewById(R.id.manageS);
         button_resume.setOnClickListener(new View.OnClickListener() {
