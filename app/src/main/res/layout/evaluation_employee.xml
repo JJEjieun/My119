@@ -8,10 +8,8 @@
     tools:context=".MyPage"
     android:orientation="vertical">
 
-    // 내 사진 가져온다. 그래서 imageView 써야한다.
-
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/myRed"
@@ -19,7 +17,7 @@
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="80px"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linear1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,144 +25,48 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="384dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="572dp"
-        android:text="* 상대방에 대한 솔직한 평가가 도움이됩니다."
-        android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.548" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="144dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
-        android:text="나트랑나뜨랑"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:numStars="5"
-        android:rating="3"
-        android:stepSize="3"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="144dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="172dp"
-        android:text="업무강도"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/linear4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
-        android:id="@+id/linear4"
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="360dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="낮음" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="보통" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="높음" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="낮음" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="보통" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="높음" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="144dp"
-        android:layout_height="39dp"
-        android:text="업무만족도"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear4"
-        app:layout_constraintVertical_bias="0.756" />
-
-    <EditText
-        android:layout_width="340dp"
-        android:layout_height="139dp"
-        android:hint="근무지에 대한 솔직한 평가를 남겨주세요. 리뷰에 대한 익명성이 보장됩니다. \n\n\n                                                         0/1000"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="* 상대방에 대한 솔직한 평가가 도움이됩니다."
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기업이름"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="1" />
+
+        <Button
+            android:id="@+id/r_ev_er"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="평가 등록"
+            android:gravity="center" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -178,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear4"
+        app:layout_constraintTop_toBottomOf="@+id/linear1"
         app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
