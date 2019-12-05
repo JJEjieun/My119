@@ -81,4 +81,43 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/checkText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkAlarm"
+        app:layout_constraintVertical_bias="0.644"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="공고확인"
+            android:textSize="25dp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/TextList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="공고 더 확인하기"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -42,21 +42,21 @@ public class MyPage extends AppCompatActivity {
         });
 
         Button button_ev = (Button)findViewById(R.id.ev);
-        button_resume.setOnClickListener(new View.OnClickListener() {
+        button_ev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인평가", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Evaluation_employee.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(getApplicationContext(), Evaluation_employee.class);
+                startActivity(intent3);
                 finish();
             }
         });
 
         Button button_ev_r = (Button)findViewById(R.id.ev_r);
-        button_resume.setOnClickListener(new View.OnClickListener() {
+        button_ev_r.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "기업평가", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Evaluation_employer.class);
-                startActivity(intent);
+                Intent intent4 = new Intent(getApplicationContext(), Evaluation_employer.class);
+                startActivity(intent4);
                 finish();
             }
         });

@@ -57,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:numStars="5"
             android:rating="3"
-            android:stepSize="1" />
+            android:stepSize="0.5" />
 
         <Button
             android:id="@+id/r_ev_er"

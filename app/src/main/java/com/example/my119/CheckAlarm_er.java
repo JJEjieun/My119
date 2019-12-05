@@ -9,21 +9,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class CheckAlarm extends AppCompatActivity {
+public class CheckAlarm_er extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.check_alarm);
+        setContentView(R.layout.check_alarm_er);
 
-        Button btn_ev_ee = (Button)findViewById(R.id.btn_ev_ee);
-        btn_ev_ee.setOnClickListener(new View.OnClickListener() {
+        Button btn_ev_er = (Button)findViewById(R.id.btn_ev_er);
+        btn_ev_er.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "기업평가", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Evaluation_employee.class);
+                Toast.makeText(getApplicationContext(), "개인평가", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Evaluation_employer.class);
                 startActivity(intent);
             }
         });
-
 
     }
 

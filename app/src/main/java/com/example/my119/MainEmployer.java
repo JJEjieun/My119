@@ -30,6 +30,15 @@ public class MainEmployer extends AppCompatActivity {
         btnMoreAlarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "알림 더 확인", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getApplicationContext(), CheckAlarm_er.class);
+                startActivity(intent2);
+            }
+        });
+
+        Button btnMoreNotice = (Button)findViewById(R.id.button2);
+        btnMoreNotice.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "공고 더 확인", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), CheckNotice.class);
                 startActivity(intent);
             }

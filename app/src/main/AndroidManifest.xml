@@ -23,14 +23,15 @@
         <activity android:name=".MainEmployer"/>
         <activity android:name=".CheckNotice"/>
         <activity android:name=".CheckAlarm"/>
+        <activity android:name=".CheckAlarm_er"/>
         <activity android:name=".RegisterNotice"/>
         <activity android:name=".MyPage"/>
         <activity android:name=".Resume"/>
         <activity android:name=".Contract_employee" />
         <activity android:name=".ShowNotice"/>
+        <activity android:name=".Evaluation_employee"/>
+        <activity android:name=".Evaluation_employer"/>
         <activity android:name=".Login">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

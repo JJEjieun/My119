@@ -13,10 +13,10 @@ public class Evaluation_employee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evaluation_employee);
 
-        Button button_resume = (Button)findViewById(R.id.r_ev_ee);
-        button_resume.setOnClickListener(new View.OnClickListener() {
+        Button btn_ev_er = (Button)findViewById(R.id.r_ev_er);
+        btn_ev_er.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "개인평가 등록", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "기업평가 등록", Toast.LENGTH_SHORT).show();
                 //평가 디비에 저장
                 finish();
             }
