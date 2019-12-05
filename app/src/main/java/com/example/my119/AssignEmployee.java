@@ -70,6 +70,7 @@ public class AssignEmployee extends AppCompatActivity {
     private Spinner address1;
     private Spinner address2;
     private Spinner address3;
+    private Button check;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
@@ -100,6 +101,7 @@ public class AssignEmployee extends AppCompatActivity {
         address1 = (Spinner)findViewById(R.id.enterAddress1);
         address2 = (Spinner)findViewById(R.id.enterAddress2);
         address3 = (Spinner)findViewById(R.id.enterAddress3);
+        check = (Button)findViewById(R.id.checkID);
 
         enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
 //        phoneNumber = enterPhoneNumber.getText().toString();

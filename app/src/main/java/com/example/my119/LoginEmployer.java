@@ -29,6 +29,7 @@ public class LoginEmployer extends AppCompatActivity {
     private EditText enterId;
     final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
     static String rID, rPW,rEmployerNumber,rCompanyName, rName, rAddress, rPhoneNum, rEmail;
+    static int r_rate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class LoginEmployer extends AppCompatActivity {
                             rAddress = employerinfos.get(i).getAddress();
                             rPhoneNum = employerinfos.get(i).getPhoneNum();
                             rEmail = employerinfos.get(i).getEmail();
+                            r_rate= employerinfos.get(i).getRate();
                             Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
                             startActivity(intent);
@@ -117,7 +119,7 @@ public class LoginEmployer extends AppCompatActivity {
                 String zz = "";
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email")));
+                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email"),(int)temp.get("rate")));
 
 
                 }

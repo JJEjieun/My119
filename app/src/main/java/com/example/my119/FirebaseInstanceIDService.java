@@ -13,11 +13,11 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseInstanceIDService extends FirebaseMessagingService {
-
+    private  static final  String TAG = "FCM";
     @Override
     public void onNewToken(String s){
         super.onNewToken(s);
-        Log.e("Firebase","FirevaseInstanceIDService : "+s);
+        Log.e(TAG,"FirevaseInstanceIDService : "+s);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class FirebaseInstanceIDService extends FirebaseMessagingService {
             Log.d("Firebase","Message data payload: "+remoteMessage.getData());
 
             PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
-//            PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"mywakelocktag");
+            PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"My:wakeLock");
 
 
 

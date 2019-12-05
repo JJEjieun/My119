@@ -4,8 +4,9 @@ public class Employerinfo {
     String ID;
     String PW;
     String employerNumber, compayName, name, address, phoneNum, email;
+    int rate;
 
-    public Employerinfo(String id, String pw,String employerNumber, String compayName,String name,String address,String phoneNum,String email){
+    public Employerinfo(String id, String pw,String employerNumber, String compayName,String name,String address,String phoneNum,String email,int rate){
         this.ID = id;
         this.PW = pw;
         this.employerNumber = employerNumber;
@@ -14,6 +15,7 @@ public class Employerinfo {
         this.address = address;
         this.phoneNum = phoneNum;
         this.email= email;
+        this.rate = rate;
     }
 
     public String getID() {
@@ -78,5 +80,13 @@ public class Employerinfo {
 
     public void setPW(String PW) {
         this.PW = PW;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }

@@ -123,6 +123,9 @@ public class RegisterNotice extends AppCompatActivity {
             }
         });
 
+
+
+
         //스피너처리
         final Spinner spin1 = (Spinner)findViewById(R.id.enterKey1);
         final Spinner spin2 = (Spinner)findViewById(R.id.enterKey2);

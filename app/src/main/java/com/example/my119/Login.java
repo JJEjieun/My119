@@ -1,13 +1,19 @@
 package com.example.my119;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +32,6 @@ public class Login extends AppCompatActivity {
     String url = "http://10.0.2.2/login_notice.php";
     public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,7 @@ public class Login extends AppCompatActivity {
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                Intent intent = new Intent(getApplicationContext(), LoginEmployee.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +62,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    class GetPHP extends AsyncTask<String, Integer, String> {
+     class GetPHP extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
             StringBuilder jsonHtml = new StringBuilder();
