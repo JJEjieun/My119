@@ -404,7 +404,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -431,6 +431,13 @@
                 android:text="화상전화연결"
                 android:layout_gravity="center_vertical"/>
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -441,7 +448,20 @@
                     android:id="@+id/btn_reject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="신청거절"
+                    android:text="근무 거절"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="근무 확정"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
         </LinearLayout>
