@@ -82,12 +82,6 @@ public class ShowNotice extends AppCompatActivity {
         s_interview.setText(notices.get(8).toString());
         //가게평점
         TextView s_store_star= (TextView)findViewById(R.id.s_store_star);
-        //올린회원이름
-        TextView s_user_name = (TextView)findViewById(R.id.s_user_name);
-        //회원분류
-        TextView s_user_state = (TextView)findViewById(R.id.s_user_state);
-        //회원평점
-        TextView s_user_star = (TextView)findViewById(R.id.s_user_star);
 
     }
 }
