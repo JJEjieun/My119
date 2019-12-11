@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+<!--    <uses-permission android:name="android.permission.Call" />-->
 
     <application
         android:usesCleartextTraffic="true"
@@ -26,6 +28,15 @@
         <activity android:name=".CheckAlarm"/>
         <activity android:name=".CheckAlarm_er"/>
         <activity android:name=".RegisterNotice"/>
+        <activity android:name=".RequestedNotice">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
         <activity android:name=".MyPage"/>
         <activity android:name=".Resume"/>
         <activity android:name=".Contract_employee" />
@@ -33,11 +44,6 @@
         <activity android:name=".Evaluation_employee"/>
         <activity android:name=".Evaluation_employer"/>
         <activity android:name=".Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".FirebaseInstanceIDService"
