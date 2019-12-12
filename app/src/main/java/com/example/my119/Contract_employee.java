@@ -33,16 +33,16 @@ public class Contract_employee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contract_employee);
 
-        eName= (TextView)findViewById(R.id.eName);
-        eAdd = (TextView)findViewById(R.id.eAdd);
-        ePhone = (TextView)findViewById(R.id.ePhone);
+//        eName= (TextView)findViewById(R.id.eName);
+//        eAdd = (TextView)findViewById(R.id.eAdd);
+//        ePhone = (TextView)findViewById(R.id.ePhone);
         layout = (ConstraintLayout) findViewById(R.id.rootLayout);
-        button_clear = (Button)findViewById(R.id.clear);
+//        button_clear = (Button)findViewById(R.id.clear);
         toPdf = (Button) findViewById(R.id.finish_write);
 
-        eName.setText(LoginEmployee.eName);
-        eAdd.setText(LoginEmployee.eAddress);
-        ePhone.setText(LoginEmployee.ePhoneNum);
+//        eName.setText(LoginEmployee.eName);
+//        eAdd.setText(LoginEmployee.eAddress);
+//        ePhone.setText(LoginEmployee.ePhoneNum);
 
         paintView = (PaintView) findViewById(R.id.paintView);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -50,12 +50,12 @@ public class Contract_employee extends AppCompatActivity {
         paintView.init(metrics);
 
 
-        button_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                paintView.clear();
-            }
-        });
+//        button_clear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                paintView.clear();
+//            }
+//        });
 
         Button toPdf = (Button) findViewById(R.id.finish_write);
         toPdf.setOnClickListener(new View.OnClickListener() {
