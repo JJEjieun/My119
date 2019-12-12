@@ -8,6 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,6 +52,8 @@ public class Resume extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resume);
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("이력서");
 
         final TextView name = (TextView)findViewById(R.id.yourname);
         final TextView ggender = (TextView)findViewById(R.id.gender);
@@ -295,6 +300,29 @@ public class Resume extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.mainPage:
+                setContentView(R.layout.main_employee);
+                return true;
+            case R.id.resume:
+                setContentView(R.layout.resume);
+                return true;
+            case R.id.contract:
+                setContentView(R.layout.contract_employee);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
