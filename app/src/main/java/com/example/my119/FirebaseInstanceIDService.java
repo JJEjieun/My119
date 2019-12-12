@@ -12,6 +12,9 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FirebaseInstanceIDService extends FirebaseMessagingService {
     private  static final  String TAG = "FCM";
     @Override
@@ -27,8 +30,12 @@ public class FirebaseInstanceIDService extends FirebaseMessagingService {
 
             PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
             PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"My:wakeLock");
+            wakeLock.acquire();
 
 
+
+            sendNotification(remoteMessage);
+        }else{
 
             sendNotification(remoteMessage);
         }

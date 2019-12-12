@@ -8,8 +8,9 @@ public class Employeeinfo {
     String birth;
     String phoneNum;
     String address;
+    int rate;
 
-    public Employeeinfo(String id, String pw, String name, String gender, String birth, String phoneNum, String address) {
+    public Employeeinfo(String id, String pw, String name, String gender, String birth, String phoneNum, String address,int rate) {
         this.ID = id;
         this.PW = pw;
         this.name = name;
@@ -17,6 +18,7 @@ public class Employeeinfo {
         this.birth = birth;
         this.phoneNum = phoneNum;
         this.address = address;
+        this.rate = rate;
     }
 
 
@@ -76,6 +78,13 @@ public class Employeeinfo {
         this.PW = PW;
     }
 
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
 }
 
 

@@ -30,10 +30,19 @@ import java.util.ArrayList;
 
 
 public class Login extends AppCompatActivity {
+//    public final static String ip="203.250.154.83";
 
     public GetPHP p;
-    String url = "http://10.0.2.2/login_notice.php";
+    String url = "http://10.50.96.112/login_notice.php";
     public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
+
+    String url1 ="http://10.50.96.112/login_employer.php";
+    public static ArrayList<Employerinfo> employerinfos = new ArrayList<>();
+    public GettingPHP1 gphp;
+
+    String url2 = "http://10.50.96.112/login_employee.php";
+    public static ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
+    public GettingPHP2 g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +52,18 @@ public class Login extends AppCompatActivity {
         p = new GetPHP();
         p.execute(url);
 
+        gphp = new GettingPHP1();
+        gphp.execute(url1);
+
+        g = new GettingPHP2();
+        g.execute(url2);
 
         //'개인회원 로그인'버튼 클릭 시 개인회원 로그인 창으로 넘어감
         Button button_employee = (Button) findViewById(R.id.button_employee);
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                Intent intent = new Intent(getApplicationContext(), LoginEmployee.class);
                 startActivity(intent);
             }
         });
@@ -58,8 +72,9 @@ public class Login extends AppCompatActivity {
         Button button_employer = (Button) findViewById(R.id.button_employer);
         button_employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 Toast.makeText(getApplicationContext(), "기업회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(getApplicationContext(), MainEmployer.class);
+                Intent intent2 = new Intent(getApplicationContext(), LoginEmployer.class);
                 startActivity(intent2);
             }
         });
@@ -109,4 +124,100 @@ public class Login extends AppCompatActivity {
         }
 
     }
+
+    class GettingPHP1 extends AsyncTask<String, Integer,String> {
+        @Override
+        protected String doInBackground(String...params){
+            StringBuilder jsonHtml = new StringBuilder();
+            try{
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
+                if(conn != null){
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+                    if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+
+                        while(true){
+                            String line = br.readLine();
+                            if(line==null) break;
+                            jsonHtml.append(line+"\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray results = jsonObject.getJSONArray("webnautes");
+
+                String zz = "";
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject temp = results.getJSONObject(i);
+                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email"),Integer.valueOf((String)temp.get("rate"))));
+
+
+                }
+
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class GettingPHP2 extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+                if (conn != null) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                        while (true) {
+                            String line = br.readLine();
+                            if (line == null) break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray results = jsonObject.getJSONArray("webnautes");
+
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject temp = results.getJSONObject(i);
+                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address"),Integer.valueOf((String)temp.get("rate"))));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
 }

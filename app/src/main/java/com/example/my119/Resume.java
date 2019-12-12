@@ -271,7 +271,7 @@ public class Resume extends AppCompatActivity {
 //                job = ;
 
                 InsertData task = new InsertData();
-                task.execute("http://" + IP_ADDRESS + "/resume.php",
+                task.execute("http://" + "10.50.96.112" + "/resume.php",
                         id, myFace, yourname, gender, birth, phoneNum, address, time, address1, address2 ,job, words);
 
                 if (words.length() > 0) {

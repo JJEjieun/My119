@@ -133,7 +133,7 @@ public class AssignEmployer extends AppCompatActivity {
 
 
                     InsertData task = new InsertData();
-                    task.execute("http://" + IP_ADDRESS + "/assignEmployer.php",
+                    task.execute("http://" + "10.50.96.112" + "/assignEmployer.php",
                             id, pw, employerNumber, companyName, name, address, phoneNum, email);
 
                     if (mEditTextID.length() > 0) {

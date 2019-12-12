@@ -202,7 +202,7 @@ public class AssignEmployee extends AppCompatActivity {
                     addr = add1+" "+add2+" "+add3;
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
-                    task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
+                    task.execute("http://" + "10.50.96.112" + "/assignEmployee.php",
                             id, pw, name, birth, gender,phoneNum,addr);
 
                     if (mEditTextID.length() > 0) {

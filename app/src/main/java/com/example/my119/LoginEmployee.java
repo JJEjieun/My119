@@ -30,18 +30,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.my119.Login.employeeinfos;
+
 public class LoginEmployee extends AppCompatActivity {
 
-    String url = "http://10.0.2.2/login_employee.php";
-    String url2 = "http://10.0.2.2/token_register.php";
+    String url = "http://10.50.96.112/login_employee.php";
+    String url2 = "http://10.50.96.112/token_register.php";
     private static final String TAG = "tag";
-    public GettingPHP gphp;
+//    public GettingPHP gphp;
 
     private EditText enterPw;
     private EditText enterId;
     static String newToken;
+    static int erate;
     Context context;
-    public ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
+//    public ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
 
     static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum;
 
@@ -68,8 +71,8 @@ public class LoginEmployee extends AppCompatActivity {
         enterId = (EditText) findViewById(R.id.id);
         enterPw = (EditText) findViewById(R.id.pw);
 
-        gphp = new GettingPHP();
-        gphp.execute(url);
+//        gphp = new GettingPHP();
+//        gphp.execute(url);
 
 
         Button button_employee = (Button) findViewById(R.id.button_employee);
@@ -88,6 +91,7 @@ public class LoginEmployee extends AppCompatActivity {
                         eBirth = employeeinfos.get(i).getBirth();
                         ePhoneNum = employeeinfos.get(i).getPhoneNum();
                         eAddress = employeeinfos.get(i).getAddress();
+                        erate=employeeinfos.get(i).getRate();
                         Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
                         startActivity(intent);
@@ -100,7 +104,7 @@ public class LoginEmployee extends AppCompatActivity {
 //                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
 //                        }
                 }
-                if (!eID.equals(sid))
+                if (!sid.equals(eID))
                     Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
 
             }
@@ -120,50 +124,50 @@ public class LoginEmployee extends AppCompatActivity {
         });
     }
 
-    class GettingPHP extends AsyncTask<String, Integer, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
-            try {
-                URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
-                if (conn != null) {
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
-                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-                        while (true) {
-                            String line = br.readLine();
-                            if (line == null) break;
-                            jsonHtml.append(line + "\n");
-                        }
-                        br.close();
-                    }
-                    conn.disconnect();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return jsonHtml.toString();
-        }
-
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jsonObject = new JSONObject(str);
-                JSONArray results = jsonObject.getJSONArray("webnautes");
-
-                for (int i = 0; i < results.length(); i++) {
-                    JSONObject temp = results.getJSONObject(i);
-                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address")));
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+//    class GettingPHP extends AsyncTask<String, Integer, String> {
+//        @Override
+//        protected String doInBackground(String... params) {
+//            StringBuilder jsonHtml = new StringBuilder();
+//            try {
+//                URL phpUrl = new URL(params[0]);
+//                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+//                if (conn != null) {
+//                    conn.setConnectTimeout(10000);
+//                    conn.setUseCaches(false);
+//                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+//
+//                        while (true) {
+//                            String line = br.readLine();
+//                            if (line == null) break;
+//                            jsonHtml.append(line + "\n");
+//                        }
+//                        br.close();
+//                    }
+//                    conn.disconnect();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return jsonHtml.toString();
+//        }
+//
+//        protected void onPostExecute(String str) {
+//            try {
+//                JSONObject jsonObject = new JSONObject(str);
+//                JSONArray results = jsonObject.getJSONArray("webnautes");
+//
+//                for (int i = 0; i < results.length(); i++) {
+//                    JSONObject temp = results.getJSONObject(i);
+//                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address"),Integer.valueOf((String)temp.get("rate"))));
+//
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 

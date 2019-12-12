@@ -20,14 +20,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.my119.Login.employerinfos;
+
 public class LoginEmployer extends AppCompatActivity {
 
-    String url ="http://10.0.2.2/login_employer.php";
-    public GettingPHP gphp;
+//    String url ="http://10.50.96.112/login_employer.php";
+//    public GettingPHP gphp;
 
     private EditText enterPw;
     private EditText enterId;
-    final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
+//    final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
     static String rID, rPW,rEmployerNumber,rCompanyName, rName, rAddress, rPhoneNum, rEmail;
     static int r_rate;
 
@@ -42,8 +44,8 @@ public class LoginEmployer extends AppCompatActivity {
         enterId = (EditText)findViewById(R.id.id);
         enterPw = (EditText)findViewById(R.id.pw);
 
-        gphp = new GettingPHP();
-        gphp.execute(url);
+//        gphp = new GettingPHP();
+//        gphp.execute(url);
 
             Button button_employer = (Button)findViewById(R.id.button_employer);
             button_employer.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,7 @@ public class LoginEmployer extends AppCompatActivity {
                             rPhoneNum = employerinfos.get(i).getPhoneNum();
                             rEmail = employerinfos.get(i).getEmail();
                             r_rate= employerinfos.get(i).getRate();
-                            Toast.makeText(getApplicationContext(), "개인회원 메인창", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "기업회원 메인창", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainEmployer.class);
                             startActivity(intent);
                             finish();
@@ -83,53 +85,53 @@ public class LoginEmployer extends AppCompatActivity {
         });
     }
 
-    class GettingPHP extends AsyncTask<String, Integer,String> {
-        @Override
-        protected String doInBackground(String...params){
-            StringBuilder jsonHtml = new StringBuilder();
-            try{
-                URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
-                if(conn != null){
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
-                    if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-
-                        while(true){
-                            String line = br.readLine();
-                            if(line==null) break;
-                            jsonHtml.append(line+"\n");
-                        }
-                        br.close();
-                    }
-                    conn.disconnect();
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return jsonHtml.toString();
-        }
-
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jsonObject = new JSONObject(str);
-                JSONArray results = jsonObject.getJSONArray("webnautes");
-
-                String zz = "";
-                for (int i = 0; i < results.length(); i++) {
-                    JSONObject temp = results.getJSONObject(i);
-                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email"),(int)temp.get("rate")));
-
-
-                }
-
-
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }
-    }
+//    class GettingPHP extends AsyncTask<String, Integer,String> {
+//        @Override
+//        protected String doInBackground(String...params){
+//            StringBuilder jsonHtml = new StringBuilder();
+//            try{
+//                URL phpUrl = new URL(params[0]);
+//                HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
+//                if(conn != null){
+//                    conn.setConnectTimeout(10000);
+//                    conn.setUseCaches(false);
+//                    if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+//                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+//
+//                        while(true){
+//                            String line = br.readLine();
+//                            if(line==null) break;
+//                            jsonHtml.append(line+"\n");
+//                        }
+//                        br.close();
+//                    }
+//                    conn.disconnect();
+//                }
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//            return jsonHtml.toString();
+//        }
+//
+//        protected void onPostExecute(String str) {
+//            try {
+//                JSONObject jsonObject = new JSONObject(str);
+//                JSONArray results = jsonObject.getJSONArray("webnautes");
+//
+//                String zz = "";
+//                for (int i = 0; i < results.length(); i++) {
+//                    JSONObject temp = results.getJSONObject(i);
+//                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email"),Integer.valueOf((String)temp.get("rate"))));
+//
+//
+//                }
+//
+//
+//            }catch (JSONException e){
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
 }
