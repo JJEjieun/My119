@@ -8,8 +8,6 @@
     tools:context=".MainEmployee"
     android:orientation="vertical">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,130 +19,174 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Page"
-            android:textSize="50dp"
-            android:background="@color/myRed"
-            android:textColor="#ffffff"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/mypageName"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="이름 님"
-                android:textSize="40dp"
-                android:id="@+id/mypageName"/>
+                android:textColor="@color/normal"
+                android:textSize="30dp" />
 
-            <Button
-                android:layout_width="34dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp" />
+            <ImageButton
+                android:id="@+id/button_modifyee"
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="18dp"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"
+                android:src="@drawable/wheel" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="회원정보수정"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/normal"
+                android:text="회원정보확인" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/flat" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "최근 나의 평가"
+            android:textSize = "20dp"
+            android:textColor="@color/normal"
+            android:fontFamily="@font/yoongothic"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="3dp"
+                android:text = " 4.3점 "
+                android:textSize="20dp"/>
+
+            <RatingBar
+                android:id="@+id/ratingbar"
+                android:layout_marginLeft="30dp"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4.5" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/nooo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
-                android:id="@+id/manageS"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:id="@+id/resume"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="이력서"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/contract"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:text="0"
-                android:textSize="20dp" />
+                android:text = "계약서"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
 
             <Button
-                android:id="@+id/supply"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_marginLeft="15dp"
-                android:text="0"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/ev"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="15dp"
-                android:text="0"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/ev_r"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="15dp"
-                android:text="0"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이력서 관리"
-                android:textSize="17dp"
-                android:layout_marginLeft="20dp" />
-
-            //지원현황이라고 되어있었음
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="계약서"
-                android:textSize="17dp"
-                android:layout_marginLeft="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="개인평가"
-                android:textSize="17dp"
-                android:layout_marginLeft="34dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="기업평가"
-                android:textSize="17dp"
-                android:layout_marginLeft="30dp" />
+                android:id="@+id/applyednotice"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:text = "신청한 \n공고"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/friends"
             android:layout_width="match_parent"
-            android:layout_height="122dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:text="친구 맺은 현황"
-            android:textSize="30dp" />
+            android:layout_height="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/nooo" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "근무지"
+            android:textSize = "28dp"
+            android:textColor="@color/normal"
+            android:fontFamily="@font/yoongothic"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+            // 소연이가 해야할 리스트 뷰 만들기!
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="나의 평가 현황"
-            android:textSize="30dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="근무지현황들\n1\n2\n3\n4\n5" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/nooo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "인증된 경력"
+            android:textSize = "28dp"
+            android:textColor="@color/normal"
+            android:fontFamily="@font/yoongothic"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+        // 소연이가 해야할 리스트 뷰 만들기!
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="인증된 경력 현황들\n1\n2\n3\n4\n5" />
+
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

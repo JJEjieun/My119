@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mainPage"
+        app:showAsAction = "never"
+        android:title = "메인페이지" />
+
+    <item
+        android:id="@+id/resume"
+        app:showAsAction = "never"
+        android:title = "이력서 관리" />
+
+    <item
+        android:id="@+id/contract"
+        app:showAsAction = "never"
+        android:title = "근로계약서" />
+</menu>

@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="myRed"> #9D0101 </color>
     <color name="myBack">#CC9D0101</color>
+    <color name="myFront">#B39D0101</color>
+    <color name="normal">#464646</color>
+    <color name="flat">#808080</color>
+    <color name="nooo">#DBDBDB</color>
 </resources>
