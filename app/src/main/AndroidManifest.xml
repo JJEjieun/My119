@@ -36,6 +36,7 @@
         <activity android:name=".Contract_employee"/>
         <activity android:name=".RequestedNotice"/>
         <activity android:name=".MyInfo" />
+        <activity android:name=".MyPageEmployer" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
