@@ -28,7 +28,7 @@ public class MainEmployer extends AppCompatActivity {
         // 최신 알림 표시할 Adapter 생성
         NoticeListViewAdapter adapter1 = new NoticeListViewAdapter();
         // 리스트뷰 참조 및 Adapter달기
-        ListView listview1 = (ListView) findViewById(R.id.listView1);
+        ListView listview1 = (ListView) findViewById(R.id.listView2);
         listview1.setAdapter(adapter1);
 ///**/        // 아이템 추가.(항목 두 개만 넣기)
 ///**/        adapter1.addNotice("191212","13~15시","할리스커피",

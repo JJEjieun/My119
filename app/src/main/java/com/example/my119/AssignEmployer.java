@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +43,8 @@ public class AssignEmployer extends AppCompatActivity {
     private Spinner address2;
     private Spinner address3;
     private TextView mTextViewResult;
+    private Button button_clear;
+    private PaintView paintView;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
@@ -51,6 +54,19 @@ public class AssignEmployer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employer);
+
+        paintView = (PaintView) findViewById(R.id.paintView);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        paintView.init(metrics);
+
+        button_clear = (Button)findViewById(R.id.clear);
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paintView.clear();
+            }
+        });
 
 //스피너에 주소 입력.
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);

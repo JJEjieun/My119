@@ -11,12 +11,12 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/yoongothic"
         android:gravity="center"
         android:text="일반회원가입"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:fontFamily="@font/yoongothic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -74,12 +74,12 @@
                     android:id="@+id/checkID"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
+                    android:textColor="#ffffff"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/yoongothic"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="중복확인"
-                    android:textColor="#ffffff" />
+                    android:text="중복확인" />
             </LinearLayout>
 
             //비밀번호
@@ -402,15 +402,19 @@
 
         <com.example.my119.PaintView
             android:id="@+id/paintView"
-            android:layout_width="220dp"
-            android:layout_height="140dp"
+            android:layout_width="210dp"
+            android:layout_height="130dp"
             android:background="@color/nooo" />
 
         <Button
             android:id="@+id/clear"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/yoongothic"
+            android:layout_marginTop="80dp"
             android:text="초기화" />
     </LinearLayout>
 
@@ -430,7 +434,10 @@
         <Button
             android:id="@+id/assignButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/yoongothic"
             android:layout_gravity="center"
             android:text="등록" />
     </LinearLayout>
