@@ -102,13 +102,15 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginBottom="228dp"
+        android:background="@color/myBack"
         android:text="로그인"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <LinearLayout
         android:id="@+id/linear4"
@@ -131,7 +133,8 @@
             android:id="@+id/goto_assign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="개인회원가입" />
+            android:text="개인회원가입"
+            android:textColor="@color/colorPrimaryDark"/>
     </LinearLayout>
 
     <TextView
