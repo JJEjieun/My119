@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class PaintView extends View {
     public static int BBRUSH_SIZE = 10;
     public static final int DEFAULT_COLOR = Color.BLACK;
-    public static final int DEFAULT_BG_COLOR = Color.YELLOW;
+    public static final int DEFAULT_BG_COLOR = Color.WHITE;
     private static final float TOUCH_TOLERANCE = 4;
     private float mX,mY;
     private Path mPath;

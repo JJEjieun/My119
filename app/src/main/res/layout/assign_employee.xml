@@ -26,13 +26,14 @@
 
     <ScrollView
         android:id="@+id/sv1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/L3"
+        android:layout_width="406dp"
+        android:layout_height="381dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1">
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:layout_constraintVertical_bias="0.178">
 
         <LinearLayout
             android:id="@+id/L1"
@@ -55,12 +56,12 @@
                     android:id="@+id/textList1"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="ID"
-                    android:textSize="20dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:fontFamily="@font/yoongothic"
-                    android:textStyle="bold"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/enterID"
@@ -74,11 +75,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="중복확인"
-                    android:fontFamily="@font/yoongothic"
-                    android:background="@drawable/button_background"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
             </LinearLayout>
 
             //비밀번호
@@ -93,11 +94,11 @@
                     android:id="@+id/textList2"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="P/W"
-                    android:textSize="20dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:fontFamily="@font/yoongothic"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -108,6 +109,7 @@
             </LinearLayout>
 
             //이름
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,12 +120,12 @@
                     android:id="@+id/textList3"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="이름"
-                    android:textSize="20dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:fontFamily="@font/yoongothic"
-                    android:textStyle="bold"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/enterName"
@@ -144,12 +146,12 @@
                     android:id="@+id/textList4"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="생년월일"
-                    android:textSize="20dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:fontFamily="@font/yoongothic"
-                    android:textStyle="bold"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/enterBornDate"
@@ -170,12 +172,12 @@
                     android:id="@+id/textList5"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:gravity="center"
                     android:text="성별"
-                    android:textSize="20dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:fontFamily="@font/yoongothic"
-                    android:textStyle="bold"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
@@ -214,12 +216,12 @@
                         android:id="@+id/textList6"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:gravity="center"
                         android:text="전화번호"
-                        android:textSize="20dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:fontFamily="@font/yoongothic"
-                        android:textStyle="bold"/>
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -251,11 +253,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/yoongothic"
                         android:gravity="center"
                         android:text="인증번호받기"
-                        android:fontFamily="@font/yoongothic"
-                        android:background="@drawable/button_background"
-                        android:textColor="#ffffff"/>
+                        android:textColor="#ffffff" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -308,12 +310,12 @@
                         android:id="@+id/textList7"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:gravity="center"
                         android:text="주소"
-                        android:textSize="20dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:fontFamily="@font/yoongothic"
-                        android:textStyle="bold"/>
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="80dp"
@@ -375,19 +377,55 @@
     </ScrollView>
 
 
-
-
     //등록버튼
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sv1"
+        app:layout_constraintVertical_bias="0.785"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <TextView
+            android:id="@+id/textList8"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:gravity="center"
+            android:text="서명"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.example.my119.PaintView
+            android:id="@+id/paintView"
+            android:layout_width="220dp"
+            android:layout_height="140dp"
+            android:background="@color/nooo" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="초기화" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/L3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="161dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv1"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-16dp">
 
         <Button
             android:id="@+id/assignButton"

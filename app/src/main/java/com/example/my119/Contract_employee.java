@@ -49,10 +49,6 @@ public class Contract_employee extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         paintView.init(metrics);
 
-//        paintView2 = (PaintView)findViewById(R.id.paintView2);
-//        DisplayMetrics metrics2 = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(metrics2);
-//        paintView.init(metrics2);
 
 
 //        button_clear.setOnClickListener(new View.OnClickListener() {

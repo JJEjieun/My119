@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,6 +52,7 @@ public class AssignEmployee extends AppCompatActivity {
     private String codeSent;
     private EditText enterPhoneNumber;
     private String phoneVerificationId;
+    private PaintView paintView;
 
     static String add1,add2,add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -71,6 +73,7 @@ public class AssignEmployee extends AppCompatActivity {
     private Spinner address2;
     private Spinner address3;
     private Button check;
+    private Button button_clear;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
@@ -78,6 +81,19 @@ public class AssignEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employee);
+
+        paintView = (PaintView) findViewById(R.id.paintView);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        paintView.init(metrics);
+
+        button_clear = (Button)findViewById(R.id.clear);
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paintView.clear();
+            }
+        });
 
         fbAuth = FirebaseAuth.getInstance();
 
