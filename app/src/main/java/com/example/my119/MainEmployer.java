@@ -25,6 +25,16 @@ public class MainEmployer extends AppCompatActivity {
                 "3", "191210","28500");
         adapter1.addNotice("200130","15-20시", "이디야",
                 "2", "200120","58700");
+        Button button_mypage = (Button)findViewById(R.id.MyPage);
+        button_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "알림 더 확인", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(getApplicationContext(), MyPageEmployer.class);
+                startActivity(intent3);
+            }
+        });
+
         // '알림 더 확인하기' 버튼 누르면 알림 확인 창으로 넘어감
         Button btnMoreAlarm = (Button)findViewById(R.id.button1);
         btnMoreAlarm.setOnClickListener(new View.OnClickListener() {
