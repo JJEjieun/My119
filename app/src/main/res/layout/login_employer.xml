@@ -5,42 +5,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginEmployer"
+    tools:context=".LoginEmployee"
     android:orientation="vertical">
 
 
-    <TextView
+    <LinearLayout
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="일일 대타 구함"
-        android:textAlignment="center"
-        android:textSize="100px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@id/linear1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text="일일"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textColor="@color/myBack"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text=" 대타"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text=" 구"
+            android:textColor="@color/myBack"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text="함"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textAlignment="center" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="120dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linear2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
             android:text="기업 회원"
+            android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -48,26 +89,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.302"
-        tools:layout_editor_absoluteX="-16dp">
+        app:layout_constraintBottom_toTopOf="@+id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear1">
 
-        <TextView
-            android:layout_width="28dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="ID"
-            android:textSize="20dp" />
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:background="@color/myBack"
+            android:text="아이디"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
 
         <EditText
             android:id="@+id/id"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:hint="아이디" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -75,51 +114,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear2">
 
-        <TextView
-            android:layout_width="41dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="P/W"
-            android:textSize="18dp" />
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:background="@color/myBack"
+            android:text="비밀번호"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
 
         <EditText
             android:id="@+id/pw"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:hint="비밀번호" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_employer"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="228dp"
+        android:id="@+id/button_employee"
+        android:layout_width="119dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/myBack"
         android:text="로그인"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/linear4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/linear3" />
 
     <LinearLayout
         android:id="@+id/linear4"
         android:layout_width="match_parent"
         android:layout_height="24dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear3"
-        app:layout_constraintVertical_bias="0.255"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_employee">
 
         <TextView
             android:layout_width="157dp"
@@ -131,7 +169,8 @@
             android:id="@+id/goto_assign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기업회원가입" />
+            android:text="개인회원가입"
+            android:textColor="@color/colorPrimaryDark" />
     </LinearLayout>
 
     <TextView
@@ -145,7 +184,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear4"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintTop_toBottomOf="@+id/linear4" />
 
 </android.support.constraint.ConstraintLayout>
