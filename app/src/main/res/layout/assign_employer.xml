@@ -113,9 +113,16 @@
                     android:layout_weight="1"
                     android:hint="사업자등록번호를 입력하세요" />
 
+                <TextView
+                    android:id="@+id/TorF"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"
+                    android:text=""/>
+
                 <Button
                     android:id="@+id/checkNumber"
-                    android:layout_width="90dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"

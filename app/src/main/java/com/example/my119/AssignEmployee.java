@@ -149,7 +149,7 @@ public class AssignEmployee extends AppCompatActivity {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
                             if (Objects.equals(adspin2.getItem(j),"성북구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
-                                        R.array.spinner3, android.R.layout.simple_spinner_dropdown_item);
+                                        R.array.spinner3_seongbook, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
                             }else{

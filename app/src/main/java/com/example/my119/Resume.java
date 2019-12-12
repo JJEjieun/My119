@@ -42,7 +42,7 @@ public class Resume extends AppCompatActivity {
             food10, food11, food12, food13, food14, food15, food16;
     String ss_time, ee_time, place1, place2, place3, place4, place5, place6, jjob;
 
-    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3, adspin4, adspin5, adspin6, adspin3of1, adspin3of2;
+    ArrayAdapter<CharSequence> adspin1, adspin2, adspin4, adspin5, adspin3of1, adspin3of2;
 
     private static final String TAG = "resume";
     private static String IP_ADDRESS = "10.0.2.2";
@@ -127,10 +127,8 @@ public class Resume extends AppCompatActivity {
         //스피너에 주소 입력.
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
         final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
-        final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
         final Spinner spin4 = (Spinner)findViewById(R.id.enterAddress4);
         final Spinner spin5 = (Spinner)findViewById(R.id.enterAddress5);
-        final Spinner spin6 = (Spinner)findViewById(R.id.enterAddress6);
 
 
         adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner1,
@@ -148,21 +146,13 @@ public class Resume extends AppCompatActivity {
                     spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-                            if (Objects.equals(adspin2.getItem(j),"성북구")) {
-                                adspin3 = ArrayAdapter.createFromResource(Resume.this,
-                                        R.array.spinner3, android.R.layout.simple_spinner_dropdown_item);
-                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                spin3.setAdapter(adspin3);
-                            }else{
-                                spin3.setAdapter(null);
-                            }
+
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) { }
                     });
                 }else{
                     spin2.setAdapter(null);
-                    spin3.setAdapter(null);
                 }
             }
             @Override
@@ -183,21 +173,13 @@ public class Resume extends AppCompatActivity {
                     spin5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-                            if (Objects.equals(adspin5.getItem(j),"성북구")) {
-                                adspin6 = ArrayAdapter.createFromResource(Resume.this,
-                                        R.array.spinner3, android.R.layout.simple_spinner_dropdown_item);
-                                adspin6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                spin6.setAdapter(adspin6);
-                            }else{
-                                spin6.setAdapter(null);
-                            }
+
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) { }
                     });
                 }else{
                     spin5.setAdapter(null);
-                    spin6.setAdapter(null);
                 }
             }
             @Override
