@@ -10,75 +10,107 @@
 
     <LinearLayout
         android:id="@+id/linear1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@id/linear2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
-        android:weightSum="3">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text="일일"
+            android:textAlignment="center"
+            android:textColor="@color/myBack"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text=" 대타"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text=" 구"
+            android:textAlignment="center"
+            android:textColor="@color/myBack"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:text="함"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/checkText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+        android:weightSum="11"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_weight="3"/>
 
         <Button
             android:id="@+id/MyPage"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="마이페이지"
+            android:background="@drawable/button_background"
+            android:textColor="#ffffff"
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="일일대타구함"
-            android:textSize="30dp"
-            android:layout_weight="1"/>
+            android:visibility="invisible"
+            android:layout_weight="3"/>
 
         <Button
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="메뉴"
+            android:background="@drawable/button_background"
+            android:textColor="#ffffff"
             android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/checkAlarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/checkText"
-        app:layout_constraintTop_toBottomOf="@+id/linear1">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="알림확인"
-            android:textSize="25dp"
-            android:gravity="center"/>
+            android:visibility="invisible"
+            android:layout_weight="3"/>
 
-        <LinearLayout
-            android:id="@+id/TextList1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </ListView>
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="알림 더 확인하기"
-                android:textSize="18dp" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -87,14 +119,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkAlarm"
-        app:layout_constraintVertical_bias="0.644"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintTop_toBottomOf="@+id/linear2">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="이벤트배너"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="공고확인"
+            android:textStyle="bold"
             android:textSize="25dp"
             android:gravity="center"/>
 
@@ -107,7 +144,7 @@
             <ListView
                 android:id="@+id/listView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="180dp">
             </ListView>
 
             <Button
@@ -115,9 +152,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_background"
+                android:textColor="#ffffff"
                 android:text="공고 더 확인하기"
                 android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

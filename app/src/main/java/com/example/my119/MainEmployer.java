@@ -15,35 +15,24 @@ public class MainEmployer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_employer);
 
-        // 최신 알림 표시할 Adapter 생성
-/**/        NoticeListViewAdapter adapter1 = new NoticeListViewAdapter();
-        // 리스트뷰 참조 및 Adapter달기
-        ListView listview1 = (ListView) findViewById(R.id.listView1);
-        listview1.setAdapter(adapter1);
-/**/        // 아이템 추가.(항목 두 개만 넣기)
-/**/        adapter1.addNotice("191212","13~15시","할리스커피",
-                "3", "191210","28500");
-        adapter1.addNotice("200130","15-20시", "이디야",
-                "2", "200120","58700");
-        Button button_mypage = (Button)findViewById(R.id.MyPage);
-        button_mypage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "알림 더 확인", Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(getApplicationContext(), MyPageEmployer.class);
-                startActivity(intent3);
+        //마이페이지 버튼 누르면 마이페이지 창으로 넘어감
+        Button btnMyPage = (Button)findViewById(R.id.MyPage);
+        btnMyPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "마이페이지", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                startActivity(intent);
             }
         });
 
-        // '알림 더 확인하기' 버튼 누르면 알림 확인 창으로 넘어감
-        Button btnMoreAlarm = (Button)findViewById(R.id.button1);
-        btnMoreAlarm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "알림 더 확인", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(getApplicationContext(), CheckAlarm_er.class);
-                startActivity(intent2);
-            }
-        });
+        // 최신 알림 표시할 Adapter 생성
+        NoticeListViewAdapter adapter1 = new NoticeListViewAdapter();
+        // 리스트뷰 참조 및 Adapter달기
+        ListView listview1 = (ListView) findViewById(R.id.listView1);
+        listview1.setAdapter(adapter1);
+///**/        // 아이템 추가.(항목 두 개만 넣기)
+///**/        adapter1.addNotice("191212","13~15시","할리스커피",
+//                "3", "191210","28500");
 
         Button btnMoreNotice = (Button)findViewById(R.id.button2);
         btnMoreNotice.setOnClickListener(new View.OnClickListener() {

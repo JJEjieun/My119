@@ -128,7 +128,9 @@ public class AssignEmployee extends AppCompatActivity {
             }
         });
 
-        //스피너에 주소 입력.
+//스피너에 주소 입력 아래에
+
+
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
         final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
         final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
@@ -147,9 +149,129 @@ public class AssignEmployee extends AppCompatActivity {
                     spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-                            if (Objects.equals(adspin2.getItem(j),"성북구")) {
+                            if (Objects.equals(adspin2.getItem(j),"강남구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangnam, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"강동구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangdong, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"강북구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangbook, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"강서구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangseo, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"관악구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gwanak, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"광진구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangjin, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"구로구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_guro, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"금천구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_geumcheon, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"노원구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_nowon, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"도봉구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_dobong, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"동대문구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_dongdamoon, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"동작구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_dongjak, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"마포구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_mapo, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"서대문구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_seodamoon, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"서초구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_seocho, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"성동구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_gangdong, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"성북구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_seongbook, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"송파구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_songpa, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"양천구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_yangcheon, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"영등포구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_yeongdeungpo, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"용산구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_yongsan, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"은평구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_eunpyeong, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"종로구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_jongro, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"중구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_joong, android.R.layout.simple_spinner_dropdown_item);
+                                adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spin3.setAdapter(adspin3);
+                            }else if(Objects.equals(adspin2.getItem(j),"중랑구")) {
+                                adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
+                                        R.array.spinner3_joonglang, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
                             }else{
