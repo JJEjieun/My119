@@ -30,17 +30,17 @@ import java.util.ArrayList;
 
 
 public class Login extends AppCompatActivity {
-//    public final static String ip="203.250.154.83";
+    public final static String ip="10.0.2.2";
 
     public GetPHP p;
-    String url = "http://10.50.96.112/login_notice.php";
+    String url = "http://"+ip+"/login_notice.php";
     public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
 
-    String url1 ="http://10.50.96.112/login_employer.php";
+    String url1 ="http://"+ ip +"/login_employer.php";
     public static ArrayList<Employerinfo> employerinfos = new ArrayList<>();
     public GettingPHP1 gphp;
 
-    String url2 = "http://10.50.96.112/login_employee.php";
+    String url2 = "http://"+ ip +"/login_employee.php";
     public static ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
     public GettingPHP2 g;
 

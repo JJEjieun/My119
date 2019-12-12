@@ -96,10 +96,12 @@ public class CheckNotice extends AppCompatActivity {
 
     private void setData(NoticeListViewAdapter adapter) {
 
-        for(int i =0; i<noticeinfos.size();i++){
-            num = noticeinfos.size()-i;
+        for(int i = noticeinfos.size()-1; i >= 0;i--){
+            int count = 0;
+            num = noticeinfos.size()- count;
             adapter.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
                     String.valueOf(num), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
+            count++;
         }
 
     }
