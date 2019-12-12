@@ -363,6 +363,17 @@ public class AssignEmployee extends AppCompatActivity {
                     finish();
                 }
             });
+
+            check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(int i =0;i< Login.employeeinfos.size();i++){
+                        String s = mEditTextID.getText().toString();
+                        if(s.equals(Login.employeeinfos.get(i).getID()))
+                            Toast.makeText(getApplicationContext(),"이미 존재하는 ID입니다. ",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
@@ -506,20 +517,20 @@ public class AssignEmployee extends AppCompatActivity {
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         fbAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(TAG, "signInWithCredential:success");
-                    Toast.makeText(AssignEmployee.this, "Successful", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(AssignEmployee.this, "Successful", Toast.LENGTH_SHORT).show();
 //                    FirebaseUser user = task.getResult().getUser();
-                } else {
-                    if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(AssignEmployee.this, "wrong verification code", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(AssignEmployee.this, "wrong verification code", Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
-            }
-        });
+                    }
+                });
     }
 
 }

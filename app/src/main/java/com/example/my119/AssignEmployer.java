@@ -45,6 +45,7 @@ public class AssignEmployer extends AppCompatActivity {
     private TextView mTextViewResult;
     private Button button_clear;
     private PaintView paintView;
+    private Button check;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
@@ -266,6 +267,7 @@ public class AssignEmployer extends AppCompatActivity {
         address1 = (Spinner)findViewById(R.id.enterAddress1);
         address2 = (Spinner)findViewById(R.id.enterAddress2);
         address3 = (Spinner)findViewById(R.id.enterAddress3);
+        check = (Button)findViewById(R.id.checkID);
 
         if (true) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
@@ -322,102 +324,113 @@ public class AssignEmployer extends AppCompatActivity {
                     finish();
                 }
             });
+
+            check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(int i =0;i< Login.employerinfos.size();i++){
+                        String s = mEditTextID.getText().toString();
+                        if(s.equals(Login.employerinfos.get(i).getID()))
+                            Toast.makeText(getApplicationContext(),"이미 존재하는 ID입니다. ",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
-        class InsertData extends AsyncTask<String, Void, String> {
-            ProgressDialog progressDialog;
+    class InsertData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-                progressDialog = ProgressDialog.show(AssignEmployer.this,
-                        "Please Wait", null, true, true);
-            }
+            progressDialog = ProgressDialog.show(AssignEmployer.this,
+                    "Please Wait", null, true, true);
+        }
 
-            @Override
-            protected void onPostExecute(String result) {
-                super.onPostExecute(result);
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
 
-                progressDialog.dismiss();
+            progressDialog.dismiss();
 //                mTextViewResult.setText(result);
-                Log.d(TAG, "POST response1 - " + result);
-            }
+            Log.d(TAG, "POST response1 - " + result);
+        }
 
-            @Override
-            protected String doInBackground(String... params) {
+        @Override
+        protected String doInBackground(String... params) {
 
-                String id = (String) params[1];
-                String pw = (String) params[2];
-                String employerNumber = (String) params[3];
-                String companyName = (String) params[4];
-                String name = (String) params[5];
-                String address = (String) params[6];
-                String phoneNum = (String) params[7];
-                String email = (String) params[8];
+            String id = (String) params[1];
+            String pw = (String) params[2];
+            String employerNumber = (String) params[3];
+            String companyName = (String) params[4];
+            String name = (String) params[5];
+            String address = (String) params[6];
+            String phoneNum = (String) params[7];
+            String email = (String) params[8];
 
-                String serverURL = (String) params[0];
-                String postParameters = "id=" + id + "&pw=" + pw+ "&employerNumber=" +employerNumber+ "&companyName=" +companyName+ "&name=" +name
-                        + "&address=" +address+ "&phoneNum=" +phoneNum+ "&email=" +email;
-
-
-                try {
-
-                    URL url = new URL(serverURL);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            String serverURL = (String) params[0];
+            String postParameters = "id=" + id + "&pw=" + pw+ "&employerNumber=" +employerNumber+ "&companyName=" +companyName+ "&name=" +name
+                    + "&address=" +address+ "&phoneNum=" +phoneNum+ "&email=" +email;
 
 
-                    httpURLConnection.setReadTimeout(5000);
-                    httpURLConnection.setConnectTimeout(5000);
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.connect();
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
 
-                    OutputStream outputStream = httpURLConnection.getOutputStream();
-                    outputStream.write(postParameters.getBytes("UTF-8"));
-                    outputStream.flush();
-                    outputStream.close();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
 
 
-                    int responseStatusCode = httpURLConnection.getResponseCode();
-                    Log.d(TAG, "POST response code2 - " + responseStatusCode);
-
-                    InputStream inputStream;
-                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                        inputStream = httpURLConnection.getInputStream();
-                        Log.d(TAG, "OK");
-                    } else {
-                        inputStream = httpURLConnection.getErrorStream();
-                    }
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
 
 
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code2 - " + responseStatusCode);
 
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-
-                    while ((line = bufferedReader.readLine()) != null) {
-                        sb.append(line);
-                    }
-
-
-                    bufferedReader.close();
-
-
-                    return sb.toString();
-
-
-                } catch (Exception e) {
-
-                    Log.d(TAG, "InsertData: Error ", e);
-
-                    return new String("Error: " + e.getMessage());
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                    Log.d(TAG, "OK");
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
                 }
 
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
             }
 
         }
 
     }
+
+}
