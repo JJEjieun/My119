@@ -22,7 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class Contract_employee extends AppCompatActivity {
+public class Contract_employer extends AppCompatActivity {
     private PaintView paintView;
     ConstraintLayout layout;
     Button button_clear, toPdf;
@@ -31,7 +31,7 @@ public class Contract_employee extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.contract_employee);
+        setContentView(R.layout.contract_employer);
 
 //        eName= (TextView)findViewById(R.id.eName);
 //        eAdd = (TextView)findViewById(R.id.eAdd);
@@ -43,6 +43,7 @@ public class Contract_employee extends AppCompatActivity {
 //        eName.setText(LoginEmployee.eName);
 //        eAdd.setText(LoginEmployee.eAddress);
 //        ePhone.setText(LoginEmployee.ePhoneNum);
+
 
 //        button_clear.setOnClickListener(new View.OnClickListener() {
 //            @Override
