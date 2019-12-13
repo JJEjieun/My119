@@ -63,8 +63,8 @@ public class MyPage extends AppCompatActivity {
         Button button_ev = (Button)findViewById(R.id.applyednotice);
         button_ev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "개인평가", Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(getApplicationContext(), Evaluation_employee.class);
+                Toast.makeText(getApplicationContext(), "신청한 공고 확인", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(getApplicationContext(), AppliedNoticeList.class);
                 startActivity(intent3);
                 finish();
             }

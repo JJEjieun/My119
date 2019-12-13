@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AppliedNoticeList">
+
+    <TextView
+        android:id="@+id/notice_list"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/myRed"
+        android:text="신청받은 공고 목록"
+        android:fontFamily="@font/yoongothic"
+        android:textColor="#ffffff"
+        android:textSize="100px"
+        app:layout_constraintBottom_toTopOf="@+id/L1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004" />
+
+    <LinearLayout
+        android:id="@+id/L1"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/notice_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="3dp"
+        android:layout_gravity="top">
+
+        <ListView
+            android:id="@+id/listView1"
+            android:fontFamily="@font/yoongothic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginBottom="28dp"
+        android:text="\@project team3"
+        android:textAlignment="center"
+        android:textSize="40px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/L1"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -45,12 +45,22 @@ public class MyPageEmployer extends AppCompatActivity {
 
         employerName.setText(LoginEmployer.rName+"님");
 
-        Button btnResume = (Button)findViewById(R.id.resume);
-        btnResume.setOnClickListener(new View.OnClickListener() {
+        Button button_supply = (Button)findViewById(R.id.contract);
+        button_supply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "이력서", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Resume.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "근로 계약서", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getApplicationContext(), Contract_employee.class);
+                startActivity(intent2);
+            }
+        });
+
+        Button button_ev = (Button)findViewById(R.id.applyednotice);
+        button_ev.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "신청받은 공고 확인", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(getApplicationContext(), RequestedNoticeList.class);
+                startActivity(intent3);
+                finish();
             }
         });
 
