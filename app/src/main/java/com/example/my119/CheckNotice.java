@@ -103,7 +103,6 @@ public class CheckNotice extends AppCompatActivity {
                     String.valueOf(num), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
             count++;
         }
-
     }
 
     }

@@ -118,7 +118,7 @@
                 android:textSize="15dp" />
 
             <Button
-                android:id="@+id/applyednotice"
+                android:id="@+id/requestednotice"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"

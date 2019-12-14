@@ -13,12 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class RequestedNotice extends AppCompatActivity  {
 
     Button call;
     Button facecall;
     String tel;
+
+    Button btn_check_resume = (Button)findViewById(R.id.btn_check_resume);
+    Button btn_check_star = (Button)findViewById(R.id.btn_check_star);
+    Button btn_eva = (Button)findViewById(R.id.btn_eva);
+    Button btn_reject = (Button)findViewById(R.id.btn_reject);
+    Button btn_confirm = (Button)findViewById(R.id.btn_confirm);
+    Button btn_show_contract = (Button)findViewById(R.id.btn_show_contract);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,62 @@ public class RequestedNotice extends AppCompatActivity  {
                 onVideoCall();
             }
         });
+
+        //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
+        if(true){
+            btn_eva.setVisibility(View.VISIBLE);
+            btn_show_contract.setVisibility(View.VISIBLE);
+        }
+
+        //신청자 이력서 확인
+        btn_check_resume.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //신청자 별점 확인
+        btn_check_star.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //신청자 근무거절
+        btn_reject.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //신청자 근무확정
+        btn_confirm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //근무자(알바생) 평가하기
+        btn_eva.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "근무자 평가", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Evaluation_employee.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //계약서 보기
+        btn_show_contract.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "계약서 보기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Contract_employer.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
     }
 
     public void onCall() {

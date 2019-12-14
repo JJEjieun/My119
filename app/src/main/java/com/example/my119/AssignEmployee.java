@@ -54,6 +54,8 @@ public class AssignEmployee extends AppCompatActivity {
     private String phoneVerificationId;
     private PaintView paintView;
 
+    boolean passID;
+
     static String add1,add2,add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
@@ -144,9 +146,7 @@ public class AssignEmployee extends AppCompatActivity {
             }
         });
 
-//스피너에 주소 입력 아래에
-
-
+//스피너에 주소 할당
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
         final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
         final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
@@ -306,9 +306,32 @@ public class AssignEmployee extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i =0;i< Login.employeeinfos.size();i++){
+                    String s = mEditTextID.getText().toString();
+                    if(s.equals(Login.employeeinfos.get(i).getID())) {
+                        Toast.makeText(getApplicationContext(), "이미 존재하는 ID입니다. ", Toast.LENGTH_SHORT).show();
+                        passID = false;
+                        break;
+                    }
+                    passID = true;
+                }
+            }
+        });
+
+        boolean allWrite = false;
+        if(!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) &&
+                !(mEditTextName.getText().equals(null)) && !(mEditTextBirth.getText().equals(null)) &&
+                !(mEditTextPhone.getText().equals(null)) && (radioGroup.isSelected()) &&
+                (address1.isSelected()) && (address2.isSelected()) && (address3.isSelected()) && passID) {
+            allWrite = true;
+        }
+
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
-        if(true) {
+        if(allWrite) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
             assignButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -361,17 +384,6 @@ public class AssignEmployee extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "가입 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
-                }
-            });
-
-            check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for(int i =0;i< Login.employeeinfos.size();i++){
-                        String s = mEditTextID.getText().toString();
-                        if(s.equals(Login.employeeinfos.get(i).getID()))
-                            Toast.makeText(getApplicationContext(),"이미 존재하는 ID입니다. ",Toast.LENGTH_SHORT).show();
-                    }
                 }
             });
         }

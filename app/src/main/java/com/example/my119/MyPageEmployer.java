@@ -18,10 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-import android.content.Intent;
+
 import static com.example.my119.Login.employeeinfos;
 
 public class MyPageEmployer extends AppCompatActivity {
@@ -54,8 +51,8 @@ public class MyPageEmployer extends AppCompatActivity {
             }
         });
 
-        Button button_ev = (Button)findViewById(R.id.applyednotice);
-        button_ev.setOnClickListener(new View.OnClickListener() {
+        Button button_requestedNotice = (Button)findViewById(R.id.requestednotice);
+        button_requestedNotice.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "신청받은 공고 확인", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(getApplicationContext(), RequestedNoticeList.class);
