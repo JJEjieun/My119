@@ -177,6 +177,9 @@ public class AssignEmployee extends AppCompatActivity {
             public void onClick(View view) {
 //                signUri = paintView;
 
+                ScreenShot(paintView);
+
+
                 saveSign();
 
                 bitmap = paintView.getPaintedBitmap();
@@ -434,7 +437,7 @@ public class AssignEmployee extends AppCompatActivity {
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
                     task.execute("http://" +IP_ADDRESS + "/assignEmployee.php",
-                            id, pw, name, birth, gender, phoneNum, addr, sign);
+                            id, pw, name, birth, gender, phoneNum, addr);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
@@ -628,6 +631,28 @@ public class AssignEmployee extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    //화면 캡쳐하기
+    public File ScreenShot(View view){
+        view.setDrawingCacheEnabled(true);  //화면에 뿌릴때 캐시를 사용하게 한다
+
+        Bitmap screenBitmap = view.getDrawingCache();   //캐시를 비트맵으로 변환
+
+        String filename = "screenshot.png";
+        File file = new File(Environment.getExternalStorageDirectory()+"/Pictures", filename);  //Pictures폴더 screenshot.png 파일
+        FileOutputStream os = null;
+        try{
+            os = new FileOutputStream(file);
+            screenBitmap.compress(Bitmap.CompressFormat.PNG, 90, os);   //비트맵을 PNG파일로 변환
+            os.close();
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        view.setDrawingCacheEnabled(false);
+        return file;
     }
 
 }
