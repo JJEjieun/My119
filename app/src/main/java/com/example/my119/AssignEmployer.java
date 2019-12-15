@@ -31,6 +31,8 @@ public class AssignEmployer extends AppCompatActivity {
 
     static String add1,add2,add3;
 
+    boolean passID, passNum;
+
     private EditText mEditTextNum;//등록번호
     private EditText mEditTextID;//아이디
     private EditText mEditTextPW;//비밀번호
@@ -50,11 +52,14 @@ public class AssignEmployer extends AppCompatActivity {
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
     String docode, gucode;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employer);
+
+        TextView TorF = (TextView)findViewById(R.id.TorF);
+        Button checkNum = (Button)findViewById(R.id.checkNumber);
+
 
         paintView = (PaintView) findViewById(R.id.paintView);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -269,7 +274,37 @@ public class AssignEmployer extends AppCompatActivity {
         address3 = (Spinner)findViewById(R.id.enterAddress3);
         check = (Button)findViewById(R.id.checkID);
 
-        if (true) {
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i =0;i< Login.employerinfos.size();i++) {
+                    String s = mEditTextID.getText().toString();
+                    if (s.equals(Login.employerinfos.get(i).getID())){
+                        Toast.makeText(getApplicationContext(), "이미 존재하는 ID입니다. ", Toast.LENGTH_SHORT).show();
+                        passID = false;
+                        break;
+                    }
+                    passID = true;
+                }
+            }
+        });
+
+        checkNum.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        boolean allWrite = false;
+        if(!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) && !(mEditTextNum.getText().equals(null)) &&
+                !(mEditTextName.getText().equals(null)) && !(mEditTextStore.getText().equals(null)) && !(mEditTextAddress.getText().equals(null)) &&
+                !(mEditTextPhone.getText().equals(null)) && !(mEditTextEmail.getText().equals(null)) &&
+                (address1.isSelected()) && (address2.isSelected()) && (address3.isSelected()) && passID && passNum) {
+            allWrite = true;
+        }
+
+        if (allWrite) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
             assignButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -322,17 +357,6 @@ public class AssignEmployer extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "가입 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
-                }
-            });
-
-            check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for(int i =0;i< Login.employerinfos.size();i++){
-                        String s = mEditTextID.getText().toString();
-                        if(s.equals(Login.employerinfos.get(i).getID()))
-                            Toast.makeText(getApplicationContext(),"이미 존재하는 ID입니다. ",Toast.LENGTH_SHORT).show();
-                    }
                 }
             });
         }

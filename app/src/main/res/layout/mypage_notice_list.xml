@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_workDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="근무날짜 "
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="2dp" />
+
+            //근무날짜 명시
+            <TextView
+                android:id="@+id/db_workDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="근무날짜"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="2dp" />
+
+            <TextView
+                android:id="@+id/tv_workTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간 "
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="2dp" />
+
+            //근무시간 명시
+            <TextView
+                android:id="@+id/db_workTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="2dp" />
+
+            <TextView
+                android:id="@+id/tv_storeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가게이름 "
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="2dp" />
+
+            //가게이름 명시
+            <TextView
+                android:id="@+id/db_storeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가게이름"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:paddingTop="3dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_noticeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공고 번호 :"
+                android:layout_marginRight="2dp"
+                android:textStyle="bold" />
+
+            //공고 번호 명시
+            <TextView
+                android:id="@+id/db_noticeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공고번호"
+                android:layout_marginRight="10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공고 마감일 :"
+                    android:layout_marginRight="2dp"
+                    android:textStyle="bold" />
+
+                //공고 마감일 명시
+                <TextView
+                    android:id="@+id/db_endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공고마감일"
+                    android:layout_marginRight="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일급 :"
+                    android:layout_marginRight="2dp"
+                    android:textStyle="bold"/>
+
+                //시급 명시
+                <TextView
+                    android:id="@+id/db_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일급" />
+            </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/eva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호평가" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

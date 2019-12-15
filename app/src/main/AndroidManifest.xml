@@ -25,18 +25,20 @@
         <activity android:name=".MainEmployee"/>
         <activity android:name=".MainEmployer"/>
         <activity android:name=".CheckNotice"/>
-        <activity android:name=".CheckAlarm"/>
         <activity android:name=".CheckAlarm_er"/>
         <activity android:name=".RegisterNotice"/>
         <activity android:name=".MyPage"/>
+        <activity android:name=".MyPageEmployer" />
         <activity android:name=".Resume"/>
         <activity android:name=".ShowNotice"/>
         <activity android:name=".Evaluation_employee"/>
         <activity android:name=".Evaluation_employer"/>
         <activity android:name=".Contract_employee"/>
         <activity android:name=".RequestedNotice"/>
+        <activity android:name=".AppliedNotice"/>
         <activity android:name=".MyInfo" />
-        <activity android:name=".MyPageEmployer" />
+        <activity android:name=".RequestedNoticeList"/>
+        <activity android:name=".AppliedNoticeList"/>
         <activity android:name=".Contract_employer" />
         <activity android:name=".Login">
             <intent-filter>
