@@ -60,6 +60,11 @@ public class PaintView extends View {
         strokeWidth = BBRUSH_SIZE;
     }
 
+    public Bitmap getPaintedBitmap() {
+        return mBitmap;
+    }
+
+
     public void clear() {
         backgroundColor = DEFAULT_BG_COLOR;
         paths.clear();

@@ -35,7 +35,7 @@ public class CheckNotice extends AppCompatActivity {
 //    String url ="http://10.0.2.2/login_notice.php";
     static  int num;
     ArrayList<String> notices = new ArrayList<>();
-    String storeName, pay,  date,  endtime, key1,key2,  key3,  paymethod, interview;
+    String storeName, pay,  date,  endtime, key1, key2,  key3,  paymethod, interview;
 //    public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
 
     @Override
@@ -106,6 +106,8 @@ public class CheckNotice extends AppCompatActivity {
 
     }
 
-    }
+
+
+}
 
 

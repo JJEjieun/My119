@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
+                Intent intent = new Intent(getApplicationContext(), LoginEmployee.class);
                 startActivity(intent);
             }
         });
@@ -115,7 +115,10 @@ public class Login extends AppCompatActivity {
 
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    noticeinfos.add(i, new Noticeinfo((String) temp.get("storeName"), (String) temp.get("pay"), (String) temp.get("date"), (String) temp.get("endtime"), (String) temp.get("key1"), (String) temp.get("key2"), (String) temp.get("key3"), (String) temp.get("paymethod"), (String) temp.get("interview")));
+                    noticeinfos.add(i, new Noticeinfo((String) temp.get("storeName"), (String) temp.get("pay"),
+                            (String) temp.get("date"), (String) temp.get("endtime"), (String) temp.get("key1"),
+                            (String) temp.get("key2"), (String) temp.get("key3"), (String) temp.get("paymethod"),
+                            (String) temp.get("interview")));
 
                 }
             } catch (JSONException e) {
@@ -161,7 +164,11 @@ public class Login extends AppCompatActivity {
                 String zz = "";
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    employerinfos.add(i, new Employerinfo((String) temp.get("id"), (String) temp.get("pw"),(String) temp.get("employerNumber"),(String) temp.get("companyName"),(String) temp.get("name"),(String) temp.get("address"),(String) temp.get("phoneNum"),(String) temp.get("email"),Integer.valueOf((String)temp.get("rate"))));
+                    employerinfos.add(i, new Employerinfo((String) temp.get("id"),
+                            (String) temp.get("pw"),(String) temp.get("employerNumber"),
+                            (String) temp.get("companyName"),(String) temp.get("name"),
+                            (String) temp.get("address"),(String) temp.get("phoneNum"),
+                            (String) temp.get("email"),Integer.valueOf((String)temp.get("rate"))));
 
 
                 }
@@ -208,7 +215,11 @@ public class Login extends AppCompatActivity {
 
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address"),Integer.valueOf((String)temp.get("rate"))));
+                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"),
+                            (String) temp.get("pw"), (String) temp.get("name"),
+                            (String) temp.get("gender"), (String) temp.get("birth"),
+                            (String) temp.get("phoneNum"), (String) temp.get("address"),
+                            Integer.valueOf((String)temp.get("rate"))));
 
                 }
             } catch (JSONException e) {

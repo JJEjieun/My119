@@ -131,7 +131,6 @@ public class Resume extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 1);
 
-
                 myFaceUrl = String.valueOf(image);
             }
         });

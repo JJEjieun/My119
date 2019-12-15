@@ -13,6 +13,6 @@ public class PreferenceUtil {
 
     public static String getPreferences(Context context, String key) {
         SharedPreferences pref = context.getSharedPreferences("pref", context.MODE_PRIVATE);
-        return pref.getString(key, "");
+        return pref.getString(key, "a");
     }
 }

@@ -1,9 +1,19 @@
 package com.example.my119;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -32,6 +43,10 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -74,6 +89,12 @@ public class AssignEmployee extends AppCompatActivity {
     private Spinner address3;
     private Button check;
     private Button button_clear;
+    Button e_save;
+
+    Bitmap bitmap;
+    Uri image;
+    String signUri;
+    Context context;
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
@@ -86,6 +107,7 @@ public class AssignEmployee extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         paintView.init(metrics);
+        paintView.setDrawingCacheEnabled(true);
 
         button_clear = (Button)findViewById(R.id.clear);
         button_clear.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +116,8 @@ public class AssignEmployee extends AppCompatActivity {
                 paintView.clear();
             }
         });
+
+        signUri = String.valueOf(image);
 
         fbAuth = FirebaseAuth.getInstance();
 
@@ -141,6 +165,55 @@ public class AssignEmployee extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 verifySignInCode();
+            }
+        });
+
+        e_save = findViewById(R.id.e_save);
+
+        e_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                signUri = paintView;
+
+                saveSign();
+
+                bitmap = paintView.getPaintedBitmap();
+                //create directory if not exist
+                String p = Environment.getExternalStorageDirectory().getAbsolutePath();
+                File dir = new File(p + "tempfolder/e_sign.png");
+
+                try {
+                    if (!dir.exists()) {
+                        dir.createNewFile();
+                    }
+                    FileOutputStream ostream = new FileOutputStream(dir);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 10, ostream);
+                    ostream.close();
+                    paintView.invalidate();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    paintView.setDrawingCacheEnabled(false);
+                }
+                File output = new File(dir, "e_save.png");
+                OutputStream os = null;
+
+                try {
+                    os = new FileOutputStream(output);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+                    os.flush();
+                    os.close();
+
+                    //this code will scan the image so that it will appear in your gallery when you open next time
+                    MediaScannerConnection.scanFile(context, new String[] { output.toString() }, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.d("appname", "image is saved in gallery and gallery is refreshed.");
+                                }
+                            }
+                    );
+                } catch (Exception e) {
+                }
             }
         });
 
@@ -319,12 +392,6 @@ public class AssignEmployee extends AppCompatActivity {
                     String phoneNum = mEditTextPhone.getText().toString();
                     String birth = mEditTextBirth.getText().toString();
                     String gender="";
-//                    switch (radioGroup.getCheckedRadioButtonId()){
-//                        case R.id.enterGender1:
-//                            gender = "여자";
-//                        case R.id.enterGender2:
-//                            gender = "남자";
-//                    }
 
                     if(femaleButton.isChecked()){
                         gender="여자";
@@ -335,13 +402,17 @@ public class AssignEmployee extends AppCompatActivity {
 
                     add1 = spin1.getSelectedItem().toString();
                     add2 = spin2.getSelectedItem().toString();
-                    add3 = spin3.getSelectedItem().toString();
+//                    add3 = spin3.getSelectedItem().toString();
 
-                    addr = add1+" "+add2+" "+add3;
+                    addr = add1+" "+add2;
+//                            +" "+add3;
+
+                    String sign = signUri;
+                    sign = "a";
 
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
-                    task.execute("http://" + "10.50.96.112" + "/assignEmployee.php",
-                            id, pw, name, birth, gender,phoneNum,addr);
+                    task.execute("http://" +IP_ADDRESS + "/assignEmployee.php",
+                            id, pw, name, birth, gender, phoneNum, addr, sign);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
@@ -377,6 +448,21 @@ public class AssignEmployee extends AppCompatActivity {
         }
     }
 
+
+    public void saveSign() {
+        try {
+            String filename = Environment.getExternalStorageDirectory().toString();
+            File f = new File(filename, "e_sign.png");
+            f.createNewFile();
+            Log.d("save", "saved");
+            FileOutputStream out = new FileOutputStream(f);
+            Bitmap bitmap = paintView.getPaintedBitmap();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
@@ -406,11 +492,11 @@ public class AssignEmployee extends AppCompatActivity {
             String gender = (String) params[5];
             String phoneNum = (String) params[6];
             String address = (String) params[7];
-
+            String sign = (String) params[8];
 
             String serverURL = (String) params[0];
             String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&gender="+gender+"&birth=" + birth
-                    + "&phoneNum=" + phoneNum + "&address=" + address;
+                    + "&phoneNum=" + phoneNum + "&address=" + address + "&sign=" + sign;
 
 
             try {
@@ -418,12 +504,10 @@ public class AssignEmployee extends AppCompatActivity {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
-
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
@@ -452,18 +536,10 @@ public class AssignEmployee extends AppCompatActivity {
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-
-
                 bufferedReader.close();
-
-
                 return sb.toString();
-
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
         }
@@ -492,12 +568,10 @@ public class AssignEmployee extends AppCompatActivity {
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-
         }
 
         @Override
@@ -528,9 +602,10 @@ public class AssignEmployee extends AppCompatActivity {
                                 Toast.makeText(AssignEmployee.this, "wrong verification code", Toast.LENGTH_SHORT).show();
                             }
                         }
-
                     }
                 });
     }
+
+
 
 }

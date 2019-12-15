@@ -34,8 +34,10 @@ import static com.example.my119.Login.employeeinfos;
 
 public class LoginEmployee extends AppCompatActivity {
 
-    String url = "http://10.50.96.112/login_employee.php";
-    String url2 = "http://10.50.96.112/token_register.php";
+    private static String IP_ADDRESS = "10.0.2.2";
+
+    String url = "http://"+ IP_ADDRESS +"/login_employee.php";
+    String url2 = "http://" + IP_ADDRESS+ "/token_register.php";
     private static final String TAG = "tag";
 //    public GettingPHP gphp;
 
@@ -79,8 +81,10 @@ public class LoginEmployee extends AppCompatActivity {
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String sid = enterId.getText().toString();
-                PreferenceUtil.setPreferences(context, "id", sid);
-                Log.d("PreferencesUtil", "id: " + sid);
+                PreferenceUtil.setPreferences(context, "pref", eID);
+                Log.d("PreferencesUtil", "id: " + eID);
+
+                boolean b = false;
 
                 for (int i = 0; i < employeeinfos.size(); i++) {
                     if (employeeinfos.get(i).getID().equals(sid)) {

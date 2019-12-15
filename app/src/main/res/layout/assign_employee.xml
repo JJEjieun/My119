@@ -406,16 +406,38 @@
             android:layout_height="130dp"
             android:background="@color/nooo" />
 
-        <Button
-            android:id="@+id/clear"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
-            android:textColor="#ffffff"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/yoongothic"
-            android:layout_marginTop="80dp"
-            android:text="초기화" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/e_save"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/yoongothic"
+                android:layout_marginTop="30dp"
+                android:text="확인" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/yoongothic"
+                android:layout_marginTop="10dp"
+                android:text="초기화" />
+
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
     <LinearLayout
