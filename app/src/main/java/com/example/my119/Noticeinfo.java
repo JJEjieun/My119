@@ -1,9 +1,9 @@
 package com.example.my119;
 
 public class Noticeinfo {
-    String storeName, pay, date, endtime, key1, key2, key3, paymethod,interview;
+    String storeName, pay, date, endtime, key1, key2, key3, paymethod,interview,num;
 
-    public Noticeinfo(String storeName, String pay, String date, String endtime, String key1, String key2, String key3, String paymethod, String interview){
+    public Noticeinfo(String storeName, String pay, String date, String endtime, String key1, String key2, String key3, String paymethod, String interview,String num){
         this.storeName = storeName;
         this.pay = pay;
         this.date = date;
@@ -13,7 +13,21 @@ public class Noticeinfo {
         this.key3 = key3;
         this.paymethod = paymethod;
         this.interview = interview;
+        this.num= num;
     }
+
+
+        public Noticeinfo(String storeName, String pay, String date, String endtime, String key1, String key2, String key3, String paymethod, String interview){
+            this.storeName = storeName;
+            this.pay = pay;
+            this.date = date;
+            this.endtime = endtime;
+            this.key1 = key1;
+            this.key2= key2;
+            this.key3 = key3;
+            this.paymethod = paymethod;
+            this.interview = interview;
+        }
 
     public String getStoreName() {
         return storeName;
@@ -81,6 +95,14 @@ public class Noticeinfo {
 
     public void setPaymethod(String paymethod) {
         this.paymethod = paymethod;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public void setInterview(String interview) {

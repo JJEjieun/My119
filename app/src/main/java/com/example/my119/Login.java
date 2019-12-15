@@ -44,6 +44,10 @@ public class Login extends AppCompatActivity {
     public static ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
     public GettingPHP2 g;
 
+    public Getnotice n;
+    String url3 = "http://"+ip+"/get_apply.php";
+    static ArrayList<Applyinfo> applyinfos = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,9 @@ public class Login extends AppCompatActivity {
 
         g = new GettingPHP2();
         g.execute(url2);
+
+        n = new Getnotice();
+        n.execute(url3);
 
         //'개인회원 로그인'버튼 클릭 시 개인회원 로그인 창으로 넘어감
         Button button_employee = (Button) findViewById(R.id.button_employee);
@@ -226,6 +233,51 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    class Getnotice extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+                if (conn != null) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                        while (true) {
+                            String line = br.readLine();
+                            if (line == null) break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray results = jsonObject.getJSONArray("webnautes");
+
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject temp = results.getJSONObject(i);
+                    applyinfos.add(i, new Applyinfo((String) temp.get("num"), (String) temp.get("eid")));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 

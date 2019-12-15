@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import static com.example.my119.Login.noticeinfos;
+
 public class MainEmployer extends AppCompatActivity {
+    static  int numApply;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class MainEmployer extends AppCompatActivity {
         btnMyPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "마이페이지", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                Intent intent = new Intent(getApplicationContext(), MyPageEmployer.class);
                 startActivity(intent);
             }
         });
@@ -29,6 +33,7 @@ public class MainEmployer extends AppCompatActivity {
         NoticeListViewAdapter adapter1 = new NoticeListViewAdapter();
         // 리스트뷰 참조 및 Adapter달기
         ListView listview1 = (ListView) findViewById(R.id.listView2);
+        setData(adapter1);
         listview1.setAdapter(adapter1);
 ///**/        // 아이템 추가.(항목 두 개만 넣기)
 ///**/        adapter1.addNotice("191212","13~15시","할리스커피",
@@ -43,5 +48,17 @@ public class MainEmployer extends AppCompatActivity {
             }
         });
 
+    }
+    private void setData(NoticeListViewAdapter adapter) {
+
+        for(int i = noticeinfos.size()-1; i >= 0;i--){
+            int count = 0;
+            num = i+1;
+            noticeinfos.get(i).setNum(String.valueOf(num));
+            numApply=Integer.valueOf(noticeinfos.get(i).getNum());
+            adapter.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
+                    noticeinfos.get(i).getNum(), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
+            count++;
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.my119;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,7 +14,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
 public class MyPage extends AppCompatActivity {
+
+
+    ArrayList<String> notices = new ArrayList<>();
+
+
     Button button_resume;
     ImageButton button_modify_employee;
 
@@ -26,7 +42,6 @@ public class MyPage extends AppCompatActivity {
         setContentView(R.layout.mypage);
 
         TextView name = (TextView)findViewById(R.id.mypageName);
-
 //        name.setText(LoginEmployee.employeeinfos.get());
         name.setText(LoginEmployee.eName+"님");
 
@@ -81,6 +96,8 @@ public class MyPage extends AppCompatActivity {
 //        });
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -103,5 +120,6 @@ public class MyPage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

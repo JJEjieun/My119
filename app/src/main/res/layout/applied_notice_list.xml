@@ -36,7 +36,7 @@
         android:layout_gravity="top">
 
         <ListView
-            android:id="@+id/listView1"
+            android:id="@+id/lView1"
             android:fontFamily="@font/yoongothic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>

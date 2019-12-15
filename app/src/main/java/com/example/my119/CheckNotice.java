@@ -33,8 +33,10 @@ public class CheckNotice extends AppCompatActivity {
 
 //    public GetPHP p;
 //    String url ="http://10.0.2.2/login_notice.php";
-    static  int num;
+    static  int numApply;
+    int num;
     ArrayList<String> notices = new ArrayList<>();
+    public String[] notice = new String[10];
     String storeName, pay,  date,  endtime, key1, key2,  key3,  paymethod, interview;
 //    public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
 
@@ -58,7 +60,7 @@ public class CheckNotice extends AppCompatActivity {
 
         // Adapter 생성
         final NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
-        final Noticeinfo noticeAdapter = new Noticeinfo(storeName, pay, date, endtime, key1,key2,key3, paymethod,interview);
+        final Noticeinfo noticeAdapter = new Noticeinfo(storeName, pay, date, endtime, key1,key2,key3, paymethod,interview,String.valueOf(num));
 
         // 리스트뷰 참조 및 Adapter달기
         ListView listview = (ListView) findViewById(R.id.listView1);
@@ -71,22 +73,25 @@ public class CheckNotice extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "클릭", Toast.LENGTH_SHORT).show();
-                notices.add(noticeinfos.get(position).getStoreName());
-                notices.add(noticeinfos.get(position).getPay());
-                notices.add(noticeinfos.get(position).getDate());
-                notices.add(noticeinfos.get(position).getEndtime());
-                notices.add(noticeinfos.get(position).getKey1());
-                notices.add(noticeinfos.get(position).getKey2());
-                notices.add(noticeinfos.get(position).getKey3());
-                notices.add(noticeinfos.get(position).getPaymethod());
-                notices.add(noticeinfos.get(position).getInterview());
+
+                notice[0] =noticeinfos.get(noticeinfos.size()-position-1).getStoreName();
+                notice[1] =noticeinfos.get(noticeinfos.size()-position-1).getPay();
+                notice[2] =noticeinfos.get(noticeinfos.size()-position-1).getDate();
+                notice[3] =noticeinfos.get(noticeinfos.size()-position-1).getEndtime();
+                notice[4] =noticeinfos.get(noticeinfos.size()-position-1).getKey1();
+                notice[5] =noticeinfos.get(noticeinfos.size()-position-1).getKey2();
+                notice[6] =noticeinfos.get(noticeinfos.size()-position-1).getKey3();
+                notice[7] =noticeinfos.get(noticeinfos.size()-position-1).getPaymethod();
+                notice[8] = noticeinfos.get(noticeinfos.size()-position-1).getInterview();
+                notice[9]= String.valueOf(noticeinfos.size()-position);
+
 
 //                String noticeNum = ((Notice)adapter.getItem(position)).getNoticeNum();
 //                Bundle list_bundle = new Bundle();
 //                list_bundle.putStringArrayList("noticeInfo",notices);
                 Intent intent = new Intent(CheckNotice.this, ShowNotice.class);
 
-                intent.putStringArrayListExtra("noticeInfo",notices);
+                intent.putExtra("noticeInfo",notice);
 //                intent.putExtra("noticeNum", noticeNum);
                 startActivity(intent);
             }
@@ -98,9 +103,11 @@ public class CheckNotice extends AppCompatActivity {
 
         for(int i = noticeinfos.size()-1; i >= 0;i--){
             int count = 0;
-            num = noticeinfos.size()- count;
+            num = i+1;
+            noticeinfos.get(i).setNum(String.valueOf(num));
+            numApply=Integer.valueOf(noticeinfos.get(i).getNum());
             adapter.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
-                    String.valueOf(num), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
+                    noticeinfos.get(i).getNum(), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
             count++;
         }
     }

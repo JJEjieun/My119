@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import static com.example.my119.Login.noticeinfos;
+
 public class MainEmployee extends AppCompatActivity {
+    static  int numApply;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,10 @@ public class MainEmployee extends AppCompatActivity {
         });
 
         // 최신 공고 표시할 Adapter 생성
-        NoticeListViewAdapter adapter2 = new NoticeListViewAdapter();
+        final NoticeListViewAdapter adapter2 = new NoticeListViewAdapter();
         // 리스트뷰 참조 및 Adapter달기
         ListView listview2 = (ListView) findViewById(R.id.listView2);
+        setData(adapter2);
         listview2.setAdapter(adapter2);
         // 아이템 추가 아래는 예시
 //    adapter2.addNotice("191212","13~15시","할리스커피",
@@ -42,5 +47,18 @@ public class MainEmployee extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setData(NoticeListViewAdapter adapter2) {
+
+        for(int i = noticeinfos.size()-1; i >= 0;i--){
+            int count = 0;
+            num = i+1;
+            noticeinfos.get(i).setNum(String.valueOf(num));
+            numApply=Integer.valueOf(noticeinfos.get(i).getNum());
+            adapter2.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
+                    noticeinfos.get(i).getNum(), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
+            count++;
+        }
     }
 }
