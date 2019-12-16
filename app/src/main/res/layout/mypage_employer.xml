@@ -156,15 +156,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:hint="알바생의 아이디를 입력하세요." />
+
             <Button
                 android:id="@+id/employee_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="찾기" />
+                android:layout_width="76dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_background"
+                android:text="찾기"
+                android:textColor="#ffffff" />
             <Button
                 android:id="@+id/employee_add"
-                android:layout_width="wrap_content"
+                android:layout_width="76dp"
                 android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/button_background"
                 android:text="추가" />
         </LinearLayout>
 

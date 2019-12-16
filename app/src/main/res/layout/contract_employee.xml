@@ -740,7 +740,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@color/myBack"
-            android:text="계약서 작성완료"
+            android:text="PDF로 저장"
             android:textColor="#ffffff" />
     </LinearLayout>
 
