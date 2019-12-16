@@ -55,15 +55,6 @@ public class MyPage extends AppCompatActivity {
 //        name.setText(LoginEmployee.employeeinfos.get());
         name.setText(LoginEmployee.eName+"님");
 
-        button_modify_employee = (ImageButton)findViewById(R.id.button_modifyee);
-        button_modify_employee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "회원정보변경", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MyInfo.class);
-                startActivity(intent);
-            }
-        });
 
         button_resume = (Button)findViewById(R.id.resume);
         button_resume.setOnClickListener(new View.OnClickListener() {

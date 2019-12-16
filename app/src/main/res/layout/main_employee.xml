@@ -124,8 +124,13 @@
         <TextView
             android:id="@+id/add"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="10dp"
             android:text="이벤트배너"/>
+
+        <ImageView
+            android:id="@+id/gif_image"
+            android:layout_width="match_parent"
+            android:layout_height="190dp" />
 
         <TextView
             android:layout_width="match_parent"
