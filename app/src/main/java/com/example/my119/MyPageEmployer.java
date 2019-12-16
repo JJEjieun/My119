@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class MyPageEmployer extends AppCompatActivity {
     Button findButton;
     Button addButton;
     TextView employerName;
+    TextView tv;
 
     String id;
 
@@ -42,6 +44,12 @@ public class MyPageEmployer extends AppCompatActivity {
         findButton = (Button)findViewById(R.id.employee_search);
         addButton = (Button)findViewById(R.id.employee_add);
         employerName = (TextView)findViewById(R.id.mypageName);
+
+        tv=(TextView)findViewById(R.id.rateText);
+        tv.setText(String.valueOf((Float.valueOf(LoginEmployer.r_rate))));
+
+        RatingBar rb = (RatingBar)findViewById(R.id.ratingbar);
+        rb.setRating(Math.round(Float.valueOf(LoginEmployer.r_rate)));
 
         employerName.setText(LoginEmployer.rName+"님");
 

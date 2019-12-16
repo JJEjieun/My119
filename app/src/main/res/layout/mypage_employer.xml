@@ -80,6 +80,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="3dp"
                 android:text = " 4.3점 "
+                android:id="@+id/rateText"
                 android:textSize="20dp"/>
 
             <RatingBar
