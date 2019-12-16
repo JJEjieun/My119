@@ -28,7 +28,7 @@ public class MainEmployee extends AppCompatActivity {
 
         ImageView rabbit = (ImageView) findViewById(R.id.gif_image);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(rabbit);
-        Glide.with(this).load(R.drawable.adv2).into(gifImage);
+        Glide.with(this).load(R.drawable.adve).into(gifImage);
 
         //마이페이지 버튼 누르면 마이페이지 창으로 넘어감
         Button btnMyPage = (Button)findViewById(R.id.MyPage);
