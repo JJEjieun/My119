@@ -16,12 +16,17 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 import static com.example.my119.Login.employeeinfos;
 
@@ -30,9 +35,16 @@ public class MyPageEmployer extends AppCompatActivity {
     Button findButton;
     Button addButton;
     TextView employerName;
-    TextView tv;
+    TextView tv, friend1, friend2, friend3, friend4, friend5;
+
 
     String id;
+
+    public final static String ip="10.0.2.2";
+
+    public GetFriends n;
+    String url3 = "http://"+ip+"/get_apply.php";
+    static ArrayList<FriendInfo> friendInfos = new ArrayList<>();
 
     static String TAG = "frends";
     @Override
@@ -48,8 +60,43 @@ public class MyPageEmployer extends AppCompatActivity {
         tv=(TextView)findViewById(R.id.rateText);
         tv.setText(String.valueOf((Float.valueOf(LoginEmployer.r_rate))));
 
+        friend1=(TextView)findViewById(R.id.friend1);
+        friend2=(TextView)findViewById(R.id.friend2);
+        friend3=(TextView)findViewById(R.id.friend3);
+        friend4=(TextView)findViewById(R.id.friend4);
+        friend5=(TextView)findViewById(R.id.friend5);
+
         RatingBar rb = (RatingBar)findViewById(R.id.ratingbar);
         rb.setRating(Math.round(Float.valueOf(LoginEmployer.r_rate)));
+
+        String friend = "";
+        String fid = "";
+        String fname = "";
+
+        ArrayList<String> friendList = new ArrayList<>();
+
+
+        for (int i = 0; i < friendInfos.size(); i++) {
+            if (friendInfos.get(i).getBoss().equals(LoginEmployer.rID)) {
+                fid = friendInfos.get(i).getPerson();
+                for (int j = 0; j < employeeinfos.size(); j++) {
+                    if (employeeinfos.get(j).getID().equals(fid)) {
+                        fname = LoginEmployer.rName;
+                        friendList.add(fid + " " + fname);
+                    }
+                }
+            }
+        }
+
+
+//        for (int i = 0; i < friendInfos.size(); i++) {
+//            if (!friendList.get(i).isEmpty()) {
+//                friend1.setText(friendList.get(i));
+//            }
+//        }
+
+
+
 
         employerName.setText(LoginEmployer.rName+"님");
 
@@ -99,7 +146,7 @@ public class MyPageEmployer extends AppCompatActivity {
 
 
                 InsertFriends task = new InsertFriends();
-                task.execute("http://10.50.96.112/friends_register.php",employerID,employeeID);
+                task.execute("http://"+ ip +"/friends_register.php",employerID,employeeID);
                 Toast.makeText(getApplicationContext(), "친구가 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -215,5 +262,50 @@ public class MyPageEmployer extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class GetFriends extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+                if (conn != null) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                        while (true) {
+                            String line = br.readLine();
+                            if (line == null) break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray results = jsonObject.getJSONArray("webnautes");
+
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject temp = results.getJSONObject(i);
+                    friendInfos.add(i, new FriendInfo((String) temp.get("boss"), (String) temp.get("person")));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

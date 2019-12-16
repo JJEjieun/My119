@@ -21,7 +21,7 @@ public class RequestedNoticeList extends AppCompatActivity {
     ArrayList<String> notices = new ArrayList<>();
     int applyNum;
     public String[] notice = new String[11];
-    int n;
+    int n = 0;
     int ee_apply;
 
     @Override
@@ -67,7 +67,8 @@ public class RequestedNoticeList extends AppCompatActivity {
     private void setData(NoticeListViewAdapter adapter) {
         //리스트뷰에 데이터 추가
         for(int i =0; i<applyinfos.size(); i++){
-             n =Integer.valueOf(applyinfos.get(i).getNum())-1;
+             n =Integer.valueOf(applyinfos.get(i).getNum());
+             n = n-1;
              ee_apply= i;
                 if (noticeinfos.get(n).getStoreName().equals(LoginEmployer.rCompanyName)) {
                    // applyNum = Integer.valueOf(applyinfos.get(i).getNum());
