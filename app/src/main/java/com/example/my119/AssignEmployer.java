@@ -68,7 +68,6 @@ public class AssignEmployer extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
-
     String docode, gucode;
     URL newURL;
     public static String s="";
@@ -78,7 +77,7 @@ public class AssignEmployer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employer);
 
-        final TextView TorF = (TextView)findViewById(R.id.TorF);
+        TextView TorF = (TextView)findViewById(R.id.TorF);
         Button checkNum = (Button)findViewById(R.id.checkNumber);
         r_save = findViewById(R.id.r_save);
 
@@ -356,12 +355,11 @@ public class AssignEmployer extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                final String u = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?ldong_addr_mgpl_dg_cd=" + docode +
-                        "&ldong_addr_mgpl_sggu_cd=" + gucode + "&wkpl_nm=" + mEditTextName.getText().toString() + "&bzowr_rgst_no=" + mEditTextNum.getText().toString().substring(0,6) +
-                        "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
                 s = "";
-                TorF.setText("");
-                TorF.setText(u);
+                final String u = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?ldong_addr_mgpl_dg_cd=" + docode +
+                        "&ldong_addr_mgpl_sggu_cd=" + gucode + "&wkpl_nm=" + mEditTextStore.getText() + "&bzowr_rgst_no=" + mEditTextNum.getText().toString().substring(0,6) +
+                        "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
+
                 new Thread() {
                     public void run() {
                         try {
@@ -381,11 +379,8 @@ public class AssignEmployer extends AppCompatActivity {
                                         break;
                                     case XmlPullParser.TEXT:
                                         if (tag.equals("wkplJnngStcd")) {
-//                                            TorF.append(parser.getText());
                                             if (parser.getText().equals("1"))
                                                 s = parser.getText();
-                                            else
-                                                s = "";
                                         }
                                         break;
                                     case XmlPullParser.END_TAG:
@@ -397,14 +392,13 @@ public class AssignEmployer extends AppCompatActivity {
                                 EventType = parser.next();
                             }
                         } catch (Exception e) {
-                            Toast.makeText(AssignEmployer.this, "모든 칸을 입력하세요", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
                 }.start();
 
                 try {
-                    sleep(4000);
+                    sleep(5000);
                     Toast.makeText(AssignEmployer.this, s, Toast.LENGTH_SHORT).show();
                     if (s.equals("1")) {
                         passNum = true;
