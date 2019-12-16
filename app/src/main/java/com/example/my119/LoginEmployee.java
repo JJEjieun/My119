@@ -48,7 +48,7 @@ public class LoginEmployee extends AppCompatActivity {
     Context context;
 //    public ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
 
-    static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum;
+    public static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum;
 
 
     @Override
@@ -83,6 +83,7 @@ public class LoginEmployee extends AppCompatActivity {
                 String sid = enterId.getText().toString();
                 PreferenceUtil.setPreferences(context, "pref", eID);
                 Log.d("PreferencesUtil", "id: " + eID);
+                PreferenceUtil.setString(context, "id", eID);
 
                 boolean b = false;
 

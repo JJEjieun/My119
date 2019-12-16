@@ -1,5 +1,6 @@
 package com.example.my119;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,37 +24,54 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.example.my119.Login.applyinfos;
+import static com.example.my119.Login.employeeinfos;
+import static com.example.my119.Login.employerinfos;
+import static com.example.my119.Login.noticeinfos;
 
 public class Contract_employer extends AppCompatActivity {
     private PaintView paintView;
     ConstraintLayout layout;
     Button button_clear, toPdf;
-    TextView eName, eAdd, ePhone;
-    ImageView employer_sign, employee_sign;
+    TextView rName, eName, dates, eNa, eaddress, ephoneNum, workPlace, time, money, giveMethod, giveM, getToday
+            , companyName, rNa, workingPlace, rphoneNum;
+    ImageView employee_sign, employer_sign;
+    String eeName, rrName, ddate, eeAddress, eephoneNum, num, wworkPlace, ttime, mmoney, ggiveMethod
+            , ccompanyName, wworkingPlace, rrphoneNum;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contract_employer);
 
-//        eName= (TextView)findViewById(R.id.eName);
-//        eAdd = (TextView)findViewById(R.id.eAdd);
-//        ePhone = (TextView)findViewById(R.id.ePhone);
+        context = this;
+        rName = (TextView) findViewById(R.id.rName);
+        eName = (TextView) findViewById(R.id.eName);
+        eNa = findViewById(R.id.eNa);
+        dates = findViewById(R.id.dates);
+        eaddress = findViewById(R.id.eaddress);
+        ephoneNum = findViewById(R.id.ephoneNum);
+        workPlace = findViewById(R.id.workPlace);
+        time = findViewById(R.id.time);
+        money = findViewById(R.id.money);
+        giveM = findViewById(R.id.giveM);
+        giveMethod = findViewById(R.id.giveMethod);
+        getToday = findViewById(R.id.getToday);
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월dd일");
+        Date time1 = new Date();
+        String time2 = format2.format(time1);
+        companyName = findViewById(R.id.companyName);
+        rNa = findViewById(R.id.rNa);
+        workingPlace = findViewById(R.id.workingPlace);
+        rphoneNum = findViewById(R.id.rphoneNum);
+
         layout = (ConstraintLayout) findViewById(R.id.rootLayout);
-//        button_clear = (Button)findViewById(R.id.clear);
+
         toPdf = (Button) findViewById(R.id.finish_write);
-
-//        eName.setText(LoginEmployee.eName);
-//        eAdd.setText(LoginEmployee.eAddress);
-//        ePhone.setText(LoginEmployee.ePhoneNum);
-
-
-//        button_clear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                paintView.clear();
-//            }
-//        });
 
         employee_sign = findViewById(R.id.employee_sign);
         employer_sign = findViewById(R.id.employer_sign);
@@ -64,6 +82,63 @@ public class Contract_employer extends AppCompatActivity {
                 layoutToPdf(layout);
             }
         });
+
+
+
+        for (int i = 0; i < employerinfos.size(); i++) {
+            if (employerinfos.get(i).getID().equals(LoginEmployer.rID)) {
+                rrName = employerinfos.get(i).getName();
+                wworkingPlace = employerinfos.get(i).getAddress();
+                rrphoneNum = employerinfos.get(i).getPhoneNum();
+                ccompanyName = employerinfos.get(i).getCompayName();
+            }
+        }
+        rName.setText(rrName);
+        rNa.setText(rrName);
+        workingPlace.setText(wworkPlace);
+        rphoneNum.setText(rrphoneNum);
+        companyName.setText(ccompanyName);
+
+        for (int i = 0; i < noticeinfos.size(); i++) {
+            if (ccompanyName.equals(noticeinfos.get(i).getStoreName())) {
+                ddate = noticeinfos.get(i).getDate();
+                wworkPlace = noticeinfos.get(i).getKey2();
+                ttime = noticeinfos.get(i).getKey3().replace(" ", "~");
+                mmoney = noticeinfos.get(i).getPay();
+                ggiveMethod = noticeinfos.get(i).getPaymethod();
+                num = noticeinfos.get(i).getNum();
+            }
+        }
+        workPlace.setText(wworkPlace);
+        dates.setText(ddate);
+
+        time.setText(ttime);
+        money.setText(mmoney);
+        giveM.setText(ddate);
+        giveMethod.setText(ggiveMethod);
+        getToday.setText(time2);
+
+
+        String eid = "";
+
+        for (int i = 0; i < applyinfos.size(); i++) {
+            if (applyinfos.get(i).getNum().equals(num)) {
+                eid = applyinfos.get(i).getEid();
+            }
+        }
+        for (int i = 0; i < employeeinfos.size(); i++) {
+            if (employeeinfos.get(i).getID().equals(eid)) {
+                eeName = employeeinfos.get(i).getName();
+                eephoneNum = employeeinfos.get(i).getPhoneNum();
+                eeAddress = employeeinfos.get(i).getAddress();
+            }
+        }
+
+        eName.setText(eeName);
+        eNa.setText(eeName);
+        eaddress.setText(eeAddress);
+        ephoneNum.setText(eephoneNum);
+
 
         String pathE = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/screenshotE.png";
         employee_sign.setImageURI(Uri.parse(pathE));

@@ -107,7 +107,7 @@ public class RegisterNotice extends AppCompatActivity {
                 time = k3_1+" "+k3_2;
 
                 InsertData task = new InsertData();
-                task.execute("http://" + "10.50.96.112"  + "/notice.php",
+                task.execute("http://" + IP_ADDRESS  + "/notice.php",
                         name, payment, workdate, end, k1,k2,time,howto,interview);
 
 
