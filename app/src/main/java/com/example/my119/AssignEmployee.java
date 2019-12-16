@@ -417,10 +417,12 @@ public class AssignEmployee extends AppCompatActivity {
                     }
 
                     add1 = spin1.getSelectedItem().toString();
-                    add2 = spin2.getSelectedItem().toString();
-                    add3 = spin3.getSelectedItem().toString();
+//                    add2 = spin2.getSelectedItem().toString();
+//                    add3 = spin3.getSelectedItem().toString();
 
-                    addr = add1 + " " + add2 + " " + add3;
+                    addr = add1
+//                            + " " + add2 + " " + add3
+                    ;
 
 
                     sign = signUri;

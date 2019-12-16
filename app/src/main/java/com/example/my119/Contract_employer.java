@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class Contract_employer extends AppCompatActivity {
     ConstraintLayout layout;
     Button button_clear, toPdf;
     TextView eName, eAdd, ePhone;
+    ImageView employer_sign, employee_sign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class Contract_employer extends AppCompatActivity {
 //            }
 //        });
 
+        employee_sign = findViewById(R.id.employee_sign);
+        employer_sign = findViewById(R.id.employer_sign);
         Button toPdf = (Button) findViewById(R.id.finish_write);
         toPdf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +64,11 @@ public class Contract_employer extends AppCompatActivity {
                 layoutToPdf(layout);
             }
         });
+
+        String pathE = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/screenshotE.png";
+        employee_sign.setImageURI(Uri.parse(pathE));
+        String pathR = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/screenshotR.png";
+        employer_sign.setImageURI(Uri.parse(pathR));
     }
 
     public void layoutToPdf(View view) {

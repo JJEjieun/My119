@@ -174,7 +174,8 @@ public class Login extends AppCompatActivity {
                             (String) temp.get("pw"),(String) temp.get("employerNumber"),
                             (String) temp.get("companyName"),(String) temp.get("name"),
                             (String) temp.get("address"),(String) temp.get("phoneNum"),
-                            (String) temp.get("email"),(String) temp.get("sign"),
+                            (String) temp.get("email"),
+                            (String) temp.get("sign"),
                             Integer.valueOf((String)temp.get("rate"))));
 
 

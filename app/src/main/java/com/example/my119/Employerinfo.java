@@ -6,7 +6,8 @@ public class Employerinfo {
     String employerNumber, compayName, name, address, phoneNum, email, sign;
     int rate;
 
-    public Employerinfo(String id, String pw, String employerNumber, String compayName, String name, String address, String phoneNum, String email, String sign, int rate) {
+    public Employerinfo(String id, String pw, String employerNumber, String compayName, String name,
+                        String address, String phoneNum, String email, String sign, int rate) {
         this.ID = id;
         this.PW = pw;
         this.employerNumber = employerNumber;

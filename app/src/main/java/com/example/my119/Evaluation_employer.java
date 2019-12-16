@@ -46,7 +46,7 @@ public class Evaluation_employer extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "개인평가 등록", Toast.LENGTH_SHORT).show();
                 //평가 디비에 저장
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.50.96.112"+ "/assignEmployer.php",String.valueOf(point));
+                task.execute("http://" +IP_ADDRESS+ "/assignEmployer.php",String.valueOf(point));
                 finish();
             }
         });
