@@ -137,7 +137,7 @@ public class MyPageEmployer extends AppCompatActivity {
                 fid = Login.friendInfos.get(i).getPerson();
                 for (int j = 0; j < employeeinfos.size(); j++) {
                     if (employeeinfos.get(j).getID().equals(fid)) {
-                        fname = LoginEmployer.rName;
+                        fname = employeeinfos.get(j).getName();
                         adapter.addFriends(fid, fname,LoginEmployer.rCompanyName);
                     }
                 }
