@@ -83,7 +83,7 @@ public class CheckNotice extends AppCompatActivity {
                 notice[6] =noticeinfos.get(noticeinfos.size()-position-1).getKey3();
                 notice[7] =noticeinfos.get(noticeinfos.size()-position-1).getPaymethod();
                 notice[8] = noticeinfos.get(noticeinfos.size()-position-1).getInterview();
-                notice[9]= String.valueOf(noticeinfos.size()-position);
+                notice[9]= String.valueOf(noticeinfos.size()-position-1);
 
 
 //                String noticeNum = ((Notice)adapter.getItem(position)).getNoticeNum();

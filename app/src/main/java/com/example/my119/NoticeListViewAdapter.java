@@ -81,5 +81,27 @@ public class NoticeListViewAdapter extends BaseAdapter {
 
         noticeArrayList.add(item);
     }
+
+    public String getWorkDate(int position){
+        return noticeArrayList.get(position).getWorkDate();
+    }
+
+    public String getWorkTime(int position){
+        return noticeArrayList.get(position).getWorkTime();
+    }
+
+    public String getStore(int position){
+        return noticeArrayList.get(position).getStore();
+    }
+    public String getNoticeNum(int position){
+        return noticeArrayList.get(position).getNoticeNum();
+    }
+    public String getEndTime(int position){
+        return noticeArrayList.get(position).getEndTime();
+    }
+    public String getMoney(int position){
+        return noticeArrayList.get(position).getMoney();
+    }
+
 }
 

@@ -18,13 +18,16 @@ import android.widget.Toast;
 
 public class AppliedNotice extends AppCompatActivity  {
 
-    Button btn_eva = (Button)findViewById(R.id.btn_eva);
-    Button btn_show_contract = (Button)findViewById(R.id.btn_show_contract);
+    Button btn_eva;
+    Button btn_show_contract;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requested_notice);
+
+        btn_eva = (Button)findViewById(R.id.btn_eva);
+       btn_show_contract = (Button)findViewById(R.id.btn_show_contract);
 
         //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
         if(true){
