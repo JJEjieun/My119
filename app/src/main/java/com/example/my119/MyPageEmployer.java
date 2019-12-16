@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,17 +36,17 @@ public class MyPageEmployer extends AppCompatActivity {
     Button findButton;
     Button addButton;
     TextView employerName;
-    TextView tv, friend1, friend2, friend3, friend4, friend5;
+    TextView tv;
+
+    String fid = "";
+    String fname = "";
 
 
     String id;
 
     public final static String ip="10.0.2.2";
 
-    public GetFriends n;
-    String url3 = "http://"+ip+"/get_apply.php";
-    static ArrayList<FriendInfo> friendInfos = new ArrayList<>();
-
+    ArrayList<String> friendList = new ArrayList<>();
     static String TAG = "frends";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,43 +61,8 @@ public class MyPageEmployer extends AppCompatActivity {
         tv=(TextView)findViewById(R.id.rateText);
         tv.setText(String.valueOf((Float.valueOf(LoginEmployer.r_rate))));
 
-        friend1=(TextView)findViewById(R.id.friend1);
-        friend2=(TextView)findViewById(R.id.friend2);
-        friend3=(TextView)findViewById(R.id.friend3);
-        friend4=(TextView)findViewById(R.id.friend4);
-        friend5=(TextView)findViewById(R.id.friend5);
-
         RatingBar rb = (RatingBar)findViewById(R.id.ratingbar);
         rb.setRating(Math.round(Float.valueOf(LoginEmployer.r_rate)));
-
-        String friend = "";
-        String fid = "";
-        String fname = "";
-
-        ArrayList<String> friendList = new ArrayList<>();
-
-
-        for (int i = 0; i < friendInfos.size(); i++) {
-            if (friendInfos.get(i).getBoss().equals(LoginEmployer.rID)) {
-                fid = friendInfos.get(i).getPerson();
-                for (int j = 0; j < employeeinfos.size(); j++) {
-                    if (employeeinfos.get(j).getID().equals(fid)) {
-                        fname = LoginEmployer.rName;
-                        friendList.add(fid + " " + fname);
-                    }
-                }
-            }
-        }
-
-
-//        for (int i = 0; i < friendInfos.size(); i++) {
-//            if (!friendList.get(i).isEmpty()) {
-//                friend1.setText(friendList.get(i));
-//            }
-//        }
-
-
-
 
         employerName.setText(LoginEmployer.rName+"님");
 
@@ -150,6 +116,33 @@ public class MyPageEmployer extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "친구가 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        // Adapter 생성
+        final FriendAdapter adapter = new FriendAdapter() ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        ListView listview = (ListView) findViewById(R.id.lv_friend_mypage_employer);
+
+        // 리스트뷰 값 받아오기
+        setData(adapter);
+        listview.setAdapter(adapter);
+
+    }
+
+    private void setData(FriendAdapter adapter) {
+
+        for (int i = 0; i < Login.friendInfos.size(); i++) {
+            if (Login.friendInfos.get(i).getBoss().equals(LoginEmployer.rID)) {
+                fid = Login.friendInfos.get(i).getPerson();
+                for (int j = 0; j < employeeinfos.size(); j++) {
+                    if (employeeinfos.get(j).getID().equals(fid)) {
+                        fname = LoginEmployer.rName;
+                        adapter.addFriends(fid, fname,LoginEmployer.rCompanyName);
+                    }
+                }
+            }
+        }
 
 
     }
@@ -264,48 +257,4 @@ public class MyPageEmployer extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class GetFriends extends AsyncTask<String, Integer, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
-            try {
-                URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
-                if (conn != null) {
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
-                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-                        while (true) {
-                            String line = br.readLine();
-                            if (line == null) break;
-                            jsonHtml.append(line + "\n");
-                        }
-                        br.close();
-                    }
-                    conn.disconnect();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return jsonHtml.toString();
-        }
-
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jsonObject = new JSONObject(str);
-                JSONArray results = jsonObject.getJSONArray("webnautes");
-
-                for (int i = 0; i < results.length(); i++) {
-                    JSONObject temp = results.getJSONObject(i);
-                    friendInfos.add(i, new FriendInfo((String) temp.get("boss"), (String) temp.get("person")));
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
 }
