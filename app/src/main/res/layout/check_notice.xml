@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/notice_list"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/myRed"
+        android:layout_width="289dp"
+        android:layout_height="53dp"
+        android:background="@drawable/button_background2"
         android:text="공고 목록"
-        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:textColor="@color/myRed"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@+id/L1"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,15 +42,19 @@
 
     <Button
         android:id="@+id/newNotice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_width="110dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/myBack"
+        android:gravity="center_vertical"
         android:text="새로운 공고 등록"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/L1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/L1"
+        android:textAlignment="center"
+        android:fontFamily="@font/yoongothic"/>
 
     <TextView
         android:id="@+id/textView3"

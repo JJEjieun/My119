@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), LoginEmployee.class);
+                Intent intent = new Intent(getApplicationContext(), MainEmployee.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
         button_employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "기업회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(getApplicationContext(), LoginEmployer.class);
+                Intent intent2 = new Intent(getApplicationContext(), MainEmployer.class);
                 startActivity(intent2);
             }
         });

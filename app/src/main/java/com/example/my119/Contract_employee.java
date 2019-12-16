@@ -101,5 +101,4 @@ public class Contract_employee extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
