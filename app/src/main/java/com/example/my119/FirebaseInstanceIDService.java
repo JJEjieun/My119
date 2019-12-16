@@ -28,9 +28,9 @@ public class FirebaseInstanceIDService extends FirebaseMessagingService {
         if(remoteMessage != null && remoteMessage.getData().size()>0){
             Log.d("Firebase","Message data payload: "+remoteMessage.getData());
 
-            PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
-            PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"My:wakeLock");
-            wakeLock.acquire();
+//            PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+//            PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,"My:wakeLock");
+//            wakeLock.acquire();
 
 
 

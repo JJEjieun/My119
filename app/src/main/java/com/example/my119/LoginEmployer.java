@@ -30,9 +30,7 @@ public class LoginEmployer extends AppCompatActivity {
     private EditText enterPw;
     private EditText enterId;
 //    final ArrayList<Employerinfo> employerinfos = new ArrayList<>();
-    static String rID, rPW,rEmployerNumber,rCompanyName, rName, rAddress, rPhoneNum, rEmail;
-    static int r_rate;
-
+    static String rID, rPW,rEmployerNumber,rCompanyName, rName, rAddress, rPhoneNum, rEmail,r_rate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

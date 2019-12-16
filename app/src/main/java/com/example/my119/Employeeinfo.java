@@ -9,9 +9,9 @@ public class Employeeinfo {
     String phoneNum;
     String address;
     String sign;
-    int rate;
+    String rate;
 
-    public Employeeinfo(String id, String pw, String name, String gender, String birth, String phoneNum, String address,String sign,int rate) {
+    public Employeeinfo(String id, String pw, String name, String gender, String birth, String phoneNum, String address,String sign,String rate) {
         this.ID = id;
         this.PW = pw;
         this.name = name;
@@ -88,11 +88,11 @@ public class Employeeinfo {
         this.sign = sign;
     }
 
-    public int getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 }

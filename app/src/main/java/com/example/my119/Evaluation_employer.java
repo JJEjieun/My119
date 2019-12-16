@@ -24,6 +24,8 @@ public class Evaluation_employer extends AppCompatActivity {
 
     private static String IP_ADDRESS = "10.0.2.2";
     private static final String TAG = "rate";
+    int num;
+    String employer_name;
 
     static double point=0;
     @Override
@@ -31,11 +33,21 @@ public class Evaluation_employer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evaluation_employer);
 
+        Intent intent = getIntent();
+        final String er_apply =intent.getStringExtra("er_apply");
+
         RatingBar rb = (RatingBar)findViewById(R.id.ratingBar);
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                point = r_rate + rating / 2;
+//                for(int i=0; i< Login.employerinfos.size(); i++){
+//                if(Login.applyinfos.get(Integer.valueOf(er_apply)).getNum().equals(Login.noticeinfos.get(i).getNum())){
+                    num=Integer.valueOf(Login.applyinfos.get(Integer.valueOf(er_apply)).getNum())-1;
+                    employer_name =Login.employerinfos.get(num).getName();
+                    double rate = Double.valueOf(Login.employerinfos.get(num).getRate());
+                    point = ( rate+ rating) / 2;
+//                }
+//            }
             }
 
 
@@ -43,10 +55,10 @@ public class Evaluation_employer extends AppCompatActivity {
         Button btn_ev_ee = (Button)findViewById(R.id.r_ev_ee);
         btn_ev_ee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "개인평가 등록", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "기업평가 등록", Toast.LENGTH_SHORT).show();
                 //평가 디비에 저장
                 InsertData task = new InsertData();
-                task.execute("http://" +IP_ADDRESS+ "/assignEmployer.php",String.valueOf(point));
+                task.execute("http://" +IP_ADDRESS+ "/get_er_rate.php",Login.employerinfos.get(num).getID(),String.valueOf(point));
                 finish();
             }
         });
@@ -75,11 +87,12 @@ public class Evaluation_employer extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String rate= (String) params[1];
+            String id = (String)params[1];
+            String rate= (String) params[2];
 
 
             String serverURL = (String) params[0];
-            String postParameters = "rate=" + rate ;
+            String postParameters = "id="+id+"&rate=" + rate ;
 
             try {
 

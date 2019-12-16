@@ -1,10 +1,12 @@
 package com.example.my119;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -16,12 +18,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import static com.example.my119.Login.applyinfos;
 import static com.example.my119.Login.employeeinfos;
 import static com.example.my119.Login.employerinfos;
 import static com.example.my119.Login.noticeinfos;
 
 public class RequestedNotice extends AppCompatActivity  {
+    final static String TAG="final check";
 
     Button call;
     Button facecall;
@@ -33,9 +43,11 @@ public class RequestedNotice extends AppCompatActivity  {
     Button btn_reject;
     Button btn_confirm;
     Button btn_show_contract;
+    String ee_apply;
     String eid;
     String num;
     String ccompanyName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +104,7 @@ public class RequestedNotice extends AppCompatActivity  {
         //가게평점
         TextView s_store_star= (TextView)findViewById(R.id.s_store_star);
 
+        ee_apply = notices[10];
         eid = "";
         num = "";
         ccompanyName = "";
@@ -164,6 +177,8 @@ public class RequestedNotice extends AppCompatActivity  {
         btn_reject.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "근무 거절", Toast.LENGTH_SHORT).show();
+                InsertData task = new InsertData();
+                task.execute("http://" +"10.0.2.2"+ "/final.php",Login.employeeinfos.get(Integer.valueOf(ee_apply)).getID(),"3");
             }
         });
 
@@ -171,14 +186,17 @@ public class RequestedNotice extends AppCompatActivity  {
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+                InsertData task = new InsertData();
+                task.execute("http://" +"10.0.2.2"+ "/final.php",Login.employeeinfos.get(Integer.valueOf(ee_apply)).getID(),"2");
             }
         });
 
         //근무자(알바생) 평가하기
         btn_eva.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "근무자 평가", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "근무자 상호평가", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Evaluation_employee.class);
+                intent.putExtra("ee_apply",ee_apply);
                 startActivity(intent);
                 finish();
             }
@@ -238,6 +256,90 @@ public class RequestedNotice extends AppCompatActivity  {
 
             default:
                 break;
+        }
+    }
+    class InsertData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(RequestedNotice.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response1 - " + result);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String id = (String)params[1];
+            String final_c= (String) params[2];
+
+
+            String serverURL = (String) params[0];
+            String postParameters = "eid="+id+"&final=" + final_c ;
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code2 - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                    Log.d(TAG, "OK");
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
+            }
         }
     }
 

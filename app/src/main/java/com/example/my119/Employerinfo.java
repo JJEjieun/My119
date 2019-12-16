@@ -4,10 +4,9 @@ public class Employerinfo {
     String ID;
     String PW;
     String employerNumber, compayName, name, address, phoneNum, email, sign;
-    int rate;
+    String rate;
 
-    public Employerinfo(String id, String pw, String employerNumber, String compayName, String name,
-                        String address, String phoneNum, String email, String sign, int rate) {
+    public Employerinfo(String id, String pw, String employerNumber, String compayName, String name, String address, String phoneNum, String email, String sign, String rate) {
         this.ID = id;
         this.PW = pw;
         this.employerNumber = employerNumber;
@@ -92,11 +91,11 @@ public class Employerinfo {
         this.sign = sign;
     }
 
-    public int getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 }

@@ -44,11 +44,11 @@ public class LoginEmployee extends AppCompatActivity {
     private EditText enterPw;
     private EditText enterId;
     static String newToken;
-    static int erate;
+
     Context context;
 //    public ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
 
-    public static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum;
+    static String eID, ePW, eName, eGender, eBirth, eAddress, ePhoneNum,erate;
 
 
     @Override
