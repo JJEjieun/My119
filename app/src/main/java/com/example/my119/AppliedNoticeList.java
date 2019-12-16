@@ -49,16 +49,16 @@ public class AppliedNoticeList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "클릭", Toast.LENGTH_SHORT).show();
-                notice[0] =noticeinfos.get(applyNum).getStoreName();
-                notice[1] =noticeinfos.get(applyNum).getPay();
-                notice[2] =noticeinfos.get(applyNum).getDate();
-                notice[3] =noticeinfos.get(applyNum).getEndtime();
-                notice[4] =noticeinfos.get(applyNum).getKey1();
-                notice[5] =noticeinfos.get(applyNum).getKey2();
-                notice[6] =noticeinfos.get(applyNum).getKey3();
-                notice[7] =noticeinfos.get(applyNum).getPaymethod();
-                notice[8] = noticeinfos.get(applyNum).getInterview();
-                notice[9]= String.valueOf(applyNum);
+                notice[0] =adapter.getStore(position);
+                notice[1] =adapter.getMoney(position);
+                notice[2] =adapter.getWorkDate(position);
+                notice[3] =adapter.getEndTime(position);
+                notice[4] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getKey1();
+                notice[5] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getKey2();
+                notice[6] =adapter.getWorkTime(position);
+                notice[7] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getPaymethod();
+                notice[8] = noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getInterview();
+                notice[9]= adapter.getStore(position);
 
                 Intent intent = new Intent(AppliedNoticeList.this, AppliedNotice.class);
 

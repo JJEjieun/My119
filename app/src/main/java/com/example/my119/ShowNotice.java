@@ -58,7 +58,7 @@ public class ShowNotice extends AppCompatActivity {
 
 //        eid = PreferenceUtil.getPreferences(context, "pref");
                 eid = LoginEmployee.eID;
-                num = notices[9];
+                num = String.valueOf(Integer.valueOf(notices[9])+1);
 
 
                 InsertData task = new InsertData();
