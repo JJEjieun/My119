@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class MyPage extends AppCompatActivity {
 
 
     ArrayList<String> notices = new ArrayList<>();
+    TextView tv;
 
 
     Button button_resume;
@@ -40,6 +42,14 @@ public class MyPage extends AppCompatActivity {
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setTitle("마이페이지");
         setContentView(R.layout.mypage);
+
+        tv=(TextView)findViewById(R.id.rateText);
+        tv.setText(String.valueOf(Float.valueOf(LoginEmployee.erate)));
+
+        RatingBar rb = (RatingBar)findViewById(R.id.ratingbar);
+        rb.setRating(Math.round(Float.valueOf(LoginEmployee.erate)));
+
+
 
         TextView name = (TextView)findViewById(R.id.mypageName);
 //        name.setText(LoginEmployee.employeeinfos.get());
