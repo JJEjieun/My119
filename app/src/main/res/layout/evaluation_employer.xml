@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/yoongothic"
             android:text="* 상대방에 대한 솔직한 평가가 도움이됩니다."
             android:textSize="18dp" />
 
@@ -46,7 +47,8 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="알바1"
+            android:fontFamily="@font/yoongothic"
+            android:text="기업이름"
             android:textAlignment="center"
             android:textSize="25dp" />
 
@@ -55,16 +57,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_gravity="center"
             android:numStars="5"
             android:rating="3"
-            android:stepSize="1" />
+            android:stepSize="0.1" />
 
         <Button
             android:id="@+id/r_ev_ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:textColor="#ffffff"
+            android:background="@color/myRed"
+            android:layout_marginTop="40dp"
             android:text="평가 등록"
-            android:gravity="center" />
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
@@ -76,6 +83,7 @@
         android:text="\@project team3"
         android:textAlignment="center"
         android:textSize="40px"
+        android:fontFamily="@font/yoongothic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

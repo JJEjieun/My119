@@ -8,8 +8,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import static com.example.my119.Login.noticeinfos;
 
@@ -21,6 +25,10 @@ public class MainEmployer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_employer);
+
+        ImageView rabbit = (ImageView) findViewById(R.id.gif_image);
+        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(rabbit);
+        Glide.with(this).load(R.drawable.adve).into(gifImage);
 
         //마이페이지 버튼 누르면 마이페이지 창으로 넘어감
         Button btnMyPage = (Button)findViewById(R.id.MyPage);

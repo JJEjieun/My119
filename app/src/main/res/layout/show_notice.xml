@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/myRed"
-        android:text="공고 등록"
+        android:text=" 공고 등록"
+        android:textStyle="bold"
         android:textColor="#ffffff"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@+id/L1"
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv1"
         app:layout_constraintBottom_toTopOf="@id/textView3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -307,6 +309,9 @@
                     android:id="@+id/btn_apply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="#00ff0000"
+                    android:textColor="@color/myRed"
+                    android:fontFamily="@font/yoongothic"
                     android:text="신청"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
@@ -320,6 +325,9 @@
                     android:id="@+id/btn_end_screen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="#00ff0000"
+                    android:textColor="@color/myRed"
+                    android:fontFamily="@font/yoongothic"
                     android:text="닫기"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
