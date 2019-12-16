@@ -1,9 +1,14 @@
 package com.example.my119;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -17,6 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -49,6 +57,10 @@ public class AssignEmployer extends AppCompatActivity {
     private PaintView paintView;
     private Button check;
 
+    Button r_save;
+    Uri su;
+    String signUri;
+
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
     String docode, gucode;
@@ -59,12 +71,13 @@ public class AssignEmployer extends AppCompatActivity {
 
         TextView TorF = (TextView)findViewById(R.id.TorF);
         Button checkNum = (Button)findViewById(R.id.checkNumber);
-
+        r_save = findViewById(R.id.r_save);
 
         paintView = (PaintView) findViewById(R.id.paintView);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         paintView.init(metrics);
+        paintView.setDrawingCacheEnabled(true);
 
         button_clear = (Button)findViewById(R.id.clear);
         button_clear.setOnClickListener(new View.OnClickListener() {
@@ -274,6 +287,20 @@ public class AssignEmployer extends AppCompatActivity {
         address3 = (Spinner)findViewById(R.id.enterAddress3);
         check = (Button)findViewById(R.id.checkID);
 
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
+            }
+
+            requestPermissions(new String[]
+                            {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                    2);  //마지막 인자는 체크해야될 권한 갯수
+
+        } else {
+            //Toast.makeText(this, "권한 승인되었음", Toast.LENGTH_SHORT).show();
+        }
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,6 +323,18 @@ public class AssignEmployer extends AppCompatActivity {
             }
         });
 
+        r_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenShot(paintView);
+                String s1 = "";
+                s1 = su.toString();
+                signUri = s1;
+                Toast.makeText(AssignEmployer.this, signUri, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         boolean allWrite = false;
         if(!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) && !(mEditTextNum.getText().equals(null)) &&
                 !(mEditTextName.getText().equals(null)) && !(mEditTextStore.getText().equals(null)) && !(mEditTextAddress.getText().equals(null)) &&
@@ -304,7 +343,7 @@ public class AssignEmployer extends AppCompatActivity {
             allWrite = true;
         }
 
-        if (allWrite) {
+//        if (allWrite) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
             assignButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -324,11 +363,13 @@ public class AssignEmployer extends AppCompatActivity {
 
                     address = add1+" "+add2+" "+add3+" "+ mEditTextAddress.getText().toString();
 
+                    String sign = "";
 
+                    sign = signUri;
 
                     InsertData task = new InsertData();
                     task.execute("http://" + "10.0.2.2" + "/assignEmployer.php",
-                            id, pw, employerNumber, companyName, name, address, phoneNum, email);
+                            id, pw, employerNumber, companyName, name, address, phoneNum, email, sign);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
@@ -360,7 +401,7 @@ public class AssignEmployer extends AppCompatActivity {
                 }
             });
         }
-    }
+//    }
 
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
@@ -393,10 +434,11 @@ public class AssignEmployer extends AppCompatActivity {
             String address = (String) params[6];
             String phoneNum = (String) params[7];
             String email = (String) params[8];
+            String sign = (String) params[9];
 
             String serverURL = (String) params[0];
             String postParameters = "id=" + id + "&pw=" + pw+ "&employerNumber=" +employerNumber+ "&companyName=" +companyName+ "&name=" +name
-                    + "&address=" +address+ "&phoneNum=" +phoneNum+ "&email=" +email;
+                    + "&address=" +address+ "&phoneNum=" +phoneNum+ "&email=" +email + "&sign=" +sign;
 
 
             try {
@@ -456,5 +498,30 @@ public class AssignEmployer extends AppCompatActivity {
         }
 
     }
+    //화면 캡쳐하기
+    public File ScreenShot(View view) {
+        view.setDrawingCacheEnabled(true);  //화면에 뿌릴때 캐시를 사용하게 한다
 
+        Bitmap screenBitmap = view.getDrawingCache();   //캐시를 비트맵으로 변환
+
+        String filename = "screenshotR.png";
+        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures", filename);  //Pictures폴더 screenshotE.png 파일
+        FileOutputStream os = null;
+
+        su = Uri.fromFile(file);
+
+        try {
+            os = new FileOutputStream(file);
+            screenBitmap.compress(Bitmap.CompressFormat.PNG, 90, os);   //비트맵을 PNG파일로 변환
+            os.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        view.setDrawingCacheEnabled(false);
+        return file;
+    }
 }

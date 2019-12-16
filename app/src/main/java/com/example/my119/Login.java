@@ -79,7 +79,6 @@ public class Login extends AppCompatActivity {
         Button button_employer = (Button) findViewById(R.id.button_employer);
         button_employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 Toast.makeText(getApplicationContext(), "기업회원 로그인", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(getApplicationContext(), LoginEmployer.class);
                 startActivity(intent2);
@@ -175,7 +174,8 @@ public class Login extends AppCompatActivity {
                             (String) temp.get("pw"),(String) temp.get("employerNumber"),
                             (String) temp.get("companyName"),(String) temp.get("name"),
                             (String) temp.get("address"),(String) temp.get("phoneNum"),
-                            (String) temp.get("email"),Integer.valueOf((String)temp.get("rate"))));
+                            (String) temp.get("email"),(String) temp.get("sign"),
+                            Integer.valueOf((String)temp.get("rate"))));
 
 
                 }
@@ -226,7 +226,7 @@ public class Login extends AppCompatActivity {
                             (String) temp.get("pw"), (String) temp.get("name"),
                             (String) temp.get("gender"), (String) temp.get("birth"),
                             (String) temp.get("phoneNum"), (String) temp.get("address"),
-                            Integer.valueOf((String)temp.get("rate"))));
+                            (String) temp.get("sign"),Integer.valueOf((String)temp.get("rate"))));
 
                 }
             } catch (JSONException e) {

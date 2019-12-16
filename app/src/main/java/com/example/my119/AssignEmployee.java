@@ -1,8 +1,13 @@
 package com.example.my119;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -71,7 +76,7 @@ public class AssignEmployee extends AppCompatActivity {
 
     boolean passID;
 
-    static String add1,add2,add3;
+    static String add1, add2, add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private static String IP_ADDRESS = "10.0.2.2";
@@ -92,8 +97,9 @@ public class AssignEmployee extends AppCompatActivity {
     private Button check;
     private Button button_clear;
     Button e_save;
+    Button assignButton;
+    Uri su;
 
-    Bitmap bitmap;
     Uri image;
     String signUri;
     Context context;
@@ -105,13 +111,29 @@ public class AssignEmployee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employee);
 
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
+            }
+
+            requestPermissions(new String[]
+                            {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                    2);  //마지막 인자는 체크해야될 권한 갯수
+
+        } else {
+            //Toast.makeText(this, "권한 승인되었음", Toast.LENGTH_SHORT).show();
+        }
+
+
         paintView = (PaintView) findViewById(R.id.paintView);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         paintView.init(metrics);
         paintView.setDrawingCacheEnabled(true);
 
-        button_clear = (Button)findViewById(R.id.clear);
+        button_clear = (Button) findViewById(R.id.clear);
         button_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,16 +156,16 @@ public class AssignEmployee extends AppCompatActivity {
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
         mEditTextName = (EditText) findViewById(R.id.enterName);
-        mEditTextBirth = (EditText)findViewById(R.id.enterBornDate);
+        mEditTextBirth = (EditText) findViewById(R.id.enterBornDate);
         //mEditTextAddress = (EditText) findViewById(R.id.enterAddress4);
         mEditTextPhone = (EditText) findViewById(R.id.enterPhoneNumber);
-        femaleButton = (RadioButton)findViewById(R.id.enterGender1);
-        maleButton = (RadioButton)findViewById(R.id.enterGender2);
-        radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
-        address1 = (Spinner)findViewById(R.id.enterAddress1);
-        address2 = (Spinner)findViewById(R.id.enterAddress2);
-        address3 = (Spinner)findViewById(R.id.enterAddress3);
-        check = (Button)findViewById(R.id.checkID);
+        femaleButton = (RadioButton) findViewById(R.id.enterGender1);
+        maleButton = (RadioButton) findViewById(R.id.enterGender2);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        address1 = (Spinner) findViewById(R.id.enterAddress1);
+        address2 = (Spinner) findViewById(R.id.enterAddress2);
+        address3 = (Spinner) findViewById(R.id.enterAddress3);
+        check = (Button) findViewById(R.id.checkID);
 
         enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
 //        phoneNumber = enterPhoneNumber.getText().toString();
@@ -151,7 +173,7 @@ public class AssignEmployee extends AppCompatActivity {
         checkPhoneNumber = findViewById(R.id.checkPhoneNumber);
         checkAutNumber = findViewById(R.id.checkAutNumber);
 
-        final TextView textAut = (TextView)findViewById(R.id.textAut);
+        final TextView textAut = (TextView) findViewById(R.id.textAut);
 
         checkPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +184,7 @@ public class AssignEmployee extends AppCompatActivity {
                 sendVerificationCode();
             }
         });
+
 
         checkAutNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,50 +198,12 @@ public class AssignEmployee extends AppCompatActivity {
         e_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                signUri = paintView;
-
                 ScreenShot(paintView);
+                String s1 = "";
+                s1 = su.toString();
+                signUri = s1;
+                Toast.makeText(AssignEmployee.this, s1, Toast.LENGTH_SHORT).show();
 
-
-                saveSign();
-
-                bitmap = paintView.getPaintedBitmap();
-                //create directory if not exist
-                String p = Environment.getExternalStorageDirectory().getAbsolutePath();
-                File dir = new File(p + "tempfolder/e_sign.png");
-
-                try {
-                    if (!dir.exists()) {
-                        dir.createNewFile();
-                    }
-                    FileOutputStream ostream = new FileOutputStream(dir);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 10, ostream);
-                    ostream.close();
-                    paintView.invalidate();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    paintView.setDrawingCacheEnabled(false);
-                }
-                File output = new File(dir, "e_save.png");
-                OutputStream os = null;
-
-                try {
-                    os = new FileOutputStream(output);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
-                    os.flush();
-                    os.close();
-
-                    //this code will scan the image so that it will appear in your gallery when you open next time
-                    MediaScannerConnection.scanFile(context, new String[] { output.toString() }, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.d("appname", "image is saved in gallery and gallery is refreshed.");
-                                }
-                            }
-                    );
-                } catch (Exception e) {
-                }
             }
         });
 
@@ -226,9 +211,9 @@ public class AssignEmployee extends AppCompatActivity {
 
 
 //스피너에 주소 할당
-        final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
-        final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
-        final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
+        final Spinner spin1 = (Spinner) findViewById(R.id.enterAddress1);
+        final Spinner spin2 = (Spinner) findViewById(R.id.enterAddress2);
+        final Spinner spin3 = (Spinner) findViewById(R.id.enterAddress3);
         adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner1,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -244,153 +229,157 @@ public class AssignEmployee extends AppCompatActivity {
                     spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-                            if (Objects.equals(adspin2.getItem(j),"강남구")) {
+                            if (Objects.equals(adspin2.getItem(j), "강남구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangnam, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"강동구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "강동구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangdong, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"강북구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "강북구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangbook, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"강서구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "강서구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangseo, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"관악구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "관악구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gwanak, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"광진구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "광진구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangjin, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"구로구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "구로구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_guro, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"금천구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "금천구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_geumcheon, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"노원구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "노원구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_nowon, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"도봉구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "도봉구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_dobong, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"동대문구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "동대문구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_dongdamoon, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"동작구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "동작구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_dongjak, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"마포구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "마포구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_mapo, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"서대문구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "서대문구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_seodamoon, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"서초구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "서초구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_seocho, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"성동구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "성동구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_gangdong, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"성북구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "성북구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_seongbook, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"송파구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "송파구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_songpa, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"양천구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "양천구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_yangcheon, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"영등포구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "영등포구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_yeongdeungpo, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"용산구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "용산구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_yongsan, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"은평구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "은평구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_eunpyeong, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"종로구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "종로구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_jongro, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"중구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "중구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_joong, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else if(Objects.equals(adspin2.getItem(j),"중랑구")) {
+                            } else if (Objects.equals(adspin2.getItem(j), "중랑구")) {
                                 adspin3 = ArrayAdapter.createFromResource(AssignEmployee.this,
                                         R.array.spinner3_joonglang, android.R.layout.simple_spinner_dropdown_item);
                                 adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spin3.setAdapter(adspin3);
-                            }else{
+                            } else {
                                 spin3.setAdapter(null);
                             }
                         }
+
                         @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) { }
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
                     });
-                }else{
+                } else {
                     spin2.setAdapter(null);
                     spin3.setAdapter(null);
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
 
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i =0;i< Login.employeeinfos.size();i++){
+                for (int i = 0; i < Login.employeeinfos.size(); i++) {
                     String s = mEditTextID.getText().toString();
-                    if(s.equals(Login.employeeinfos.get(i).getID())) {
+                    if (s.equals(Login.employeeinfos.get(i).getID())) {
                         Toast.makeText(getApplicationContext(), "이미 존재하는 ID입니다. ", Toast.LENGTH_SHORT).show();
                         passID = false;
                         break;
@@ -401,17 +390,16 @@ public class AssignEmployee extends AppCompatActivity {
         });
 
         boolean allWrite = false;
-        if(!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) &&
+        if (!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) &&
                 !(mEditTextName.getText().equals(null)) && !(mEditTextBirth.getText().equals(null)) &&
                 !(mEditTextPhone.getText().equals(null)) && (radioGroup.isSelected()) &&
                 (address1.isSelected()) && (address2.isSelected()) && (address3.isSelected()) && passID) {
             allWrite = true;
         }
-
+        assignButton = (Button) findViewById(R.id.assignButton);
         // 위의 항목들이 모두 정상적으로 처리 되었으면
         // '등록' 버튼 누르면 로그인창으로 돌아감
-        if(allWrite) {
-            Button assignButton = (Button) findViewById(R.id.assignButton);
+//        if (allWrite) {
             assignButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     String id = mEditTextID.getText().toString();
@@ -420,24 +408,25 @@ public class AssignEmployee extends AppCompatActivity {
                     String addr = "";
                     String phoneNum = mEditTextPhone.getText().toString();
                     String birth = mEditTextBirth.getText().toString();
-                    String gender="";
-
-                    if(femaleButton.isChecked()){
-                        gender="여자";
-                    }else if(maleButton.isChecked()){
-                        gender="남자";
+                    String gender = "";
+                    String sign="";
+                    if (femaleButton.isChecked()) {
+                        gender = "여자";
+                    } else if (maleButton.isChecked()) {
+                        gender = "남자";
                     }
-
 
                     add1 = spin1.getSelectedItem().toString();
                     add2 = spin2.getSelectedItem().toString();
                     add3 = spin3.getSelectedItem().toString();
 
-                    addr = add1+" "+add2+" "+add3;
+                    addr = add1 + " " + add2 + " " + add3;
 
+
+                    sign = signUri;
                     AssignEmployee.InsertData task = new AssignEmployee.InsertData();
-                    task.execute("http://" +IP_ADDRESS + "/assignEmployee.php",
-                            id, pw, name, birth, gender, phoneNum, addr);
+                    task.execute("http://" + IP_ADDRESS + "/assignEmployee.php",
+                            id, pw, name, birth, gender, phoneNum, addr, sign);
 
                     if (mEditTextID.length() > 0) {
                         mEditTextID.getText().clear();
@@ -460,22 +449,8 @@ public class AssignEmployee extends AppCompatActivity {
                 }
             });
         }
-    }
+//    }
 
-
-    public void saveSign() {
-        try {
-            String filename = Environment.getExternalStorageDirectory().toString();
-            File f = new File(filename, "e_sign.png");
-            f.createNewFile();
-            Log.d("save", "saved");
-            FileOutputStream out = new FileOutputStream(f);
-            Bitmap bitmap = paintView.getPaintedBitmap();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
@@ -509,7 +484,7 @@ public class AssignEmployee extends AppCompatActivity {
             String sign = (String) params[8];
 
             String serverURL = (String) params[0];
-            String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&gender="+gender+"&birth=" + birth
+            String postParameters = "id=" + id + "&pw=" + pw + "&name=" + name + "&gender=" + gender + "&birth=" + birth
                     + "&phoneNum=" + phoneNum + "&address=" + address + "&sign=" + sign;
 
 
@@ -634,19 +609,24 @@ public class AssignEmployee extends AppCompatActivity {
     }
 
     //화면 캡쳐하기
-    public File ScreenShot(View view){
+    public File ScreenShot(View view) {
         view.setDrawingCacheEnabled(true);  //화면에 뿌릴때 캐시를 사용하게 한다
 
         Bitmap screenBitmap = view.getDrawingCache();   //캐시를 비트맵으로 변환
 
-        String filename = "screenshot.png";
-        File file = new File(Environment.getExternalStorageDirectory()+"/Pictures", filename);  //Pictures폴더 screenshot.png 파일
+        String filename = "screenshotE.png";
+        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures", filename);  //Pictures폴더 screenshotE.png 파일
         FileOutputStream os = null;
-        try{
+
+        su = Uri.fromFile(file);
+
+        try {
             os = new FileOutputStream(file);
             screenBitmap.compress(Bitmap.CompressFormat.PNG, 90, os);   //비트맵을 PNG파일로 변환
             os.close();
-        }catch (IOException e){
+
+
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }

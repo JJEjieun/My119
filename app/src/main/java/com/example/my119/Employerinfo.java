@@ -3,10 +3,10 @@ package com.example.my119;
 public class Employerinfo {
     String ID;
     String PW;
-    String employerNumber, compayName, name, address, phoneNum, email;
+    String employerNumber, compayName, name, address, phoneNum, email, sign;
     int rate;
 
-    public Employerinfo(String id, String pw,String employerNumber, String compayName,String name,String address,String phoneNum,String email,int rate){
+    public Employerinfo(String id, String pw, String employerNumber, String compayName, String name, String address, String phoneNum, String email, String sign, int rate) {
         this.ID = id;
         this.PW = pw;
         this.employerNumber = employerNumber;
@@ -14,7 +14,8 @@ public class Employerinfo {
         this.name = name;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.email= email;
+        this.email = email;
+        this.sign = sign;
         this.rate = rate;
     }
 
@@ -80,6 +81,14 @@ public class Employerinfo {
 
     public void setPW(String PW) {
         this.PW = PW;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 
     public int getRate() {
