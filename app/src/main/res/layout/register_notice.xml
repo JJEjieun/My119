@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/myRed"
-        android:text="공고 등록"
+        android:fontFamily="@font/yoongothic"
+        android:text=" 공고 등록"
         android:textColor="#ffffff"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@+id/L1"
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv1"
         app:layout_constraintBottom_toTopOf="@id/textView3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,6 +46,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="가게 이름"
                         android:textStyle="bold"
                         android:paddingRight="10dp"
@@ -53,6 +56,7 @@
                         android:id="@+id/r_storeName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:hint="가게 이름을 입력하세요" />
                 </LinearLayout>
 
@@ -65,6 +69,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="일급"
                         android:textStyle="bold"
                         android:paddingRight="10dp"
@@ -74,6 +79,7 @@
                         android:id="@+id/r_money"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:hint="ex)8500" />
                 </LinearLayout>
 
@@ -86,6 +92,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="근로 날짜"
                         android:textStyle="bold"
                         android:paddingRight="10dp"
@@ -95,6 +102,7 @@
                         android:id="@+id/r_workDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:hint="근로 날짜를 입력하세요" />
                 </LinearLayout>
 
@@ -107,6 +115,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="공고 마감일"
                         android:textStyle="bold"
                         android:gravity="center" />
@@ -115,6 +124,7 @@
                         android:id="@+id/r_endTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:hint="ex)200101" />
                 </LinearLayout>
 
@@ -132,6 +142,7 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/yoongothic"
                             android:text="항목"
                             android:textStyle="bold"
                             android:paddingRight="10dp"
@@ -140,6 +151,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/yoongothic"
                             android:text="항목을 선택하세요"
                             android:paddingRight="10dp"
                             android:gravity="center"/>
@@ -165,6 +177,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="업종" />
 
                             <Spinner
@@ -187,12 +200,14 @@
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="주소" />
 
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="시/도" />
 
                             <Spinner
@@ -221,6 +236,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="시/군/구" />
 
                             <Spinner
@@ -249,6 +265,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="읍/면/동" />
 
                             <Spinner
@@ -271,6 +288,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="시간" />
 
                             <Spinner
@@ -280,6 +298,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="시~"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"/>
@@ -290,6 +309,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="시"
                                 android:paddingLeft="10dp"/>
                         </LinearLayout>
@@ -303,6 +323,7 @@
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="임금 지급 방법"
                                 android:textStyle="bold"
                                 android:paddingRight="10dp"
@@ -318,12 +339,14 @@
                                     android:id="@+id/cash"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/yoongothic"
                                     android:text="현금지급"/>
 
                                 <RadioButton
                                     android:id="@+id/account"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/yoongothic"
                                     android:text="계좌이체"/>
                             </RadioGroup>
                         </LinearLayout>
@@ -337,6 +360,7 @@
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/yoongothic"
                                 android:text="면접 방법"
                                 android:textStyle="bold"
                                 android:paddingRight="10dp"
@@ -352,18 +376,21 @@
                                     android:id="@+id/call"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/yoongothic"
                                     android:text="전화통화"/>
 
                                 <RadioButton
                                     android:id="@+id/fCall"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/yoongothic"
                                     android:text="화상통화"/>
 
                                 <RadioButton
                                     android:id="@+id/fTof"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/yoongothic"
                                     android:text="면대면"/>
                             </RadioGroup>
                         </LinearLayout>
@@ -382,6 +409,9 @@
             android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:textColor="#ffffff"
+            android:background="@color/myRed"
             android:text="공고 등록"
             android:layout_gravity="center"/>
     </LinearLayout>

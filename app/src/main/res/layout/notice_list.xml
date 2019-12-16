@@ -26,6 +26,7 @@
                     android:id="@+id/tv_workDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="근무날짜 "
                     android:textSize="15dp"
                     android:textColor="#ffffff"
@@ -36,6 +37,7 @@
                     android:id="@+id/db_workDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="근무날짜"
                     android:textSize="18dp"
                     android:textColor="#ffffff"
@@ -45,6 +47,7 @@
                     android:id="@+id/tv_workTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="시간 "
                     android:textSize="15dp"
                     android:textColor="#ffffff"
@@ -55,6 +58,7 @@
                     android:id="@+id/db_workTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="시간"
                     android:textSize="18dp"
                     android:textColor="#ffffff"
@@ -64,6 +68,7 @@
                     android:id="@+id/tv_storeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="가게이름 "
                     android:textSize="15dp"
                     android:textColor="#ffffff"
@@ -74,6 +79,7 @@
                     android:id="@+id/db_storeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="가게이름"
                     android:textSize="18dp"
                     android:textColor="#ffffff"
@@ -92,6 +98,7 @@
                     android:id="@+id/tv_noticeNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="공고 번호 :"
                     android:layout_marginRight="2dp"
                     android:textStyle="bold" />
@@ -101,6 +108,7 @@
                     android:id="@+id/db_noticeNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yoongothic"
                     android:text="공고번호"
                     android:layout_marginRight="10dp"/>
 
@@ -114,6 +122,7 @@
                         android:id="@+id/tv_endTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="공고 마감일 :"
                         android:layout_marginRight="2dp"
                         android:textStyle="bold" />
@@ -123,6 +132,7 @@
                         android:id="@+id/db_endTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="공고마감일"
                         android:layout_marginRight="10dp"/>
 
@@ -145,6 +155,7 @@
                         android:id="@+id/tv_money"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="일급 :"
                         android:layout_marginRight="2dp"
                         android:textStyle="bold"/>
@@ -154,6 +165,7 @@
                         android:id="@+id/db_money"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/yoongothic"
                         android:text="일급" />
                 </LinearLayout>
             </LinearLayout>
