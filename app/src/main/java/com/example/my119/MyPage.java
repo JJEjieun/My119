@@ -9,8 +9,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,15 +27,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.my119.Login.noticeinfos;
+
 public class MyPage extends AppCompatActivity {
 
-
-    ArrayList<String> notices = new ArrayList<>();
     TextView tv;
 
 
     Button button_resume;
     ImageButton button_modify_employee;
+
+    String id, name, storeName;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -48,8 +52,6 @@ public class MyPage extends AppCompatActivity {
 
         RatingBar rb = (RatingBar)findViewById(R.id.ratingbar);
         rb.setRating(Math.round(Float.valueOf(LoginEmployee.erate)));
-
-
 
         TextView name = (TextView)findViewById(R.id.mypageName);
 //        name.setText(LoginEmployee.employeeinfos.get());
@@ -95,9 +97,22 @@ public class MyPage extends AppCompatActivity {
 //                finish();
 //            }
 //        });
+
+        // Adapter 생성
+        final FriendAdapter adapter = new FriendAdapter() ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        ListView listview = (ListView) findViewById(R.id.lv_friend_mypage);
+
+        // 리스트뷰 값 받아오기
+        setData(adapter);
+        listview.setAdapter(adapter);
+
     }
 
+    private void setData(FriendAdapter adapter) {
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

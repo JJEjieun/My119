@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +105,20 @@ public class MyPageEmployer extends AppCompatActivity {
             }
         });
 
+
+        // Adapter 생성
+        final FriendAdapter adapter = new FriendAdapter() ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        ListView listview = (ListView) findViewById(R.id.lv_friend_mypage);
+
+        // 리스트뷰 값 받아오기
+        setData(adapter);
+        listview.setAdapter(adapter);
+
+    }
+
+    private void setData(FriendAdapter adapter) {
 
     }
 

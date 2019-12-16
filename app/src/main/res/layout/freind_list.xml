@@ -30,14 +30,14 @@
                 android:layout_marginRight="10dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/yoongothic"
-                android:layout_gravity="center_vertical"
-                android:textStyle="bold"
-                android:text="친구 ID "
-                android:textSize="18dp"
-                android:layout_marginRight="10dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yoongothic"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="ID "
+            android:textSize="18dp"
+            android:layout_marginRight="5dp" />
 
             <TextView
                 android:id="@+id/friend_id"
@@ -48,8 +48,49 @@
                 android:textStyle="bold"
                 android:text="아이디"
                 android:textSize="15dp"
-                android:layout_marginRight="2dp" />
+                android:layout_marginRight="10dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/yoongothic"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="이름 "
+                android:textSize="18dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:id="@+id/friend_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/yoongothic"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="회원이름"
+                android:textSize="15dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/yoongothic"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="소속기업 "
+                android:textSize="18dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:id="@+id/friend_store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/yoongothic"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="기업이름"
+                android:textSize="15dp"
+                android:layout_marginRight="10dp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
