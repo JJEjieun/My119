@@ -26,8 +26,9 @@ import static com.example.my119.Login.applyinfos;
 
 public class AppliedNoticeList extends AppCompatActivity {
     int applyNum;
+    int er_apply;
 
-    public String[] notice = new String[10];
+    public String[] notice = new String[11];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,11 @@ public class AppliedNoticeList extends AppCompatActivity {
                 notice[7] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getPaymethod();
                 notice[8] = noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getInterview();
                 notice[9]= adapter.getStore(position);
+                notice[10]= String.valueOf(er_apply);
 
                 Intent intent = new Intent(AppliedNoticeList.this, AppliedNotice.class);
 
-                intent.putExtra("noticeInfo",notice);
+                intent.putExtra("noticeInfos",notice);
                 startActivity(intent);
             }
         });
@@ -74,9 +76,9 @@ public class AppliedNoticeList extends AppCompatActivity {
         //리스트뷰에 데이터 추가
         int num = 1;
         for(int i =0; i<applyinfos.size(); i++){
-//            int a = Integer.valueOf( noticeinfos.get(applyNum).getNum())+1;
             if(applyinfos.get(i).getEid().equals(LoginEmployee.eID)){
-                applyNum = Integer.valueOf(applyinfos.get(i).getNum());
+                er_apply=i;
+                applyNum = Integer.valueOf(applyinfos.get(i).getNum())-1;
                 adapter.addNotice(noticeinfos.get(applyNum).getDate(), noticeinfos.get(applyNum).getKey3(), noticeinfos.get(applyNum).getStoreName(),
                         noticeinfos.get(applyNum).getNum(), noticeinfos.get(applyNum).getEndtime(), noticeinfos.get(applyNum).getPay());
             }

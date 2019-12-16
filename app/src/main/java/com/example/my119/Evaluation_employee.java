@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -23,25 +24,42 @@ import static com.example.my119.LoginEmployee.erate;
 public class Evaluation_employee extends AppCompatActivity {
     static double point=0;
     static String TAG = "evaluation_employee";
+
+    TextView tv;
+    String employee_name;
+    int num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evaluation_employee);
 
+        Intent intent = getIntent();
+        final String ee_apply =intent.getStringExtra("ee_apply");
+
         RatingBar rb = (RatingBar)findViewById(R.id.ratingBar);
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                point = erate + rating / 2;
+                for(int i=0; i< Login.employeeinfos.size(); i++){
+                    if(Login.applyinfos.get(Integer.valueOf(ee_apply)-1).getEid().equals(Login.employeeinfos.get(i).getID())){
+                        num=i;
+                        employee_name =Login.employeeinfos.get(i).getName();
+                        double rate = Double.valueOf(Login.employeeinfos.get(i).getRate());
+                        point = ( rate+ rating) / 2;
+                    }
+                }
             }
         });
+
+        tv = (TextView)findViewById(R.id.textView2) ;
+        tv.setText(employee_name);
 
         Button btn_ev_er = (Button)findViewById(R.id.r_ev_er);
         btn_ev_er.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "기업평가 등록", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),String.valueOf(point), Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.50.96.112"+ "/assignEmployer.php",String.valueOf(point));
+                task.execute("http://" +"10.0.2.2"+ "/get_ee_rate.php",Login.employeeinfos.get(num).getID(),String.valueOf(point));
                 finish();
             }
         });
@@ -69,11 +87,12 @@ public class Evaluation_employee extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String rate= (String) params[1];
+            String id = (String)params[1];
+            String rate= (String) params[2];
 
 
             String serverURL = (String) params[0];
-            String postParameters = "rate=" + rate ;
+            String postParameters = "id="+id+"&rate=" + rate ;
 
             try {
 

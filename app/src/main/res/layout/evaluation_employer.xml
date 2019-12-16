@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/myRed"
-        android:text="근무자평가"
+        android:text="근무지평가"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="80px"
