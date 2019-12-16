@@ -33,23 +33,6 @@
                 android:text="이름 님"
                 android:textColor="@color/normal"
                 android:textSize="30dp" />
-
-            <ImageButton
-                android:id="@+id/button_modifyee"
-                android:layout_width="18dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="190dp"
-                android:layout_marginTop="18dp"
-                android:background="#ffffff"
-                android:scaleType="fitCenter"
-                android:src="@drawable/wheel" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/normal"
-                android:text="회원정보확인" />
         </LinearLayout>
 
         <TextView
