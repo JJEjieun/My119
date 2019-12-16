@@ -16,6 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.my119.Login.applyinfos;
+import static com.example.my119.Login.employeeinfos;
+import static com.example.my119.Login.employerinfos;
+import static com.example.my119.Login.noticeinfos;
+
 public class RequestedNotice extends AppCompatActivity  {
 
     Button call;
@@ -28,6 +33,9 @@ public class RequestedNotice extends AppCompatActivity  {
     Button btn_reject;
     Button btn_confirm;
     Button btn_show_contract;
+    String eid;
+    String num;
+    String ccompanyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +92,39 @@ public class RequestedNotice extends AppCompatActivity  {
         //가게평점
         TextView s_store_star= (TextView)findViewById(R.id.s_store_star);
 
+        eid = "";
+        num = "";
+        ccompanyName = "";
 
         call = findViewById(R.id.btn_call);
         facecall = findViewById(R.id.btn_face_call);
 
 //        Intent callIntent = new Intent()
 
-        tel = "01023275437";
+
+        for (int i = 0; i < employerinfos.size(); i++) {
+            if (employerinfos.get(i).getID().equals(LoginEmployer.rID)) {
+                ccompanyName = employerinfos.get(i).getCompayName();
+            }
+        }
+
+        for (int i = 0; i < noticeinfos.size(); i++) {
+            if (ccompanyName.equals(noticeinfos.get(i).getStoreName())) {
+                num = noticeinfos.get(i).getNum();
+            }
+        }
+
+
+        for (int i = 0; i < applyinfos.size(); i++) {
+            if (applyinfos.get(i).getNum().equals(num)) {
+                eid = applyinfos.get(i).getEid();
+            }
+        }
+        for (int i = 0; i < employeeinfos.size(); i++) {
+            if (employeeinfos.get(i).getID().equals(eid)) {
+                tel = employeeinfos.get(i).getPhoneNum();
+            }
+        }
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override

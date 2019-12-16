@@ -21,6 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,6 +34,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
+
+import static java.lang.Thread.sleep;
 
 public class AssignEmployer extends AppCompatActivity {
 
@@ -63,13 +68,17 @@ public class AssignEmployer extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
+
     String docode, gucode;
+    URL newURL;
+    public static String s="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_employer);
 
-        TextView TorF = (TextView)findViewById(R.id.TorF);
+        final TextView TorF = (TextView)findViewById(R.id.TorF);
         Button checkNum = (Button)findViewById(R.id.checkNumber);
         r_save = findViewById(R.id.r_save);
 
@@ -342,6 +351,73 @@ public class AssignEmployer extends AppCompatActivity {
                 (address1.isSelected()) && (address2.isSelected()) && (address3.isSelected()) && passID && passNum) {
             allWrite = true;
         }
+
+        findViewById(R.id.checkNumber).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                final String u = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?ldong_addr_mgpl_dg_cd=" + docode +
+                        "&ldong_addr_mgpl_sggu_cd=" + gucode + "&wkpl_nm=" + mEditTextName.getText().toString() + "&bzowr_rgst_no=" + mEditTextNum.getText().toString().substring(0,6) +
+                        "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
+                s = "";
+                TorF.setText("");
+                TorF.setText(u);
+                new Thread() {
+                    public void run() {
+                        try {
+                            newURL = new URL(u);
+                            InputStream in = newURL.openStream();
+                            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                            XmlPullParser parser = factory.newPullParser();
+                            parser.setInput(in, "utf-8");
+                            String tag = "";
+                            int EventType = parser.getEventType();
+                            while (EventType != XmlPullParser.END_DOCUMENT) {
+                                switch (EventType) {
+                                    case XmlPullParser.START_TAG:
+                                        tag = parser.getName();
+                                        if (tag.equals("wkplJnngStcd")) {
+                                        }
+                                        break;
+                                    case XmlPullParser.TEXT:
+                                        if (tag.equals("wkplJnngStcd")) {
+//                                            TorF.append(parser.getText());
+                                            if (parser.getText().equals("1"))
+                                                s = parser.getText();
+                                            else
+                                                s = "";
+                                        }
+                                        break;
+                                    case XmlPullParser.END_TAG:
+                                        tag = parser.getName();
+                                        if (tag.equals("item")) {
+                                        }
+                                        break;
+                                }
+                                EventType = parser.next();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(AssignEmployer.this, "모든 칸을 입력하세요", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                }.start();
+
+                try {
+                    sleep(4000);
+                    Toast.makeText(AssignEmployer.this, s, Toast.LENGTH_SHORT).show();
+                    if (s.equals("1")) {
+                        passNum = true;
+                        Toast.makeText(AssignEmployer.this, "사업자등록번호가 확인되었습니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        passNum = false;
+                        Toast.makeText(AssignEmployer.this, "사업자등록번호가 확인되지않습니다.\n다시입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 //        if (allWrite) {
             Button assignButton = (Button) findViewById(R.id.assignButton);
