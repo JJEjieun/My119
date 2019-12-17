@@ -26,7 +26,6 @@
         <activity android:name=".MainEmployee"/>
         <activity android:name=".MainEmployer"/>
         <activity android:name=".CheckNotice"/>
-        <activity android:name=".CheckAlarm_er"/>
         <activity android:name=".RegisterNotice"/>
         <activity android:name=".MyPage"/>
         <activity android:name=".MyPageEmployer" />
