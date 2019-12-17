@@ -178,16 +178,16 @@ public class RequestedNotice extends AppCompatActivity  {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "근무 거절", Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.0.2.2"+ "/final.php",Login.employeeinfos.get(Integer.valueOf(ee_apply)).getID(),"3");
+                task.execute("http://" +"10.0.2.2"+ "/final.php",eid,"3");
             }
         });
 
         //신청자 근무확정
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "근무 확정", Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.0.2.2"+ "/final.php",Login.employeeinfos.get(Integer.valueOf(ee_apply)).getID(),"2");
+                task.execute("http://" +"10.0.2.2"+ "/final.php",eid,"2");
             }
         });
 

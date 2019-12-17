@@ -36,14 +36,18 @@ public class Evaluation_employee extends AppCompatActivity {
         Intent intent = getIntent();
         final String ee_apply =intent.getStringExtra("ee_apply");
 
+        tv = (TextView)findViewById(R.id.textView2) ;
+        tv.setText(employee_name);
+
         RatingBar rb = (RatingBar)findViewById(R.id.ratingBar);
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 for(int i=0; i< Login.employeeinfos.size(); i++){
-                    if(Login.applyinfos.get(Integer.valueOf(ee_apply)-1).getEid().equals(Login.employeeinfos.get(i).getID())){
+                    if(Login.applyinfos.get(Integer.valueOf(ee_apply)).getEid().equals(Login.employeeinfos.get(i).getID())){
                         num=i;
-                        employee_name =Login.employeeinfos.get(i).getName();
+                        employee_name=Login.employeeinfos.get(i).getName();
+                        tv.setText(employee_name);
                         double rate = Double.valueOf(Login.employeeinfos.get(i).getRate());
                         point = ( rate+ rating) / 2;
                     }
@@ -51,8 +55,7 @@ public class Evaluation_employee extends AppCompatActivity {
             }
         });
 
-        tv = (TextView)findViewById(R.id.textView2) ;
-        tv.setText(employee_name);
+
 
         Button btn_ev_er = (Button)findViewById(R.id.r_ev_er);
         btn_ev_er.setOnClickListener(new View.OnClickListener() {

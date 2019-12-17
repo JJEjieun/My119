@@ -54,11 +54,11 @@ public class AppliedNoticeList extends AppCompatActivity {
                 notice[1] =adapter.getMoney(position);
                 notice[2] =adapter.getWorkDate(position);
                 notice[3] =adapter.getEndTime(position);
-                notice[4] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getKey1();
-                notice[5] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getKey2();
+                notice[4] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))-1).getKey1();
+                notice[5] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))-1).getKey2();
                 notice[6] =adapter.getWorkTime(position);
-                notice[7] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getPaymethod();
-                notice[8] = noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))).getInterview();
+                notice[7] =noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))-1).getPaymethod();
+                notice[8] = noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))-1).getInterview();
                 notice[9]= adapter.getStore(position);
                 notice[10]= String.valueOf(er_apply);
 
