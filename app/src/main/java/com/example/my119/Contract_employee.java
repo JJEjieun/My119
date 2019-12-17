@@ -79,17 +79,7 @@ public class Contract_employee extends AppCompatActivity {
         employer_sign = findViewById(R.id.employer_sign);
 
 
-        for (int i = 0; i < employerinfos.size(); i++) {
-            if (employerinfos.get(i).getCompayName().equals(LoginEmployer.rID)) {
-                rrName = employerinfos.get(i).getName();
-                wworkingPlace = employerinfos.get(i).getAddress();
-                rrphoneNum = employerinfos.get(i).getPhoneNum();
-            }
-        }
-        rName.setText(rrName);
-        rNa.setText(rrName);
-        workingPlace.setText(wworkPlace);
-        rphoneNum.setText(rrphoneNum);
+
 
         for (int i = 0; i < employeeinfos.size(); i++) {
             if (employeeinfos.get(i).getID().equals(LoginEmployee.eID)) {
@@ -130,6 +120,19 @@ public class Contract_employee extends AppCompatActivity {
         giveM.setText(ddate);
         giveMethod.setText(ggiveMethod);
         getToday.setText(time2);
+
+
+        for (int i = 0; i < employerinfos.size(); i++) {
+            if (employerinfos.get(i).getCompayName().equals(ccompanyName)) {
+                rrName = employerinfos.get(i).getName();
+                wworkingPlace = employerinfos.get(i).getAddress();
+                rrphoneNum = employerinfos.get(i).getPhoneNum();
+            }
+        }
+        rName.setText(rrName);
+        rNa.setText(rrName);
+        workingPlace.setText(wworkPlace);
+        rphoneNum.setText(rrphoneNum);
 
         Button toPdf = (Button) findViewById(R.id.finish_write);
         toPdf.setOnClickListener(new View.OnClickListener() {

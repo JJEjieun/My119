@@ -66,9 +66,9 @@ public class RequestedNoticeList extends AppCompatActivity {
 
     private void setData(NoticeListViewAdapter adapter) {
         //리스트뷰에 데이터 추가
-        for(int i =0; i<applyinfos.size(); i++){
+        for(int i =0; i< applyinfos.size(); i++){
              n =Integer.valueOf(applyinfos.get(i).getNum())-1;
-             ee_apply= i;
+             ee_apply = i;
                 if (noticeinfos.get(n).getStoreName().equals(LoginEmployer.rCompanyName)) {
                    // applyNum = Integer.valueOf(applyinfos.get(i).getNum());
                     adapter.addNotice(noticeinfos.get(n).getDate(), noticeinfos.get(n).getKey3(), noticeinfos.get(n).getStoreName(),

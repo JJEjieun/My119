@@ -40,7 +40,7 @@ public class Contract_employer extends AppCompatActivity {
             , companyName, rNa, workingPlace, rphoneNum;
     ImageView employee_sign, employer_sign;
     String eeName, rrName, ddate, eeAddress, eephoneNum, num, wworkPlace, ttime, mmoney, ggiveMethod
-            , ccompanyName, wworkingPlace, rrphoneNum;
+            , ccompanyName, wworkingPlace, rrphoneNum, eid;
     Context context;
 
     @Override
@@ -95,7 +95,7 @@ public class Contract_employer extends AppCompatActivity {
         }
         rName.setText(rrName);
         rNa.setText(rrName);
-        workingPlace.setText(wworkPlace);
+        workingPlace.setText(wworkingPlace);
         rphoneNum.setText(rrphoneNum);
         companyName.setText(ccompanyName);
 
@@ -119,13 +119,14 @@ public class Contract_employer extends AppCompatActivity {
         getToday.setText(time2);
 
 
-        String eid = "";
+        eid = "";
 
         for (int i = 0; i < applyinfos.size(); i++) {
             if (applyinfos.get(i).getNum().equals(num)) {
                 eid = applyinfos.get(i).getEid();
             }
         }
+
         for (int i = 0; i < employeeinfos.size(); i++) {
             if (employeeinfos.get(i).getID().equals(eid)) {
                 eeName = employeeinfos.get(i).getName();
