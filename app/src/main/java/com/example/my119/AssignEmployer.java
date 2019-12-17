@@ -399,7 +399,6 @@ public class AssignEmployer extends AppCompatActivity {
 
                 try {
                     sleep(5000);
-                    Toast.makeText(AssignEmployer.this, s, Toast.LENGTH_SHORT).show();
                     if (s.equals("1")) {
                         passNum = true;
                         Toast.makeText(AssignEmployer.this, "사업자등록번호가 확인되었습니다.", Toast.LENGTH_SHORT).show();
