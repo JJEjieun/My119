@@ -9,8 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,17 +25,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.example.my119.Login.employeeinfos;
 import static com.example.my119.Login.noticeinfos;
 
-//import static com.example.my119.RegisterNotice.noticeinfos;
-
-
-
 public class CheckNotice extends AppCompatActivity {
-    ArrayList<Integer> noticeNumList = new ArrayList<Integer>();
-    ArrayList<Notice> noticeList = new ArrayList<Notice>();
 
 //    public GetPHP p;
 //    String url ="http://10.0.2.2/login_notice.php";
@@ -42,12 +39,59 @@ public class CheckNotice extends AppCompatActivity {
     ArrayList<String> notices = new ArrayList<>();
     public String[] notice = new String[10];
     String storeName, pay,  date,  endtime, key1, key2,  key3,  paymethod, interview;
-//    public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
+    ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_notice);
+
+        //분류별 공개
+        final Spinner spin_show_category = (Spinner)findViewById(R.id.notice_show_category);
+        final Spinner spin_show_address1 = (Spinner)findViewById(R.id.notice_show_address1);
+        final Spinner spin_show_address2 = (Spinner)findViewById(R.id.notice_show_address2);
+
+
+        adspin1 = ArrayAdapter.createFromResource(this, R.array.keySpin1, android.R.layout.simple_spinner_dropdown_item);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin_show_category.setAdapter(adspin1);
+        spin_show_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                 Toast.makeText(CheckNotice.this, "", Toast.LENGTH_SHORT).show();
+             }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        adspin2 = ArrayAdapter.createFromResource(this, R.array.spinner1,
+                android.R.layout.simple_spinner_dropdown_item);
+        adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin_show_address1.setAdapter(adspin2);
+        spin_show_address1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Objects.equals(adspin2.getItem(i), "서울")) {
+                    adspin3 = ArrayAdapter.createFromResource(CheckNotice.this,
+                            R.array.spinner2, android.R.layout.simple_spinner_dropdown_item);
+                    adspin3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin_show_address2.setAdapter(adspin3);
+                    spin_show_address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) { }
+                    });
+                }else{
+                    spin_show_address1.setAdapter(null);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        });
 
             //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
             Button btnNewNotice = (Button)findViewById(R.id.newNotice);
