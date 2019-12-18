@@ -82,6 +82,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/yoongothic"
             android:text="마이페이지"
+            android:textSize="13dp"
             android:background="@color/myBack"
             android:textColor="#ffffff"
             android:layout_weight="1"/>
