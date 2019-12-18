@@ -24,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.my119.Login.employeeinfos;
 import static com.example.my119.Login.noticeinfos;
 
 //import static com.example.my119.RegisterNotice.noticeinfos;
@@ -50,6 +51,14 @@ public class CheckNotice extends AppCompatActivity {
 
             //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
             Button btnNewNotice = (Button)findViewById(R.id.newNotice);
+        btnNewNotice.setVisibility(View.INVISIBLE);
+
+        for(int i =0; i < Login.friendInfos.size();i++){
+            if(Login.friendInfos.get(i).getPerson().equals(LoginEmployee.eID)){
+                btnNewNotice.setVisibility(View.VISIBLE);
+            }
+        }
+
             btnNewNotice.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "새 공고 등록", Toast.LENGTH_SHORT).show();

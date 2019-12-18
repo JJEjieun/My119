@@ -279,7 +279,6 @@ public class Login extends AppCompatActivity {
                             (String) temp.get("gender"), (String) temp.get("birth"),
                             (String) temp.get("phoneNum"), (String) temp.get("address"),
                             (String) temp.get("sign"),(String)temp.get("rate")));
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -331,8 +330,4 @@ public class Login extends AppCompatActivity {
         }
 
     }
-
-
-
-
 }
