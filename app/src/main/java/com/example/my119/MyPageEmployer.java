@@ -44,7 +44,7 @@ public class MyPageEmployer extends AppCompatActivity {
 
     String id;
 
-    public final static String ip="10.0.2.2";
+    public final static String ip="10.50.96.112";
 
     ArrayList<String> friendList = new ArrayList<>();
     static String TAG = "frends";

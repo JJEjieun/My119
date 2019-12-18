@@ -430,7 +430,9 @@ public class AssignEmployer extends AppCompatActivity {
                     add2 = spin2.getSelectedItem().toString();
                     add3 = spin3.getSelectedItem().toString();
 
-                    address = add1 +" "+add2+" "+add3+" "+ mEditTextAddress.getText().toString();
+                    address = add1
+                            +" "+add2+" "+add3+" "+ mEditTextAddress.getText().toString()
+                    ;
 
                     String sign = "";
 

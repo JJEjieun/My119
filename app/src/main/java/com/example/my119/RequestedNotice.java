@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import java.net.URL;
 import static com.example.my119.Login.applyinfos;
 import static com.example.my119.Login.employeeinfos;
 import static com.example.my119.Login.employerinfos;
+import static com.example.my119.Login.ip;
 import static com.example.my119.Login.noticeinfos;
 
 public class RequestedNotice extends AppCompatActivity  {
@@ -40,26 +42,31 @@ public class RequestedNotice extends AppCompatActivity  {
     Button btn_check_resume;
     Button btn_check_star;
     Button btn_eva;
-    Button btn_reject;
+    Button btn_reject, btn_delete;
     Button btn_confirm;
     Button btn_show_contract;
     String ee_apply;
     String eid;
     String num;
     String ccompanyName;
+    LinearLayout linearLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requested_notice);
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("대타신청확인");
 
+        btn_delete = findViewById(R.id.btn_delete);
         btn_check_resume = (Button)findViewById(R.id.btn_check_resume);
         btn_check_star = (Button)findViewById(R.id.btn_check_star);
         btn_eva = (Button)findViewById(R.id.btn_eva);
         btn_reject = (Button)findViewById(R.id.btn_reject);
         btn_confirm = (Button)findViewById(R.id.btn_confirm);
         btn_show_contract = (Button)findViewById(R.id.btn_show_contract);
+        linearLayout = (LinearLayout)findViewById(R.id.IfConfirmShow) ;
 
         Intent intent = getIntent();
         final String[] notices = intent.getStringArrayExtra("noticeInfos");
@@ -78,7 +85,7 @@ public class RequestedNotice extends AppCompatActivity  {
         TextView s_money = (TextView)findViewById(R.id.s_money);
         s_money.setText(notices[1].toString());
         //근로날짜
-        TextView s_workDate = (TextView)findViewById(R.id.s_workDate);
+        final TextView s_workDate = (TextView)findViewById(R.id.s_workDate);
         s_workDate.setText(notices[2].toString());
 
         //공고마감일
@@ -154,10 +161,17 @@ public class RequestedNotice extends AppCompatActivity  {
         });
 
         //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
-        if(true){
-            btn_eva.setVisibility(View.VISIBLE);
-            btn_show_contract.setVisibility(View.VISIBLE);
-        }
+
+        final String wD = s_workDate.getText().toString();
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                InsertData1 task = new InsertData1();
+                task.execute("http://" + ip + "/delete_notice.php",  ccompanyName, wD);
+                finish();
+            }
+
+        });
 
         //신청자 이력서 확인
         btn_check_resume.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +183,7 @@ public class RequestedNotice extends AppCompatActivity  {
         //신청자 별점 확인
         btn_check_star.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "별점 확인", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -185,9 +199,13 @@ public class RequestedNotice extends AppCompatActivity  {
         //신청자 근무확정
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                linearLayout.setVisibility(View.VISIBLE);
+                btn_eva.setVisibility(View.VISIBLE);
+                btn_show_contract.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), "근무 확정", Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
                 task.execute("http://" +"10.0.2.2"+ "/final.php",eid,"2");
+
             }
         });
 
@@ -211,6 +229,8 @@ public class RequestedNotice extends AppCompatActivity  {
                 finish();
             }
         });
+
+
 
 
     }
@@ -285,7 +305,92 @@ public class RequestedNotice extends AppCompatActivity  {
 
 
             String serverURL = (String) params[0];
-            String postParameters = "eid="+id+"&final=" + final_c ;
+            String postParameters = "eid="+id+"&fianl=" + final_c ;
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code2 - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                    Log.d(TAG, "OK");
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    class InsertData1 extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(RequestedNotice.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response1 - " + result);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String storeName = (String)params[1];
+            String date = (String) params[2];
+
+
+            String serverURL = (String) params[0];
+            String postParameters = "storeName="+ storeName +"&date=" + date ;
 
             try {
 

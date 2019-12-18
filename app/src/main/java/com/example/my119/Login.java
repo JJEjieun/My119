@@ -321,7 +321,7 @@ public class Login extends AppCompatActivity {
 
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    applyinfos.add(i, new Applyinfo((String) temp.get("num"), (String) temp.get("eid")));
+                    applyinfos.add(i, new Applyinfo((String) temp.get("num"), (String) temp.get("eid"),(String)temp.get("fianl")));
 
                 }
             } catch (JSONException e) {

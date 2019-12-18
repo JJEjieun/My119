@@ -24,7 +24,7 @@ import static com.example.my119.Login.employerinfos;
 
 public class LoginEmployer extends AppCompatActivity {
 
-//    String url ="http://10.50.96.112/login_employer.php";
+//    String url ="http://10.50.115.139/login_employer.php";
 //    public GettingPHP gphp;
 
     private EditText enterPw;

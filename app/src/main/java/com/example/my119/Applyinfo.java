@@ -14,9 +14,10 @@ public class Applyinfo {
     }
 
 
-    public Applyinfo(String num, String eid) {
+    public Applyinfo(String num, String eid,String fianl) {
         this.num = num;
         this.eid = eid;
+        this.fianl=fianl;
     }
 
     public String getNum() {

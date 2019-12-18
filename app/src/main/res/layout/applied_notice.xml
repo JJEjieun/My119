@@ -305,8 +305,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/applyLayout"
             android:orientation="horizontal"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:layout_marginBottom="10dp">
 
             <TextView

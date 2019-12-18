@@ -28,7 +28,7 @@ public class AppliedNoticeList extends AppCompatActivity {
     int applyNum;
     int er_apply;
 
-    public String[] notice = new String[11];
+    public String[] notice = new String[12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class AppliedNoticeList extends AppCompatActivity {
                 notice[8] = noticeinfos.get(Integer.valueOf(adapter.getNoticeNum(position))-1).getInterview();
                 notice[9]= adapter.getStore(position);
                 notice[10]= String.valueOf(er_apply);
+//                notice[11] = String.valueOf(applyNum);
+                notice[11] = String.valueOf(position);
 
                 Intent intent = new Intent(AppliedNoticeList.this, AppliedNotice.class);
 

@@ -420,7 +420,9 @@ public class AssignEmployee extends AppCompatActivity {
                     add2 = spin2.getSelectedItem().toString();
                     add3 = spin3.getSelectedItem().toString();
 
-                    addr = add1 + " " + add2 + " " + add3;
+                    addr = add1
+                            + " " + add2 + " " + add3
+                    ;
 
 
                     sign = signUri;

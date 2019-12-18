@@ -129,50 +129,7 @@ public class LoginEmployee extends AppCompatActivity {
         });
     }
 
-//    class GettingPHP extends AsyncTask<String, Integer, String> {
-//        @Override
-//        protected String doInBackground(String... params) {
-//            StringBuilder jsonHtml = new StringBuilder();
-//            try {
-//                URL phpUrl = new URL(params[0]);
-//                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
-//                if (conn != null) {
-//                    conn.setConnectTimeout(10000);
-//                    conn.setUseCaches(false);
-//                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-//
-//                        while (true) {
-//                            String line = br.readLine();
-//                            if (line == null) break;
-//                            jsonHtml.append(line + "\n");
-//                        }
-//                        br.close();
-//                    }
-//                    conn.disconnect();
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return jsonHtml.toString();
-//        }
-//
-//        protected void onPostExecute(String str) {
-//            try {
-//                JSONObject jsonObject = new JSONObject(str);
-//                JSONArray results = jsonObject.getJSONArray("webnautes");
-//
-//                for (int i = 0; i < results.length(); i++) {
-//                    JSONObject temp = results.getJSONObject(i);
-//                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address"),Integer.valueOf((String)temp.get("rate"))));
-//
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
+
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 

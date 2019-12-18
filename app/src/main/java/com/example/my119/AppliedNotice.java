@@ -17,19 +17,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.my119.Login.applyinfos;
+
 public class AppliedNotice extends AppCompatActivity  {
 
     Button btn_eva;
     Button btn_show_contract;
     String er_apply;
+    String applynum;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.requested_notice);
+        setContentView(R.layout.applied_notice);
 
         btn_eva = (Button)findViewById(R.id.btn_eva);
        btn_show_contract = (Button)findViewById(R.id.btn_show_contract);
+       linearLayout = (LinearLayout)findViewById(R.id.applyLayout);
 
         Intent intent = getIntent();
         final String[] notices = intent.getStringArrayExtra("noticeInfos");
@@ -75,10 +80,12 @@ public class AppliedNotice extends AppCompatActivity  {
         TextView s_store_star= (TextView)findViewById(R.id.s_store_star);
 
         er_apply=notices[10];
+        applynum = notices[11];
 
 
         //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
-        if(true){
+        if(applyinfos.get(applyinfos.size()-Integer.valueOf(applynum)-1).getFianl().equals("2")){
+            linearLayout.setVisibility(View.VISIBLE);
             btn_eva.setVisibility(View.VISIBLE);
             btn_show_contract.setVisibility(View.VISIBLE);
         }
