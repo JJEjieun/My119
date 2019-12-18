@@ -53,6 +53,8 @@ public class RegisterNotice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_notice);
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("공고등록");
 
         storename = (EditText)findViewById(R.id.r_storeName);
         pay = (EditText)findViewById(R.id.r_money);

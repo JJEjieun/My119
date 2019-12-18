@@ -32,6 +32,8 @@ public class Evaluation_employee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evaluation_employee);
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("근무지평가");
 
         Intent intent = getIntent();
         final String ee_apply =intent.getStringExtra("ee_apply");

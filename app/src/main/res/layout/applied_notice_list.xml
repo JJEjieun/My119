@@ -11,7 +11,6 @@
         android:id="@+id/notice_list"
         android:layout_width="345dp"
         android:layout_height="58dp"
-        android:background="@drawable/button_background2"
         android:textColor="@color/myRed"
         android:fontFamily="@font/yoongothic"
         android:text="신청한 공고 목록"

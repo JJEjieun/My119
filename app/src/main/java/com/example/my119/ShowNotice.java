@@ -35,6 +35,8 @@ public class ShowNotice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_notice);
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("공고등록");
 
         //아래 사항들 디비에서 가져오기
         Intent intent = getIntent(); //얘가 공고번호목록 arrayList(CheckNotice의 noticeNumList)를 읽어옴
