@@ -33,11 +33,39 @@
         android:paddingTop="3dp"
         android:layout_gravity="top">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="조건으로 공고 보기"
-            android:gravity="center"/>
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="조건으로 공고 보기"
+                android:fontFamily="@font/yoongothic"
+                android:textStyle="bold"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/find_category"
+                android:fontFamily="@font/yoongothic"
+                android:background="@color/myBack"
+                android:textColor="#ffffff"
+                android:text="검색"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_recent"
+                android:fontFamily="@font/yoongothic"
+                android:background="@color/myBack"
+                android:textColor="#ffffff"
+                android:text="최신순보기"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="업종별"
-                android:layout_marginRight="10dp"/>
+                android:fontFamily="@font/yoongothic"/>
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,17 +87,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="주소별  시/도"
-                android:layout_marginRight="10dp"/>
+                android:fontFamily="@font/yoongothic"/>
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/notice_show_address1"
-                android:layout_marginRight="10dp"/>
+                android:id="@+id/notice_show_address1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="시/군/구"
-                android:layout_marginRight="10dp"/>
+                android:fontFamily="@font/yoongothic"/>
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

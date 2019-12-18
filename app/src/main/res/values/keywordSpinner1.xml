@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="keySpin1">
+        <item></item>
         <item>패밀리레스토랑</item>
         <item>패스트푸드점</item>
         <item>치킨전문점</item>

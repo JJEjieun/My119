@@ -40,6 +40,7 @@ public class CheckNotice extends AppCompatActivity {
     public String[] notice = new String[10];
     String storeName, pay,  date,  endtime, key1, key2,  key3,  paymethod, interview;
     ArrayAdapter<CharSequence> adspin1, adspin2, adspin3;
+    String findString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +52,13 @@ public class CheckNotice extends AppCompatActivity {
         final Spinner spin_show_address1 = (Spinner)findViewById(R.id.notice_show_address1);
         final Spinner spin_show_address2 = (Spinner)findViewById(R.id.notice_show_address2);
 
-
         adspin1 = ArrayAdapter.createFromResource(this, R.array.keySpin1, android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_show_category.setAdapter(adspin1);
         spin_show_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
              @Override
              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                 Toast.makeText(CheckNotice.this, "", Toast.LENGTH_SHORT).show();
+                findString = spin_show_category.getSelectedItem().toString();
              }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -81,17 +81,37 @@ public class CheckNotice extends AppCompatActivity {
                     spin_show_address2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
+                            findString = spin_show_category.getSelectedItem().toString();
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) { }
                     });
                 }else{
-                    spin_show_address1.setAdapter(null);
+                    spin_show_address2.setAdapter(null);
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
+
+        Button btnFindNotice = (Button)findViewById(R.id.find_category);
+        btnFindNotice.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CheckNotice.this, findString, Toast.LENGTH_SHORT).show();
+                //버튼누르면 findString이랑 같은 업종/동주소에 따라 바뀌게
+            }
+        });
+
+        Button btnShowRecent = (Button)findViewById(R.id.show_recent);
+        btnShowRecent.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CheckNotice.this, findString, Toast.LENGTH_SHORT).show();
+                //버튼누르면 최신순으로
+            }
+        });
+
 
             //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
             Button btnNewNotice = (Button)findViewById(R.id.newNotice);
