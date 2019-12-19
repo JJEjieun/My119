@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 
 public class Login extends AppCompatActivity {
-    public final static String ip="10.0.2.2";
+    public final static String ip="10.50.96.112";
 
     public GetPHP p;
     String url = "http://"+ip+"/login_notice.php";

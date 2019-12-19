@@ -115,7 +115,7 @@ public class CheckNotice extends AppCompatActivity {
 
             //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
             Button btnNewNotice = (Button)findViewById(R.id.newNotice);
-        btnNewNotice.setVisibility(View.INVISIBLE);
+//        btnNewNotice.setVisibility(View.INVISIBLE);
 
         for(int i =0; i < Login.friendInfos.size();i++){
             if(Login.friendInfos.get(i).getPerson().equals(LoginEmployee.eID)){

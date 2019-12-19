@@ -79,7 +79,7 @@ public class AssignEmployee extends AppCompatActivity {
     static String add1, add2, add3;
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
-    private static String IP_ADDRESS = "10.0.2.2";
+    private static String IP_ADDRESS = "10.50.96.112";
     //private static String TAG = "phptest";
 
     private EditText mEditTextBirth;//생년월일

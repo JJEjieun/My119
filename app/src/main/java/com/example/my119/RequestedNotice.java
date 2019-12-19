@@ -204,7 +204,7 @@ public class RequestedNotice extends AppCompatActivity  {
                 btn_show_contract.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), "근무 확정", Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.0.2.2"+ "/final.php",eid,"2");
+                task.execute("http://" +"10.50.96.112"+ "/final.php",eid,"2");
 
             }
         });

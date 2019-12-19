@@ -64,7 +64,7 @@ public class Evaluation_employee extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),String.valueOf(point), Toast.LENGTH_SHORT).show();
                 InsertData task = new InsertData();
-                task.execute("http://" +"10.0.2.2"+ "/get_ee_rate.php",Login.employeeinfos.get(num).getID(),String.valueOf(point));
+                task.execute("http://" +"10.50.96.112"+ "/get_ee_rate.php",Login.employeeinfos.get(num).getID(),String.valueOf(point));
                 finish();
             }
         });

@@ -39,7 +39,7 @@ import static java.lang.Thread.sleep;
 
 public class AssignEmployer extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "10.0.2.2";
+    private static String IP_ADDRESS = "10.50.96.112";
     private static String TAG = "phptest";
 
     static String add1,add2,add3;
