@@ -321,7 +321,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/yoongothic"
-                                android:text="임금 지급 방법"
+                                android:text="임금지급 방법"
                                 android:textStyle="bold"
                                 android:paddingRight="10dp"
                                 android:gravity="center"/>

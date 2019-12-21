@@ -358,7 +358,8 @@ public class AssignEmployer extends AppCompatActivity {
                 s = "";
                 final String u = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?ldong_addr_mgpl_dg_cd=" + docode +
                         "&ldong_addr_mgpl_sggu_cd=" + gucode + "&wkpl_nm=" + mEditTextStore.getText() + "&bzowr_rgst_no=" + mEditTextNum.getText().toString().substring(0,6) +
-                        "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
+                        "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=" +
+                        "lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
 
                 new Thread() {
                     public void run() {
@@ -401,10 +402,10 @@ public class AssignEmployer extends AppCompatActivity {
                     sleep(5000);
                     if (s.equals("1")) {
                         passNum = true;
-                        Toast.makeText(AssignEmployer.this, "사업자등록번호가 확인되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssignEmployer.this, "사업장이 확인되었습니다.", Toast.LENGTH_SHORT).show();
                     } else {
                         passNum = false;
-                        Toast.makeText(AssignEmployer.this, "사업자등록번호가 확인되지않습니다.\n다시입력해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssignEmployer.this, "사업장이 확인되지않습니다.\n다시입력해주세요", Toast.LENGTH_SHORT).show();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

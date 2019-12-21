@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:gravity="center"
+        android:layout_marginTop="120dp"
         app:layout_constraintBottom_toTopOf="@id/linear1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -64,7 +65,8 @@
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linear2"
@@ -126,7 +128,8 @@
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button

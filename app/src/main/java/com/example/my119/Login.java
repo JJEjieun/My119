@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
         button_employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "개인회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), LoginEmployee.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterNotice.class);
                 startActivity(intent);
             }
         });

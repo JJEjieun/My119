@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <TextView
         android:id="@+id/tv1"
@@ -23,8 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv1"
         app:layout_constraintBottom_toTopOf="@id/textView3"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp">
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -39,15 +40,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="공고정보"
+                    android:fontFamily="@font/yoongothic"
+                    android:textColor="#FFC6C6"
                     android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:paddingBottom="5dp" />
+                    android:textStyle="bold" />
 
                 //가게 이름
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:layout_width="100dp"

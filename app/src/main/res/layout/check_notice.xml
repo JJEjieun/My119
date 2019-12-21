@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CheckNotice">
+    tools:context=".CheckNotice"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp">
 
     <TextView
         android:id="@+id/notice_list"
@@ -13,6 +15,7 @@
         android:layout_height="53dp"
         android:text="공고 목록"
         android:textAlignment="center"
+        android:textStyle="bold"
         android:textColor="@color/myRed"
         android:textSize="100px"
         app:layout_constraintBottom_toTopOf="@+id/L1"
@@ -37,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="wrap_content"

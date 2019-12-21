@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AppliedNoticeList">
+    tools:context=".AppliedNoticeList"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp">
 
     <TextView
         android:id="@+id/notice_list"
@@ -13,6 +15,7 @@
         android:layout_height="58dp"
         android:textColor="@color/myRed"
         android:fontFamily="@font/yoongothic"
+        android:background="@drawable/button_background2"
         android:text="신청한 공고 목록"
         android:textAlignment="center"
         android:textSize="100px"

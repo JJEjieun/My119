@@ -38,16 +38,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/yoongothic"
+                    android:textColor="#FFC6C6"
                     android:text="공고정보"
                     android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:paddingBottom="5dp" />
+                    android:textStyle="bold" />
 
                 //가게 이름
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -325,6 +326,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="이력서 확인"
                 android:layout_gravity="center_vertical"/>
 
@@ -335,6 +337,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="신청회원별점확인"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -354,6 +357,7 @@
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
                 android:fontFamily="@font/yoongothic"
+                android:textStyle="bold"
                 android:text="전화연결"
                 android:layout_gravity="center_vertical"/>
 
@@ -364,6 +368,7 @@
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
                 android:fontFamily="@font/yoongothic"
+                android:textStyle="bold"
                 android:text="화상전화연결"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -383,6 +388,7 @@
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
                 android:fontFamily="@font/yoongothic"
+                android:textStyle="bold"
                 android:text="근무 거절"
                 android:layout_gravity="center_vertical" />
 
@@ -393,6 +399,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="근무 확정"
                 android:layout_gravity="center_vertical"/>
 
@@ -403,6 +410,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="공고 삭제"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -426,6 +434,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="근무 상호평가"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="50dp"/>
@@ -437,6 +446,7 @@
                 android:fontFamily="@font/yoongothic"
                 android:background="#00ff0000"
                 android:textColor="@color/myRed"
+                android:textStyle="bold"
                 android:text="계약서 보기"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
