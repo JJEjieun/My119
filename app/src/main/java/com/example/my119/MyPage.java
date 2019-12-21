@@ -47,6 +47,7 @@ public class MyPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 상단바의 어플 이름을 지정해주는 부분을 변경
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setTitle("마이페이지");
         setContentView(R.layout.mypage);
@@ -91,16 +92,6 @@ public class MyPage extends AppCompatActivity {
             }
         });
 
-        // xml 변경 하기 위해서 바꿨으니 이 부분 한 사람 꼭 확인하기 필요없는 주석 아님!
-//        Button button_ev_r = (Button)findViewById(R.id.ev_r);
-//        button_ev_r.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "기업평가", Toast.LENGTH_SHORT).show();
-//                Intent intent4 = new Intent(getApplicationContext(), Evaluation_employer.class);
-//                startActivity(intent4);
-//                finish();
-//            }
-//        });
 
         // Adapter 생성
         final FriendAdapter adapter = new FriendAdapter() ;
@@ -129,6 +120,7 @@ public class MyPage extends AppCompatActivity {
         }
     }
 
+    // 메뉴 생성하기 위해 필요한 부분
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();

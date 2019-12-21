@@ -16,6 +16,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+// 전자서명을 기능을 구현한 클래스 "PaintView"
 public class PaintView extends View {
     public static int BBRUSH_SIZE = 10;
     public static final int DEFAULT_COLOR = Color.BLACK;
@@ -76,15 +77,12 @@ public class PaintView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.save();
         mCanvas.drawColor(backgroundColor);
-
         for (FingerPath fp : paths) {
             mPaint.setColor(fp.color);
             mPaint.setStrokeWidth(fp.strokeWidth);
 
             mCanvas.drawPath(fp.path, mPaint);
-
         }
-
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
     }

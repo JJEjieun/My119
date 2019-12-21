@@ -110,7 +110,7 @@ public class MyPageEmployer extends AppCompatActivity {
                 String employerID = LoginEmployer.rID;
                 String employeeID = id;
 
-
+                //기업과 개인이 친구를 맺음
                 InsertFriends task = new InsertFriends();
                 task.execute("http://"+ ip +"/friends_register.php",employerID,employeeID);
                 Toast.makeText(getApplicationContext(), "친구가 되었습니다.", Toast.LENGTH_SHORT).show();

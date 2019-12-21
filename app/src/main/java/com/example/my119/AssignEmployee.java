@@ -145,13 +145,6 @@ public class AssignEmployee extends AppCompatActivity {
 
         fbAuth = FirebaseAuth.getInstance();
 
-//        처리 필요.
-//        1) 모든항목입력해야 인증번호 받을 수 있게
-//        2) 아이디 중복확인
-//        3) 전화번호 형식에 맞게 입력했는지
-//        4) 생년월일 맞게 입력했는지
-//        5) 인증번호 맞아야 등록처리되게
-
 
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
@@ -453,7 +446,7 @@ public class AssignEmployee extends AppCompatActivity {
         }
 //    }
 
-
+//개인회원정보 데이터베이스에 저장
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 

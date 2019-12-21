@@ -26,6 +26,7 @@ public class MainEmployee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_employee);
 
+        // 광고를 표시 해주는 부분 (이미지뷰 부분에서 gif를 받아서 보여줄 수 있다)
         ImageView rabbit = (ImageView) findViewById(R.id.gif_image);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(rabbit);
         Glide.with(this).load(R.drawable.adve).into(gifImage);

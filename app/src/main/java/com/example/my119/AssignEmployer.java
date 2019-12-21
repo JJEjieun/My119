@@ -475,6 +475,7 @@ public class AssignEmployer extends AppCompatActivity {
         }
 //    }
 
+    //기업회원 정보 데이터베이스에 저장
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 

@@ -36,7 +36,6 @@
         <activity android:name=".Contract_employee"/>
         <activity android:name=".RequestedNotice"/>
         <activity android:name=".AppliedNotice"/>
-        <activity android:name=".MyInfo" />
         <activity android:name=".RequestedNoticeList"/>
         <activity android:name=".AppliedNoticeList"/>
         <activity android:name=".Contract_employer" />

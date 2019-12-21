@@ -48,6 +48,8 @@ public class LoginEmployer extends AppCompatActivity {
             Button button_employer = (Button)findViewById(R.id.button_employer);
             button_employer.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    //로그인한 기업의 정보를 데이터베이스에서 가져옴
+                    //아이디 중복확인
                     String eId = enterId.getText().toString();
                     for(int i=0; i<employerinfos.size();i++){
                         if(employerinfos.get(i).getID().equals(eId)){

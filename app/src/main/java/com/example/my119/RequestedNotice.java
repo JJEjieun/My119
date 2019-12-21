@@ -180,7 +180,11 @@ public class RequestedNotice extends AppCompatActivity  {
         //신청자 별점 확인
         btn_check_star.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "별점 확인", Toast.LENGTH_SHORT).show();
+                for(int i=0; i<employeeinfos.size();i++){
+                    if(employeeinfos.get(i).getID().equals(applyinfos.get(Integer.valueOf(ee_apply)).getEid()))
+
+                        Toast.makeText(getApplicationContext(), employeeinfos.get(i).getRate()+" 점", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

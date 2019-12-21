@@ -73,7 +73,7 @@ public class RegisterNotice extends AppCompatActivity {
         face = (RadioButton)findViewById(R.id.fCall);
 
         //공고 등록 버튼 누르면 공고 등록 됨
-        /**/    //데베 작업 필요
+
         Button btnNewNotice = (Button)findViewById(R.id.btn_register);
         btnNewNotice.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -127,6 +127,7 @@ public class RegisterNotice extends AppCompatActivity {
                 if (endtime.length() > 0) {
                     endtime.getText().clear();
                 }
+                //공고등록 버튼 클릭시 개인 회원들에게 푸시알림
                 p = new GettingPhp();
                 p.execute(url);
 
@@ -322,6 +323,7 @@ public class RegisterNotice extends AppCompatActivity {
 
     }
 
+    //공고관련 정보를 데이터베이스에 저장
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 

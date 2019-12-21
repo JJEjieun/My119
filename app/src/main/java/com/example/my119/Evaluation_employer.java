@@ -42,14 +42,13 @@ public class Evaluation_employer extends AppCompatActivity {
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-//                for(int i=0; i< Login.employerinfos.size(); i++){
-//                if(Login.applyinfos.get(Integer.valueOf(er_apply)).getNum().equals(Login.noticeinfos.get(i).getNum())){
+                //데이터베이스에서 기존 별점을 가져오고, 입력한 별점을 더하여 구한 최종 별점
+                //최근 평가의 결과의 비중을 좀 더 높에 넣어 최근 데이터를 강조
                     num=Integer.valueOf(Login.applyinfos.get(Integer.valueOf(er_apply)).getNum())-1;
                     employer_name =Login.employerinfos.get(num).getName();
                     double rate = Double.valueOf(Login.employerinfos.get(num).getRate());
                     point = ( rate+ rating) / 2;
-//                }
-//            }
+
             }
 
 
