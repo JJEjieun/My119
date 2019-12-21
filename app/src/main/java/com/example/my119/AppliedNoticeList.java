@@ -75,7 +75,7 @@ public class AppliedNoticeList extends AppCompatActivity {
 
 
     private void setData(NoticeListViewAdapter adapter) {
-        //리스트뷰에 데이터 추가
+        //리스트뷰에 선택한 데이터 추가
         int num = 1;
         for(int i =0; i<applyinfos.size(); i++){
             if(applyinfos.get(i).getEid().equals(LoginEmployee.eID)){

@@ -208,7 +208,7 @@ public class CheckNotice extends AppCompatActivity {
     }
 
     private void setData2(NoticeListViewAdapter adapter) {
-
+        //검색 조건에 맞게 리스트뷰로 가져옴
         for(int i = noticeinfos.size()-1; i >= 0;i--){
             if (noticeinfos.get(i).getKey1().trim().equals(findString)) {
                 Toast.makeText(getApplicationContext(),noticeinfos.get(i).getKey1()+"1",Toast.LENGTH_SHORT);

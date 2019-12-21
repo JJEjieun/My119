@@ -92,6 +92,7 @@ public class MyPage extends AppCompatActivity {
             }
         });
 
+
         // Adapter 생성
         final FriendAdapter adapter = new FriendAdapter() ;
 

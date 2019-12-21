@@ -66,15 +66,11 @@ public class LoginEmployee extends AppCompatActivity {
                 });
 
 
-        // true부분을 (ID PW 검사해서 맞으면)으로 바꿔야함.
         // '로그인'버튼 누르면 개인회원 메인페이지로 넘어감.
 
         context = this;
         enterId = (EditText) findViewById(R.id.id);
         enterPw = (EditText) findViewById(R.id.pw);
-
-//        gphp = new GettingPHP();
-//        gphp.execute(url);
 
 
         Button button_employee = (Button) findViewById(R.id.button_employee);
@@ -86,7 +82,8 @@ public class LoginEmployee extends AppCompatActivity {
                 PreferenceUtil.setString(context, "id", eID);
 
                 boolean b = false;
-
+                //로그인한 회원의 정보를 데이터베이스에서 가져옴
+                //아이디 중복확인
                 for (int i = 0; i < employeeinfos.size(); i++) {
                     if (employeeinfos.get(i).getID().equals(sid)) {
                         eID = employeeinfos.get(i).getID();
@@ -105,9 +102,6 @@ public class LoginEmployee extends AppCompatActivity {
 
                     InsertData task = new InsertData();
                     task.execute(url2, eID, newToken);
-//                        else if(!employeeinfos.get(i).getID().equals(sid)) {
-//                            Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
-//                        }
                 }
                 if (!sid.equals(eID))
                     Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();

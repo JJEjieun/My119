@@ -45,6 +45,8 @@ public class Evaluation_employee extends AppCompatActivity {
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                //데이터베이스에서 기존 별점을 가져오고, 입력한 별점을 더하여 구한 최종 별점
+                //최근 평가의 결과의 비중을 좀 더 높에 넣어 최근 데이터를 강조
                 for(int i=0; i< Login.employeeinfos.size(); i++){
                     if(Login.applyinfos.get(Integer.valueOf(ee_apply)).getEid().equals(Login.employeeinfos.get(i).getID())){
                         num=i;
