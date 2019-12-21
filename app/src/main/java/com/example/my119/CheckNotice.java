@@ -35,6 +35,7 @@ public class CheckNotice extends AppCompatActivity {
 //    public GetPHP p;
 //    String url ="http://10.0.2.2/login_notice.php";
     static  int numApply;
+    ListView listview,listview2;
     int num;
     ArrayList<String> notices = new ArrayList<>();
     public String[] notice = new String[10];
@@ -46,6 +47,9 @@ public class CheckNotice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_notice);
+
+         listview = (ListView) findViewById(R.id.listView1);
+         listview2=(ListView)findViewById(R.id.listView2);
 
         //분류별 공개
         final Spinner spin_show_category = (Spinner)findViewById(R.id.notice_show_category);
@@ -65,6 +69,17 @@ public class CheckNotice extends AppCompatActivity {
 
             }
         });
+
+        // Adapter 생성
+        final NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
+        final Noticeinfo noticeAdapter = new Noticeinfo(storeName, pay, date, endtime, key1,key2,key3, paymethod,interview,String.valueOf(num));
+
+        // 리스트뷰 참조 및 Adapter달기
+
+
+        // 리스트뷰 값 받아오기
+        setData(adapter);
+        listview.setAdapter(adapter);
 
         adspin2 = ArrayAdapter.createFromResource(this, R.array.spinner1,
                 android.R.layout.simple_spinner_dropdown_item);
@@ -94,12 +109,19 @@ public class CheckNotice extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
+        final NoticeListViewAdapter adapter2 = new NoticeListViewAdapter();
         Button btnFindNotice = (Button)findViewById(R.id.find_category);
         btnFindNotice.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Toast.makeText(CheckNotice.this, findString, Toast.LENGTH_SHORT).show();
                 //버튼누르면 findString이랑 같은 업종/동주소에 따라 바뀌게
+                if(listview.getVisibility()==View.VISIBLE) {
+                    listview.setVisibility(View.GONE);
+                    listview2.setVisibility(View.VISIBLE);
+                    setData2(adapter2);
+                    listview2.setAdapter(adapter2);
+                }
             }
         });
 
@@ -109,6 +131,12 @@ public class CheckNotice extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(CheckNotice.this, findString, Toast.LENGTH_SHORT).show();
                 //버튼누르면 최신순으로
+                if(listview2.getVisibility()==View.VISIBLE) {
+                    listview2.setVisibility(View.GONE);
+                    listview.setVisibility(View.VISIBLE);
+                    setData(adapter);
+                    listview.setAdapter(adapter);
+                }
             }
         });
 
@@ -134,16 +162,7 @@ public class CheckNotice extends AppCompatActivity {
 //        p = new GetPHP();
 //        p.execute(url);
 
-        // Adapter 생성
-        final NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
-        final Noticeinfo noticeAdapter = new Noticeinfo(storeName, pay, date, endtime, key1,key2,key3, paymethod,interview,String.valueOf(num));
 
-        // 리스트뷰 참조 및 Adapter달기
-        ListView listview = (ListView) findViewById(R.id.listView1);
-
-        // 리스트뷰 값 받아오기
-        setData(adapter);
-        listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -185,6 +204,23 @@ public class CheckNotice extends AppCompatActivity {
             adapter.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
                     noticeinfos.get(i).getNum(), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
             count++;
+        }
+    }
+
+    private void setData2(NoticeListViewAdapter adapter) {
+
+        for(int i = noticeinfos.size()-1; i >= 0;i--){
+            if (noticeinfos.get(i).getKey1().trim().equals(findString)) {
+                Toast.makeText(getApplicationContext(),noticeinfos.get(i).getKey1()+"1",Toast.LENGTH_SHORT);
+                int count = 0;
+                num = i+1;
+                noticeinfos.get(i).setNum(String.valueOf(num));
+                numApply=Integer.valueOf(noticeinfos.get(i).getNum());
+                adapter.addNotice(noticeinfos.get(i).getDate(), noticeinfos.get(i).getKey3(), noticeinfos.get(i).getStoreName(),
+                        noticeinfos.get(i).getNum(), noticeinfos.get(i).getEndtime(), noticeinfos.get(i).getPay());
+                count++;
+            }
+
         }
     }
 

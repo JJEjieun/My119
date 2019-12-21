@@ -25,7 +25,7 @@ import static com.example.my119.Login.noticeinfos;
 public class ShowNotice extends AppCompatActivity {
 
     private static final String TAG = "apply";
-    private static String IP_ADDRESS = "10.50.96.112";
+    private static String IP_ADDRESS = "10.0.2.2";
     public String eid;
     public String num;
     public String storeName;

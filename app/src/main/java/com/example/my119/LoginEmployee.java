@@ -34,7 +34,7 @@ import static com.example.my119.Login.employeeinfos;
 
 public class LoginEmployee extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "10.50.96.112";
+    private static String IP_ADDRESS = "10.0.2.2";
 
     String url = "http://"+ IP_ADDRESS +"/login_employee.php";
     String url2 = "http://" + IP_ADDRESS+ "/token_register.php";

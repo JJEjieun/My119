@@ -22,7 +22,7 @@ import static com.example.my119.LoginEmployer.r_rate;
 
 public class Evaluation_employer extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "10.50.96.112";
+    private static String IP_ADDRESS = "10.0.2.2";
     private static final String TAG = "rate";
     int num;
     String employer_name;

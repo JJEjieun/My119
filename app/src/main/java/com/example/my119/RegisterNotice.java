@@ -32,7 +32,7 @@ public class RegisterNotice extends AppCompatActivity {
     private static final String TAG = "notice";
 
     public GettingPhp p;
-    String url = "http://10.50.96.112/fcmpush.php";
+    String url = "http://10.0.2.2/fcmpush.php";
 
 
     ArrayAdapter<CharSequence> adspin1, adspin0, adspin2, adspin3, adspin3of1, adspin3of2;
@@ -450,9 +450,6 @@ public class RegisterNotice extends AppCompatActivity {
                 JSONArray results = jsonObject.getJSONArray("webnautes");
 
                 for (int i = 0; i < results.length(); i++) {
-                    JSONObject temp = results.getJSONObject(i);
-//                    employeeinfos.add(i, new Employeeinfo((String) temp.get("id"), (String) temp.get("pw"), (String) temp.get("name"), (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"), (String) temp.get("address")));
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

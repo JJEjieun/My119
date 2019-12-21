@@ -140,10 +140,10 @@ public class Contract_employer extends AppCompatActivity {
         eaddress.setText(eeAddress);
         ephoneNum.setText(eephoneNum);
 
-
-        String pathE = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/screenshotE.png";
+        int i=0, k=0;
+        String pathE = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/" + i++ + "screenshotE.png";
         employee_sign.setImageURI(Uri.parse(pathE));
-        String pathR = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/screenshotR.png";
+        String pathR = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/"+ k++ +"screenshotR.png";
         employer_sign.setImageURI(Uri.parse(pathR));
     }
 
