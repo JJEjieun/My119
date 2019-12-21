@@ -71,11 +71,11 @@ public class RequestedNotice extends AppCompatActivity  {
         Intent intent = getIntent();
         final String[] notices = intent.getStringArrayExtra("noticeInfos");
 
+        //등록한 공고에 보여줄 정보들이다
         String str = notices[6];
         String[] array = str.split(" ");
         String k3_1= array[0];
         String k3_2 = array[1];
-
 
         TextView s_storeName = (TextView)findViewById(R.id.s_storeName);
         //여기서 intent.getExtras()를 이용하여 db에서 값 받아오기
@@ -119,9 +119,6 @@ public class RequestedNotice extends AppCompatActivity  {
         call = findViewById(R.id.btn_call);
         facecall = findViewById(R.id.btn_face_call);
 
-//        Intent callIntent = new Intent()
-
-
         for (int i = 0; i < employerinfos.size(); i++) {
             if (employerinfos.get(i).getID().equals(LoginEmployer.rID)) {
                 ccompanyName = employerinfos.get(i).getCompayName();
@@ -146,13 +143,14 @@ public class RequestedNotice extends AppCompatActivity  {
             }
         }
 
+        //알바를 신청한 알바생의 이력서에서 핸드폰번호를 가져와 전화연결한다
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onCall();
             }
         });
-
+        //알바를 신청한 알바생의 이력서에서 핸드폰번호를 가져와 영상통화를 연결한다
         facecall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,7 +159,6 @@ public class RequestedNotice extends AppCompatActivity  {
         });
 
         //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
-
         final String wD = s_workDate.getText().toString();
 
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -229,12 +226,9 @@ public class RequestedNotice extends AppCompatActivity  {
                 finish();
             }
         });
-
-
-
-
     }
 
+    //신청자와의 전화연결
     public void onCall() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
 
@@ -248,6 +242,7 @@ public class RequestedNotice extends AppCompatActivity  {
         }
     }
 
+    //신청자와의 영상통화연결
     public void onVideoCall() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
 
@@ -259,9 +254,9 @@ public class RequestedNotice extends AppCompatActivity  {
         } else {
             startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:"+tel)).putExtra("videocall", true));
             }
-
     }
 
+    //권한 허용을 하지 않았을 때 뜨는 화면이다
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -278,6 +273,8 @@ public class RequestedNotice extends AppCompatActivity  {
                 break;
         }
     }
+
+    //근무에 대한 정보를 수정해준다 아직 근무확정을 하지 않았다면 1, 근무확정을 하면 2, 근무하길 원치 않아 근무를 거절하면 3으로 변경된다
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
@@ -302,8 +299,6 @@ public class RequestedNotice extends AppCompatActivity  {
 
             String id = (String)params[1];
             String final_c= (String) params[2];
-
-
             String serverURL = (String) params[0];
             String postParameters = "eid="+id+"&fianl=" + final_c ;
 
@@ -312,18 +307,15 @@ public class RequestedNotice extends AppCompatActivity  {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code2 - " + responseStatusCode);
@@ -336,10 +328,8 @@ public class RequestedNotice extends AppCompatActivity  {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
@@ -347,17 +337,10 @@ public class RequestedNotice extends AppCompatActivity  {
                     sb.append(line);
                 }
 
-
                 bufferedReader.close();
-
-
                 return sb.toString();
-
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
         }
@@ -387,28 +370,22 @@ public class RequestedNotice extends AppCompatActivity  {
 
             String storeName = (String)params[1];
             String date = (String) params[2];
-
-
             String serverURL = (String) params[0];
             String postParameters = "storeName="+ storeName +"&date=" + date ;
 
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code2 - " + responseStatusCode);
@@ -421,31 +398,19 @@ public class RequestedNotice extends AppCompatActivity  {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
                 StringBuilder sb = new StringBuilder();
                 String line = null;
-
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-
-
                 bufferedReader.close();
-
-
                 return sb.toString();
-
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
         }
     }
-
 }

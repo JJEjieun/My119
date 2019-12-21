@@ -71,13 +71,11 @@ public class Resume extends AppCompatActivity {
         final TextView phone = (TextView)findViewById(R.id.phoneNum);
         final TextView add = (TextView)findViewById(R.id.address);
 
-//        name.setText("..");
         name.setText(LoginEmployee.eName);
         ggender.setText(LoginEmployee.eGender);
         bbirth.setText(LoginEmployee.eBirth);
         phone.setText(LoginEmployee.ePhoneNum);
         add.setText(LoginEmployee.eAddress);
-
 
         context = this;
         sid = PreferenceUtil.getPreferences(context, "id");
@@ -99,24 +97,15 @@ public class Resume extends AppCompatActivity {
         food14 = findViewById(R.id.service7);
         food15 = findViewById(R.id.service8);
         food16 = findViewById(R.id.service9);
-//        ss_time = s_time.getSelectedItem().toString();
-//        ee_time = e_time.getSelectedItem().toString();
-//        place1 = spin1.getSelectedItem().toString();
-//        place2 = spin2.getSelectedItem().toString();
-//        place3 = spin3.getSelectedItem().toString();
-//        place4 = spin4.getSelectedItem().toString();
-//        place5 = spin5.getSelectedItem().toString();
-//        place6 = spin6.getSelectedItem().toString();
-//        jjob = findViewById(R.id.)
         wwords = findViewById(R.id.words);
 
         //내 핸드폰에서 이미지 가져오기
         imageview = (ImageView)findViewById(R.id.myFace);
 
+        //권한 허용을 하지 않았으면 사용자에게 직접 권한허용을 받는다
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
             } else {
@@ -126,6 +115,7 @@ public class Resume extends AppCompatActivity {
             }
         }
 
+        //이력서에 저장할 사진을 갤러리에서 가져온다
         imageview.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -211,8 +201,7 @@ public class Resume extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
-
-
+        //작성한 이력서를 데이터베이스에 저장한다
         Button btnResume = findViewById(R.id.btn_r_resume);
         btnResume.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -229,15 +218,13 @@ public class Resume extends AppCompatActivity {
                 String job = "";
                 String words = wwords.getText().toString();
 
-//                yourname = name.toString();
                 ss_time = s_time.getSelectedItem().toString();
                 ee_time = e_time.getSelectedItem().toString();
                 place1 = spin1.getSelectedItem().toString();
                 place2 = spin2.getSelectedItem().toString();
-//                place3 = spin3.getSelectedItem().toString();
                 place4 = spin4.getSelectedItem().toString();
                 place5 = spin5.getSelectedItem().toString();
-//                place6 = spin6.getSelectedItem().toString();
+
                 if (food1.isChecked()) {
                     job = "패밀리레스토랑 ";
                 }
@@ -289,11 +276,8 @@ public class Resume extends AppCompatActivity {
 
 
                 time = ss_time + ee_time;
-//                address1 = place1 + " " + place2 + " " + place3;
-//                address2 = place4 + " " + place5 + " " + place6;
                 address1 = place1 + " " + place2;
                 address2 = place4 + " " + place5;
-//                job = ;
 
                 InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/resume.php",
@@ -332,35 +316,7 @@ public class Resume extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
-//    //내 핸드폰에서 이미지 가져오기
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            Uri selectedImageUri = data.getData();
-//            imageview.setImageURI(selectedImageUri);
-//            myFaceUrl = selectedImageUri.toString();
-//        }
-//    }
-
-    //내 핸드폰에서 이미지 가져오기
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            Uri selectedImageUri = data.getData();
-//
-//
-//            bitmap = BitmapFactory.decodeFile(String.valueOf(selectedImageUri));
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            byte[] dataa = baos.toByteArray();
-//
-//            imageview.setImageURI(selectedImageUri);
-//            myFaceUrl = selectedImageUri.toString();
-//        }
+    //갤러리에서 이미지를 가져온다
     @Override
     public void onActivityResult(int requsetCode, int resultCode, Intent data) {
         super.onActivityResult(requsetCode, resultCode, data);
@@ -386,7 +342,7 @@ public class Resume extends AppCompatActivity {
 
     }
 
-
+    //작성한 이력서를 데이터베이스의 resume 테이블에 저장한다
     class InsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
@@ -434,18 +390,15 @@ public class Resume extends AppCompatActivity {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code2 - " + responseStatusCode);
@@ -458,31 +411,21 @@ public class Resume extends AppCompatActivity {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-
-
                 bufferedReader.close();
-
-
                 return sb.toString();
 
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
         }
-
     }
 }
