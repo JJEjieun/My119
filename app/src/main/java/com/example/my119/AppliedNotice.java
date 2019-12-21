@@ -83,7 +83,7 @@ public class AppliedNotice extends AppCompatActivity  {
         applynum = notices[11];
 
 
-        //true >> 만약 해당 공고의 상태가 '근무확정'일 경우에 로 바꾸기
+        //만약 근무확정 상태라면 상호평가랑 계약서 버튼 보이게 만들기 / 근무 확정이 아니면 버튼 안보임.
         if(applyinfos.get(applyinfos.size()-Integer.valueOf(applynum)-1).getFianl().equals("2")){
             linearLayout.setVisibility(View.VISIBLE);
             btn_eva.setVisibility(View.VISIBLE);

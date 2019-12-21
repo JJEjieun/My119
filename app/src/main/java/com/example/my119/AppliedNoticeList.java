@@ -46,6 +46,7 @@ public class AppliedNoticeList extends AppCompatActivity {
         listview.setAdapter(adapter);
 
 
+        //리스트뷰 클릭 시 공고 더 자세히 알아보기 창으로 해당 공고 정보를 넘겨줌
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,8 +75,8 @@ public class AppliedNoticeList extends AppCompatActivity {
     }
 
 
+    //리스트뷰에 데이터 추가
     private void setData(NoticeListViewAdapter adapter) {
-        //리스트뷰에 선택한 데이터 추가
         int num = 1;
         for(int i =0; i<applyinfos.size(); i++){
             if(applyinfos.get(i).getEid().equals(LoginEmployee.eID)){

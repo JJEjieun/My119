@@ -198,6 +198,7 @@ public class RequestedNotice extends AppCompatActivity  {
         });
 
         //신청자 근무확정
+        //만약 근무확정 상태라면 상호평가랑 계약서 버튼 보이게 만들기 / 근무 확정이 아니면 버튼 안보임.
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 linearLayout.setVisibility(View.VISIBLE);

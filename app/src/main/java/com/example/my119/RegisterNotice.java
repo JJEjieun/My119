@@ -73,7 +73,6 @@ public class RegisterNotice extends AppCompatActivity {
         face = (RadioButton)findViewById(R.id.fCall);
 
         //공고 등록 버튼 누르면 공고 등록 됨
-
         Button btnNewNotice = (Button)findViewById(R.id.btn_register);
         btnNewNotice.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -135,9 +134,6 @@ public class RegisterNotice extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
 
         //스피너처리
         final Spinner spin1 = (Spinner)findViewById(R.id.enterKey1);
@@ -309,7 +305,7 @@ public class RegisterNotice extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
-
+        //시간 입력하는 스피너
         adspin3of1 = ArrayAdapter.createFromResource(this, R.array.keySpin3,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin3of1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -319,7 +315,6 @@ public class RegisterNotice extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item);
         adspin3of2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3of2.setAdapter(adspin3of2);
-
 
     }
 

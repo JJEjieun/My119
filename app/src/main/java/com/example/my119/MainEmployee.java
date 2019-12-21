@@ -47,9 +47,7 @@ public class MainEmployee extends AppCompatActivity {
         ListView listview2 = (ListView) findViewById(R.id.listView2);
         setData(adapter2);
         listview2.setAdapter(adapter2);
-        // 아이템 추가 아래는 예시
-//    adapter2.addNotice("191212","13~15시","할리스커피",
-//                "3", "191210","28500");
+
         // '공고 더 확인하기' 버튼 누르면 공고 확인 창으로 넘어감
         Button btnMoreNotice = (Button)findViewById(R.id.button2);
         btnMoreNotice.setOnClickListener(new View.OnClickListener() {

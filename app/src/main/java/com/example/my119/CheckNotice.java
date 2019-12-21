@@ -51,11 +51,12 @@ public class CheckNotice extends AppCompatActivity {
          listview = (ListView) findViewById(R.id.listView1);
          listview2=(ListView)findViewById(R.id.listView2);
 
-        //분류별 공개
+        //공고 분류별 확인. category -> 업종별 공고 확인, address -> 지역별 공고 확인
         final Spinner spin_show_category = (Spinner)findViewById(R.id.notice_show_category);
         final Spinner spin_show_address1 = (Spinner)findViewById(R.id.notice_show_address1);
         final Spinner spin_show_address2 = (Spinner)findViewById(R.id.notice_show_address2);
 
+        // 업종별 공고 보기 할 때 선택한 값 받아오기
         adspin1 = ArrayAdapter.createFromResource(this, R.array.keySpin1, android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_show_category.setAdapter(adspin1);
@@ -75,12 +76,11 @@ public class CheckNotice extends AppCompatActivity {
         final Noticeinfo noticeAdapter = new Noticeinfo(storeName, pay, date, endtime, key1,key2,key3, paymethod,interview,String.valueOf(num));
 
         // 리스트뷰 참조 및 Adapter달기
-
-
         // 리스트뷰 값 받아오기
         setData(adapter);
         listview.setAdapter(adapter);
 
+        // 지역별 공고 보기 할 때 선택한 값 받아오기
         adspin2 = ArrayAdapter.createFromResource(this, R.array.spinner1,
                 android.R.layout.simple_spinner_dropdown_item);
         adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -141,9 +141,8 @@ public class CheckNotice extends AppCompatActivity {
         });
 
 
-            //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
-            Button btnNewNotice = (Button)findViewById(R.id.newNotice);
-//        btnNewNotice.setVisibility(View.INVISIBLE);
+        //새 공고 등록 버튼 누르면 공고 등록 창으로 넘어감. 공고 등록하고 메인으로 돌아감
+        Button btnNewNotice = (Button)findViewById(R.id.newNotice);
 
         for(int i =0; i < Login.friendInfos.size();i++){
             if(Login.friendInfos.get(i).getPerson().equals(LoginEmployee.eID)){
@@ -159,10 +158,6 @@ public class CheckNotice extends AppCompatActivity {
                     finish();
                 }
             });
-//        p = new GetPHP();
-//        p.execute(url);
-
-
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -180,14 +175,9 @@ public class CheckNotice extends AppCompatActivity {
                 notice[8] = noticeinfos.get(noticeinfos.size()-position-1).getInterview();
                 notice[9]= String.valueOf(noticeinfos.size()-position-1);
 
-
-//                String noticeNum = ((Notice)adapter.getItem(position)).getNoticeNum();
-//                Bundle list_bundle = new Bundle();
-//                list_bundle.putStringArrayList("noticeInfo",notices);
                 Intent intent = new Intent(CheckNotice.this, ShowNotice.class);
 
                 intent.putExtra("noticeInfo",notice);
-//                intent.putExtra("noticeNum", noticeNum);
                 startActivity(intent);
             }
         });

@@ -95,7 +95,7 @@ public class AssignEmployer extends AppCompatActivity {
             }
         });
 
-//스피너에 주소 입력.
+//스피너에 주소 입력. 사업장이 폐업상태인지 조회에 필요한 구코드도 할당
         final Spinner spin1 = (Spinner)findViewById(R.id.enterAddress1);
         final Spinner spin2 = (Spinner)findViewById(R.id.enterAddress2);
         final Spinner spin3 = (Spinner)findViewById(R.id.enterAddress3);
@@ -280,8 +280,6 @@ public class AssignEmployer extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
-
-        // '등록' 버튼 누르면 로그인창으로 돌아감
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
         mEditTextNum = (EditText) findViewById(R.id.enterEmployerNumber);
@@ -343,24 +341,19 @@ public class AssignEmployer extends AppCompatActivity {
             }
         });
 
-        boolean allWrite = false;
-        if(!(mEditTextID.getText().equals(null)) && !(mEditTextPW.getText().equals(null)) && !(mEditTextNum.getText().equals(null)) &&
-                !(mEditTextName.getText().equals(null)) && !(mEditTextStore.getText().equals(null)) && !(mEditTextAddress.getText().equals(null)) &&
-                !(mEditTextPhone.getText().equals(null)) && !(mEditTextEmail.getText().equals(null)) &&
-                (address1.isSelected()) && (address2.isSelected()) && (address3.isSelected()) && passID && passNum) {
-            allWrite = true;
-        }
-
+        //사업장 상태확인에 필요한 사업자등록번호 확인 api 연동
         findViewById(R.id.checkNumber).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 s = "";
+                // api 가져오는 url 주소
                 final String u = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?ldong_addr_mgpl_dg_cd=" + docode +
                         "&ldong_addr_mgpl_sggu_cd=" + gucode + "&wkpl_nm=" + mEditTextStore.getText() + "&bzowr_rgst_no=" + mEditTextNum.getText().toString().substring(0,6) +
                         "&pageNo=10&startPage=10&numOfRows=1&pageSize=1&serviceKey=" +
                         "lNgp1L%2FKCOrGBcrfflEu%2BIULQIaFSTlzqdtBzdfBl65sJUg55bM%2B4%2BHUlNU78DBQYWCC9emL90JJwM2vD9WnIA%3D%3D";
 
+                //url에서 xml정보 읽어오는 스레드
                 new Thread() {
                     public void run() {
                         try {
@@ -378,6 +371,7 @@ public class AssignEmployer extends AppCompatActivity {
                                         if (tag.equals("wkplJnngStcd")) {
                                         }
                                         break;
+                                        //정보 조회 시 사업장 가입여부 값(1 혹은 2) 받아오기
                                     case XmlPullParser.TEXT:
                                         if (tag.equals("wkplJnngStcd")) {
                                             if (parser.getText().equals("1"))
@@ -400,6 +394,7 @@ public class AssignEmployer extends AppCompatActivity {
 
                 try {
                     sleep(5000);
+                    //사업장이 가입된 상태라면(번호가 1이면 사업장 확인됨 표시 만들어줌)
                     if (s.equals("1")) {
                         passNum = true;
                         Toast.makeText(AssignEmployer.this, "사업장이 확인되었습니다.", Toast.LENGTH_SHORT).show();

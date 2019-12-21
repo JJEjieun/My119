@@ -77,10 +77,8 @@ public class AssignEmployee extends AppCompatActivity {
     boolean passID;
 
     static String add1, add2, add3;
-//    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private static String IP_ADDRESS = "10.0.2.2";
-    //private static String TAG = "phptest";
 
     private EditText mEditTextBirth;//생년월일
     private EditText mEditTextID;//아이디
@@ -145,7 +143,6 @@ public class AssignEmployee extends AppCompatActivity {
 
         fbAuth = FirebaseAuth.getInstance();
 
-
         mEditTextID = (EditText) findViewById(R.id.enterID);
         mEditTextPW = (EditText) findViewById(R.id.enterPW);
         mEditTextName = (EditText) findViewById(R.id.enterName);
@@ -161,13 +158,13 @@ public class AssignEmployee extends AppCompatActivity {
         check = (Button) findViewById(R.id.checkID);
 
         enterPhoneNumber = findViewById(R.id.enterPhoneNumber);
-//        phoneNumber = enterPhoneNumber.getText().toString();
         enterAutNumber = findViewById(R.id.enterAutNumber);
         checkPhoneNumber = findViewById(R.id.checkPhoneNumber);
         checkAutNumber = findViewById(R.id.checkAutNumber);
 
         final TextView textAut = (TextView) findViewById(R.id.textAut);
 
+        //인증번호 받기 누르면 인증번호 입력하고 확인하는 버튼 생김
         checkPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,9 +196,6 @@ public class AssignEmployee extends AppCompatActivity {
 
             }
         });
-
-//스피너에 주소 입력 아래에
-
 
 //스피너에 주소 할당
         final Spinner spin1 = (Spinner) findViewById(R.id.enterAddress1);
