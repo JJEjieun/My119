@@ -147,6 +147,7 @@ public class Contract_employer extends AppCompatActivity {
         employer_sign.setImageURI(Uri.parse(pathR));
     }
 
+    // 화면 상의 근로계약서를 PDF로 저장
     public void layoutToPdf(View view) {
         Bitmap bm = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bm);
