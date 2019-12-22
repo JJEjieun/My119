@@ -174,6 +174,8 @@ public class RequestedNotice extends AppCompatActivity  {
         btn_check_resume.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "이력서 확인", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getApplicationContext(), ShowResume.class);
+                startActivity(intent2);
             }
         });
 
