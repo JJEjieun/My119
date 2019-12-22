@@ -40,6 +40,7 @@
         <activity android:name=".AppliedNoticeList"/>
         <activity android:name=".Contract_employer" />
         <activity android:name=".Contract_main"/>
+        <activity android:name=".ShowResume"/>
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
