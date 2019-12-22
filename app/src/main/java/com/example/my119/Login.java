@@ -30,27 +30,31 @@ import java.util.ArrayList;
 
 
 public class Login extends AppCompatActivity {
-    public final static String ip="10.0.2.2";
+    public final static String ip = "10.0.2.2";
 
     public GetPHP p;
-    String url = "http://"+ip+"/login_notice.php";
+    String url = "http://" + ip + "/login_notice.php";
     public static ArrayList<Noticeinfo> noticeinfos = new ArrayList<>();
 
-    String url1 ="http://"+ ip +"/login_employer.php";
+    String url1 = "http://" + ip + "/login_employer.php";
     public static ArrayList<Employerinfo> employerinfos = new ArrayList<>();
     public GettingPHP1 gphp;
 
-    String url2 = "http://"+ ip +"/login_employee.php";
+    String url2 = "http://" + ip + "/login_employee.php";
     public static ArrayList<Employeeinfo> employeeinfos = new ArrayList<>();
     public GettingPHP2 g;
 
     public Getnotice n;
-    String url3 = "http://"+ip+"/get_apply.php";
+    String url3 = "http://" + ip + "/get_apply.php";
     static ArrayList<Applyinfo> applyinfos = new ArrayList<>();
 
     public GetFriends f;
-    String url4 = "http://"+ip+"/get_friends.php";
+    String url4 = "http://" + ip + "/get_friends.php";
     static ArrayList<FriendInfo> friendInfos = new ArrayList<>();
+
+    public GetResume r;
+    String url5 = "http://" + ip + "/get_resume.php";
+    static ArrayList<Resumeinfo> resumeinfos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,9 @@ public class Login extends AppCompatActivity {
         f = new GetFriends();
         f.execute(url4);
 
+        r = new GetResume();
+        r.execute(url5);
+
         //'개인회원 로그인'버튼 클릭 시 개인회원 로그인 창으로 넘어감
         Button button_employee = (Button) findViewById(R.id.button_employee);
         button_employee.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +94,7 @@ public class Login extends AppCompatActivity {
         button_employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "기업회원 로그인", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(getApplicationContext(), MainEmployer.class);
+                Intent intent2 = new Intent(getApplicationContext(), LoginEmployer.class);
                 startActivity(intent2);
             }
         });
@@ -138,7 +145,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-     class GetPHP extends AsyncTask<String, Integer, String> {
+    class GetPHP extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
             StringBuilder jsonHtml = new StringBuilder();
@@ -186,29 +193,29 @@ public class Login extends AppCompatActivity {
 
     }
 
-    class GettingPHP1 extends AsyncTask<String, Integer,String> {
+    class GettingPHP1 extends AsyncTask<String, Integer, String> {
         @Override
-        protected String doInBackground(String...params){
+        protected String doInBackground(String... params) {
             StringBuilder jsonHtml = new StringBuilder();
-            try{
+            try {
                 URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
-                if(conn != null){
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+                if (conn != null) {
                     conn.setConnectTimeout(10000);
                     conn.setUseCaches(false);
-                    if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
-                        while(true){
+                        while (true) {
                             String line = br.readLine();
-                            if(line==null) break;
-                            jsonHtml.append(line+"\n");
+                            if (line == null) break;
+                            jsonHtml.append(line + "\n");
                         }
                         br.close();
                     }
                     conn.disconnect();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return jsonHtml.toString();
@@ -223,17 +230,17 @@ public class Login extends AppCompatActivity {
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
                     employerinfos.add(i, new Employerinfo((String) temp.get("id"),
-                            (String) temp.get("pw"),(String) temp.get("employerNumber"),
-                            (String) temp.get("companyName"),(String) temp.get("name"),
-                            (String) temp.get("address"),(String) temp.get("phoneNum"),
-                            (String) temp.get("email"),(String) temp.get("sign"),
-                            (String)temp.get("rate")));
+                            (String) temp.get("pw"), (String) temp.get("employerNumber"),
+                            (String) temp.get("companyName"), (String) temp.get("name"),
+                            (String) temp.get("address"), (String) temp.get("phoneNum"),
+                            (String) temp.get("email"), (String) temp.get("sign"),
+                            (String) temp.get("rate")));
 
 
                 }
 
 
-            }catch (JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -278,7 +285,7 @@ public class Login extends AppCompatActivity {
                             (String) temp.get("pw"), (String) temp.get("name"),
                             (String) temp.get("gender"), (String) temp.get("birth"),
                             (String) temp.get("phoneNum"), (String) temp.get("address"),
-                            (String) temp.get("sign"),(String)temp.get("rate")));
+                            (String) temp.get("sign"), (String) temp.get("rate")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -321,7 +328,7 @@ public class Login extends AppCompatActivity {
 
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject temp = results.getJSONObject(i);
-                    applyinfos.add(i, new Applyinfo((String) temp.get("num"), (String) temp.get("eid"),(String)temp.get("fianl")));
+                    applyinfos.add(i, new Applyinfo((String) temp.get("num"), (String) temp.get("eid"), (String) temp.get("fianl")));
 
                 }
             } catch (JSONException e) {
@@ -329,5 +336,52 @@ public class Login extends AppCompatActivity {
             }
         }
 
+    }
+
+    class GetResume extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+                if (conn != null) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                        while (true) {
+                            String line = br.readLine();
+                            if (line == null) break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jsonObject = new JSONObject(str);
+                JSONArray results = jsonObject.getJSONArray("webnautes");
+
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject temp = results.getJSONObject(i);
+                    resumeinfos.add(i, new Resumeinfo((String) temp.get("id"), (String) temp.get("myFace"), (String) temp.get("yourname"),
+                            (String) temp.get("gender"), (String) temp.get("birth"), (String) temp.get("phoneNum"),
+                            (String) temp.get("address"), (String) temp.get("time"), (String) temp.get("address1"),
+                            (String) temp.get("address2"), (String) temp.get("job"), (String) temp.get("words")
+                    ));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

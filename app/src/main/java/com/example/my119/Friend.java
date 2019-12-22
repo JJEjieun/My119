@@ -11,6 +11,11 @@ public class Friend {
         this.storeName = storeName;
     }
 
+    public Friend(String ID, String name) {
+        this.ID = ID;
+        this.name = name;
+    }
+
     public String getID() {
         return ID;
     }

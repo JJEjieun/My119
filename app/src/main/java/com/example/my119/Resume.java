@@ -55,7 +55,7 @@ public class Resume extends AppCompatActivity {
     Uri image;
 
     private static final String TAG = "resume";
-    private static String IP_ADDRESS = "10.50.96.112";
+    private static String IP_ADDRESS = "10.0.2.2";
 
 
     @Override
@@ -275,7 +275,7 @@ public class Resume extends AppCompatActivity {
                 }
 
 
-                time = ss_time + ee_time;
+                time = ss_time+ " " + ee_time;
                 address1 = place1 + " " + place2;
                 address2 = place4 + " " + place5;
 

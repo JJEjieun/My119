@@ -29,7 +29,6 @@ public class RequestedNoticeList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requested_notice_list);
 
-
         final NoticeListViewAdapter adapter = new NoticeListViewAdapter() ;
 
         // 리스트뷰 참조 및 Adapter달기
@@ -43,7 +42,7 @@ public class RequestedNoticeList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "클릭", Toast.LENGTH_SHORT).show();
-//                applyNum = Integer.valueOf(applyinfos.get(adapter.getCount()-position-1).getNum());
+
                 notice[0] =adapter.getStore(position);
                 notice[1] =adapter.getMoney(position);
                 notice[2] =adapter.getWorkDate(position);
