@@ -65,7 +65,6 @@ public class ShowResume extends AppCompatActivity {
         //이력서 정보에서 알바를 신청한 사람의 아이디를 통해 이력서를 가져온다
         for (int i = 0; i < resumeinfos.size(); i++) {
             if (resumeinfos.get(i).getId().equals(eid)) {
-                Toast.makeText(this, eid, Toast.LENGTH_SHORT).show();
                 name = resumeinfos.get(i).getYourname();
                 gender = resumeinfos.get(i).getGender();
                 birth = resumeinfos.get(i).getBirth();
